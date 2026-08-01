@@ -1,0 +1,598 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s forms.
+ */
+.form-item,
+.form-actions {
+  margin: 0 0 20px 0;
+}
+.view-commerce-cart-form table .form-item,
+.view-commerce-cart-form table .form-actions {
+  margin: 10px 0;
+}
+.header__section .form-item,
+.header__section .form-actions {
+  margin: 0;
+}
+input.form-text,
+input.form-tel,
+input.form-email,
+input.form-url,
+input.form-search,
+input.form-file,
+input.form-number,
+input.form-color,
+input.form-date,
+input.form-time,
+textarea,
+select {
+  padding: 10px 15px;
+  margin: 0;
+  border: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--mt-form-border);
+  background-color: transparent;
+  font-weight: 400;
+  -webkit-transition: border-color 0.2s linear;
+  -o-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.form-composite > .fieldset-wrapper > .description,
+.form-item .description {
+  font-size: 14px;
+  opacity: 0.65;
+  margin-top: 4px;
+}
+input[type=search] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+form .image-preview {
+  margin-bottom: 0.5rem;
+}
+.region--tint-background input.form-text,
+.region--tint-background input.form-tel,
+.region--tint-background input.form-email,
+.region--tint-background input.form-url,
+.region--tint-background input.form-search,
+.region--tint-background input.form-file,
+.region--tint-background input.form-number,
+.region--tint-background input.form-color,
+.region--tint-background input.form-date,
+.region--tint-background input.form-time,
+.region--tint-background textarea,
+.region--tint-background select {
+  background-color: #ffffff;
+}
+.region--light-typography input.form-text,
+.region--light-typography input.form-tel,
+.region--light-typography input.form-email,
+.region--light-typography input.form-url,
+.region--light-typography input.form-search,
+.region--light-typography input.form-file,
+.region--light-typography input.form-number,
+.region--light-typography input.form-color,
+.region--light-typography input.form-date,
+.region--light-typography input.form-time,
+.region--light-typography textarea,
+.region--light-typography select {
+  border-color: var(--mt-form-border-contrast);
+  box-shadow: none;
+  background-color: transparent;
+}
+.region--light-typography input.form-text:hover,
+.region--light-typography input.form-tel:hover,
+.region--light-typography input.form-email:hover,
+.region--light-typography input.form-url:hover,
+.region--light-typography input.form-search:hover,
+.region--light-typography input.form-file:hover,
+.region--light-typography input.form-number:hover,
+.region--light-typography input.form-color:hover,
+.region--light-typography input.form-date:hover,
+.region--light-typography input.form-time:hover,
+.region--light-typography textarea:hover,
+.region--light-typography select:hover,
+.region--light-typography input.form-text:focus,
+.region--light-typography input.form-tel:focus,
+.region--light-typography input.form-email:focus,
+.region--light-typography input.form-url:focus,
+.region--light-typography input.form-search:focus,
+.region--light-typography input.form-file:focus,
+.region--light-typography input.form-number:focus,
+.region--light-typography input.form-color:focus,
+.region--light-typography input.form-date:focus,
+.region--light-typography input.form-time:focus,
+.region--light-typography textarea:focus,
+.region--light-typography select:focus {
+  border-color: var(--mt-form-border-focus-contrast);
+}
+.region--colored-background input.form-text:hover,
+.region--colored-background input.form-tel:hover,
+.region--colored-background input.form-email:hover,
+.region--colored-background input.form-url:hover,
+.region--colored-background input.form-search:hover,
+.region--colored-background input.form-file:hover,
+.region--colored-background input.form-number:hover,
+.region--colored-background input.form-color:hover,
+.region--colored-background input.form-date:hover,
+.region--colored-background input.form-time:hover,
+.region--colored-background textarea:hover,
+.region--colored-background select:hover,
+.region--colored-background input.form-text:focus,
+.region--colored-background input.form-tel:focus,
+.region--colored-background input.form-email:focus,
+.region--colored-background input.form-url:focus,
+.region--colored-background input.form-search:focus,
+.region--colored-background input.form-file:focus,
+.region--colored-background input.form-number:focus,
+.region--colored-background input.form-color:focus,
+.region--colored-background input.form-date:focus,
+.region--colored-background input.form-time:focus,
+.region--colored-background textarea:focus,
+.region--colored-background select:focus {
+  border-color: var(--mt-form-border);
+}
+
+/*webkit specific rules for select list*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select {
+    background-image: url("../../images/angle-down-black.png");
+    background-image: linear-gradient(transparent, transparent), url("../../images/angle-down-black.svg");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: 98.5% 50%;
+  }
+}
+
+/*form style 2*/
+.form--style-2 {
+  position: relative;
+}
+.form--style-2 input.form-text,
+.form--style-2 input.form-tel,
+.form--style-2 input.form-email,
+.form--style-2 input.form-url,
+.form--style-2 input.form-search,
+.form--style-2 input.form-file,
+.form--style-2 input.form-number,
+.form--style-2 input.form-color,
+.form--style-2 input.form-date,
+.form--style-2 input.form-time,
+.form--style-2 textarea,
+.form--style-2 select {
+  border-color: transparent transparent var(--mt-form-border) transparent;
+  background-color: transparent;
+}
+.form--style-2 input.form-text:hover,
+.form--style-2 input.form-tel:hover,
+.form--style-2 input.form-email:hover,
+.form--style-2 input.form-url:hover,
+.form--style-2 input.form-search:hover,
+.form--style-2 input.form-file:hover,
+.form--style-2 input.form-number:hover,
+.form--style-2 input.form-color:hover,
+.form--style-2 input.form-date:hover,
+.form--style-2 input.form-time:hover,
+.form--style-2 textarea:hover,
+.form--style-2 select:hover,
+.form--style-2 input.form-text:focus,
+.form--style-2 input.form-tel:focus,
+.form--style-2 input.form-email:focus,
+.form--style-2 input.form-url:focus,
+.form--style-2 input.form-search:focus,
+.form--style-2 input.form-file:focus,
+.form--style-2 input.form-number:focus,
+.form--style-2 input.form-color:focus,
+.form--style-2 input.form-date:focus,
+.form--style-2 input.form-time:focus,
+.form--style-2 textarea:focus,
+.form--style-2 select:focus {
+  border-color: var(--mt-form-border);
+}
+.region--light-typography .form--style-2 input.form-text,
+.region--light-typography .form--style-2 input.form-tel,
+.region--light-typography .form--style-2 input.form-email,
+.region--light-typography .form--style-2 input.form-url,
+.region--light-typography .form--style-2 input.form-search,
+.region--light-typography .form--style-2 input.form-file,
+.region--light-typography .form--style-2 input.form-number,
+.region--light-typography .form--style-2 input.form-color,
+.region--light-typography .form--style-2 input.form-date,
+.region--light-typography .form--style-2 input.form-time,
+.region--light-typography .form--style-2 textarea,
+.region--light-typography .form--style-2 select {
+  border-color: transparent transparent var(--mt-form-border-contrast) transparent;
+  background-color: transparent;
+}
+.region--light-typography .form--style-2 input.form-text:hover,
+.region--light-typography .form--style-2 input.form-tel:hover,
+.region--light-typography .form--style-2 input.form-email:hover,
+.region--light-typography .form--style-2 input.form-url:hover,
+.region--light-typography .form--style-2 input.form-search:hover,
+.region--light-typography .form--style-2 input.form-file:hover,
+.region--light-typography .form--style-2 input.form-number:hover,
+.region--light-typography .form--style-2 input.form-color:hover,
+.region--light-typography .form--style-2 input.form-date:hover,
+.region--light-typography .form--style-2 input.form-time:hover,
+.region--light-typography .form--style-2 textarea:hover,
+.region--light-typography .form--style-2 select:hover,
+.region--light-typography .form--style-2 input.form-text:focus,
+.region--light-typography .form--style-2 input.form-tel:focus,
+.region--light-typography .form--style-2 input.form-email:focus,
+.region--light-typography .form--style-2 input.form-url:focus,
+.region--light-typography .form--style-2 input.form-search:focus,
+.region--light-typography .form--style-2 input.form-file:focus,
+.region--light-typography .form--style-2 input.form-number:focus,
+.region--light-typography .form--style-2 input.form-color:focus,
+.region--light-typography .form--style-2 input.form-date:focus,
+.region--light-typography .form--style-2 input.form-time:focus,
+.region--light-typography .form--style-2 textarea:focus,
+.region--light-typography .form--style-2 select:focus {
+  border-color: var(--mt-form-border-focus-contrast);
+}
+.form--style-2 .form-actions {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.form--style-2 a.mt-button,
+.form--style-2 .mt-button > a,
+.form--style-2 button.mt-button,
+.form--style-2 input[type="submit"],
+.form--style-2 input[type="reset"],
+.form--style-2 input[type="button"] {
+  border-width: 0;
+}
+.form--style-2 a.mt-button:hover,
+.form--style-2 .mt-button > a:hover,
+.form--style-2 button.mt-button:hover,
+.form--style-2 input[type="submit"]:hover,
+.form--style-2 input[type="reset"]:hover,
+.form--style-2 input[type="button"]:hover,
+.form--style-2 a.mt-button:focus,
+.form--style-2 .mt-button > a:focus,
+.form--style-2 button.mt-button:focus,
+.form--style-2 input[type="submit"]:focus,
+.form--style-2 input[type="reset"]:focus,
+.form--style-2 input[type="button"]:focus {
+  background-color: transparent;
+}
+.region--light-typography .form--style-2 a.mt-button:hover,
+.region--light-typography .form--style-2 .mt-button > a:hover,
+.region--light-typography .form--style-2 button.mt-button:hover,
+.region--light-typography .form--style-2 input[type="submit"]:hover,
+.region--light-typography .form--style-2 input[type="reset"]:hover,
+.region--light-typography .form--style-2 input[type="button"]:hover,
+.region--light-typography .form--style-2 a.mt-button:focus,
+.region--light-typography .form--style-2 .mt-button > a:focus,
+.region--light-typography .form--style-2 button.mt-button:focus,
+.region--light-typography .form--style-2 input[type="submit"]:focus,
+.region--light-typography .form--style-2 input[type="reset"]:focus,
+.region--light-typography .form--style-2 input[type="button"]:focus {
+  color: var(--mt-form-color-contrast);
+}
+
+/*inline form elements*/
+.container-inline div {
+  display: inline-block;
+  vertical-align: top;
+}
+.container-inline input.form-text,
+.container-inline input.form-tel,
+.container-inline input.form-email,
+.container-inline input.form-url,
+.container-inline input.form-search,
+.container-inline input.form-file,
+.container-inline input.form-number,
+.container-inline input.form-color,
+.container-inline input.form-date,
+.container-inline input.form-time {
+  width: auto;
+  margin-right: 0;
+  display: inline-block;
+}
+.container-inline input[type="submit"] {
+  margin: 0;
+}
+.container-inline input[type="submit"],
+.form--inline input[type="submit"] {
+  line-height: 25px;
+  padding: 10px 24px;
+}
+@media (max-width: 767px) {
+  .container-inline div {
+    display: block;
+  }
+  .container-inline .form-actions {
+    margin: 0 0 20px 0;
+    display: block;
+  }
+  .container-inline .form-submit {
+    margin-top: 5px;
+  }
+  .container-inline input.form-text,
+  .container-inline input.form-tel,
+  .container-inline input.form-email,
+  .container-inline input.form-url,
+  .container-inline input.form-search,
+  .container-inline input.form-file,
+  .container-inline input.form-number,
+  .container-inline input.form-color,
+  .container-inline input.form-date,
+  .container-inline input.form-time {
+    width: 100%;
+  }
+}
+
+/*filter wrapper*/
+.filter-wrapper .form-item label {
+  display: inline-block;
+}
+
+/*Form group*/
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+.form-group:last-child {
+  margin-bottom: 0;
+}
+.form-group .form-item,
+.form-group .form-actions {
+  margin: 0;
+}
+.form-submit-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  color: var(--mt-form-color-contrast);
+  border: none;
+  border-radius: 0 5px 5px 0;
+}
+.form-submit-icon .svg-inline--fa {
+  height: 100%;
+}
+
+/*textarea*/
+textarea {
+  resize: none;
+}
+label {
+  display: block;
+  color: var(--mt-form-label-color);
+  font-size: 15px;
+}
+.label {
+  color: var(--mt-form-label-color);
+}
+.region--light-typography .label,
+.region--light-typography label {
+  color: var(--mt-form-color-contrast);
+}
+
+/*details*/
+details > .details-wrapper {
+  padding-bottom: 1.5em;
+}
+
+/*fieldset*/
+fieldset {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--mt-form-border);
+  padding: 0.5em 1.5em 1.4em;
+  margin: 0 0 20px;
+}
+fieldset legend {
+  display: inline-block;
+  width: auto;
+  padding: 5px;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+fieldset p:last-child {
+  padding-bottom: 0;
+}
+fieldset .fieldset-wrapper > div {
+  margin-bottom: 20px;
+}
+fieldset .fieldset-wrapper > div:last-child {
+  margin-bottom: 0;
+}
+fieldset.webform-type-radios,
+fieldset.webform-type-checkboxes {
+  border: none;
+}
+fieldset.webform-type-radios legend,
+fieldset.webform-type-checkboxes legend {
+  border: none;
+  font-weight: 400;
+  font-size: 15px;
+}
+.region--light-typography fieldset legend {
+  color: var(--mt-form-color-contrast);
+}
+.form-type-checkbox.form-no-label input[type="checkbox"],
+.form-type-checkbox.form-no-label input[type="radio"] {
+  display: inline-block;
+  margin-right: 7px;
+}
+.form-type-checkbox.form-no-label input[type="checkbox"] + .description,
+.form-type-checkbox.form-no-label input[type="radio"] + .description {
+  display: inline-block;
+  margin-left: 0;
+}
+
+/*checkboxes and radios*/
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0px 10px 3px 0;
+}
+
+/*hero form*/
+@media (min-width: 992px) {
+  .col-12 .region .block-webform-block {
+    max-width: 66.66667%;
+    margin: 0 auto;
+  }
+}
+.col-12 .region .block-webform-block .form-actions {
+  text-align: center;
+}
+
+/*form placeholder*/
+::-webkit-input-placeholder {
+  color: var(--mt-form-placeholder);
+}
+:-moz-placeholder {
+  color: var(--mt-form-placeholder);
+}
+::-moz-placeholder {
+  color: var(--mt-form-placeholder);
+}
+:-ms-input-placeholder {
+  color: var(--mt-form-placeholder);
+}
+::placeholder {
+  color: var(--mt-form-placeholder);
+}
+.region--light-typography ::-webkit-input-placeholder {
+  color: var(--mt-form-placeholder-contrast);
+}
+.region--light-typography :-moz-placeholder {
+  color: var(--mt-form-placeholder-contrast);
+}
+.region--light-typography ::-moz-placeholder {
+  color: var(--mt-form-placeholder-contrast);
+}
+.region--light-typography :-ms-input-placeholder {
+  color: var(--mt-form-placeholder-contrast);
+}
+.region--light-typography ::placeholder {
+  color: var(--mt-form-placeholder-contrast);
+}
+
+/* Disabled form elements */
+:root .region--default-background,
+:root .region--bright-background,
+:root .region--accent-background,
+:root .region--tint-background,
+:root .region--pattern {
+  /*Disabled and read only forms*/
+  --mt-form-disabled-background-color: #e9ecef;
+  --mt-form-disabled-border-color: #e9ecef;
+  --mt-form-disabled-color: #f9f9f9;
+  --mt-form-disabled-opacity: 0.7;
+
+  /*Disabled submit type*/
+  --mt-submit-disabled-color: var(--mt-color-primary-contrast);
+  --mt-submit-disabled-border-color: var(--mt-color-primary);
+  --mt-submit-disabled-background-color: var(--mt-color-primary);
+  --mt-submit-outline-background-color: transparent;
+  --mt-submit-outline-disabled-color: var(--mt-color-base);
+  --mt-submit-disabled-opacity: 0.7;
+}
+:root .region--colored-background {
+  /*Disabled and read only forms*/
+  --mt-form-disabled-background-color: var(--mt-color-dark-colored);
+  --mt-form-disabled-border-color:  var(--mt-color-dark-colored);
+  --mt-form-disabled-color: hsl(210deg 50% 98% / 20%);
+  --mt-form-disabled-opacity: 0.5;
+
+  /*Disabled submit type*/
+  --mt-submit-disabled-color: var(--mt-color-base-contrast);
+  --mt-submit-disabled-background-color: var(--mt-color-dark-colored);
+  --mt-submit-outline-background-color: transparent;
+  --mt-submit-outline-disabled-color: var(--mt-color-base-contrast);
+  --mt-submit-disabled-opacity: 0.7;
+}
+:root .region--dark-colored-background {
+  /*Disabled and read only forms*/
+  --mt-form-disabled-background-color: var(--mt-color-colored);
+  --mt-form-disabled-border-color: var(--mt-color-colored);
+  --mt-form-disabled-color: hsl(210deg 50% 98% / 20%);
+  --mt-form-disabled-opacity: 0.5;
+
+  /*Disabled submit type*/
+  --mt-submit-disabled-color: var(--mt-color-base-contrast);
+  --mt-submit-disabled-background-color: var(--mt-color-colored);
+  --mt-submit-outline-background-color: transparent;
+  --mt-submit-outline-disabled-color: var(--mt-color-base-contrast);
+  --mt-submit-disabled-opacity: 0.7;
+}
+:root .region--shade-background,
+:root .region--dark-background {
+  /*Disabled and read only forms*/
+  --mt-form-disabled-background-color: #353535;
+  --mt-form-disabled-border-color: #353535;
+  --mt-form-disabled-color: hsl(210deg 50% 98% / 20%);
+  --mt-form-disabled-opacity: 0.7;
+
+  /*Disabled submit type*/
+  --mt-submit-outline-disabled-color: var(--mt-color-base-contrast);
+  --mt-submit-disabled-opacity: 0.7;
+}
+
+
+/*Disabled form elements*/
+.webform-readonly label,
+.form-disabled label,
+.webform-readonly .description,
+.form-disabled .description,
+fieldset:disabled legend {
+  opacity: 0.5;
+}
+
+/*Disabled and read only inputs*/
+input[readonly="readonly"],
+input:disabled,
+input[readonly],
+textarea:disabled,
+textarea[readonly="readonly"],
+textarea[readonly],
+select:disabled {
+  opacity: var(--mt-form-disabled-opacity);
+  background-color: var(--mt-form-disabled-background-color) !important;
+  border-color: var(--mt-form-disabled-border-color) !important;
+  color: var(--mt-form-disabled-color) !important;
+}
+input[readonly="readonly"]:hover,
+input:disabled:hover,
+input[readonly]:hover,
+textarea:disabled:hover,
+textarea[readonly]:hover,
+textarea[readonly="readonly"]:hover,
+select:disabled:hover,
+input[readonly="readonly"]:focus,
+input:disabled:focus,
+input[readonly]:focus,
+textarea:disabled:focus,
+textarea[readonly]:focus,
+textarea[readonly="readonly"]:focus,
+select:disabled:focus {
+  border-color: var(--mt-form-disabled-border-color) !important;
+}
+input[type="submit"]:disabled {
+  color: var(--mt-submit-disabled-color) !important;
+  opacity: var(--mt-submit-disabled-opacity);
+  background-color: var(--mt-submit-disabled-background-color) !important;
+  box-shadow: none;
+  border-color: var(--mt-submit-disabled-border-color) !important;
+}
+input[type="submit"].mt-button--outline:disabled {
+  opacity: var(--mt-submit-disabled-opacity);
+  background-color: var(--mt-submit-outline-background-color) !important;
+  color: var(--mt-submit-outline-disabled-color) !important;
+  box-shadow: none;
+}

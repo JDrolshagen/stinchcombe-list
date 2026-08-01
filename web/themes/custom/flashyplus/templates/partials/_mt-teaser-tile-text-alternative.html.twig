@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in teaser tile view mode.
+ */
+#}
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% if pre_content_first|render or pre_content_second|render %}
+    <div class="node__meta">
+      {% if display_submitted and not author_info %}
+        {{ metadata }}
+      {% endif %}
+      {% if pre_content_first|render %}
+        <div class="node__meta-item">
+          {{ pre_content_first }}
+        </div>
+      {% endif %}
+      {% if pre_content_second|render %}
+        <div class="node__meta-item">
+          {{ pre_content_second }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if not page %}
+    <h4{{ title_attributes.addClass("node__title mt-0 mb-2") }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h4>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ rendered_content }}
+  </div>
+
+  {% if post_content_first|render %}
+    <div class="node__meta-item">
+      {{ post_content_first }}
+    </div>
+  {% endif %}
+
+  {% if display_submitted and author_info %}
+    <div class="node__meta mb-0">
+      {{ author_picture }}
+      <span{{ author_attributes.addClass('node__submitted') }}>
+        {{ metadata }}
+        {{ author_name }}
+      </span>
+    </div>
+  {% endif %}
+
+</article>

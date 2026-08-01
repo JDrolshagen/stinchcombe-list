@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Service node in metro tile view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-metro-tile') }}
+
+{% set caption_text_first = content.field_mt_srv_tags %}
+{% set caption_text_second = null %}
+{% set image = content.field_mt_srv_teaser_image %}
+{% set rendered_content = content|without('field_mt_srv_teaser_image', 'field_mt_srv_tags') %}
+
+{% set caption_items = "one-item" %}
+{% if caption_text_first and caption_text_second %}
+  {% set caption_items = "three-items" %}
+{% elseif ( caption_text_first and not caption_text_second ) or ( not caption_text_first and caption_text_second ) %}
+  {% set caption_items = "two-items" %}
+{% endif %}
+
+{% if image|render %}
+  {% set styled_image = image %}
+{% endif %}
+{% include '@flashyplus/partials/_mt-metro-tile.html.twig' %}

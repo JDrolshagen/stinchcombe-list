@@ -1,0 +1,75 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display internal banner slider of Service node.
+ */
+#}
+
+{% extends "page.html.twig" %}
+{% block internal_banner %}
+  {% if page.hero_top  %}
+    {{ attach_library('flashyplus/banner-area') }}
+    <div class="internal-banner-container {{ hero_top_background_color }}">
+      <div {% if hero_top_id %}id="{{ hero_top_id }}"{% endif %} class="clearfix hero-top d-flex align-items-end {{ (hero_top_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (hero_top_region_paddings) ? ' region--no-paddings' : '' }}">
+        <div class="internal-banner d-flex align-items-end">
+        {# hero-top #}
+          <div class="{{ hero_top_layout_container }}">
+            {# hero-top__container #}
+            <div class="clearfix hero-top__container{{ (hero_top_animations == "enabled") ? ' mt-no-opacity' : '' }}"
+              {% if hero_top_animations == "enabled" %}
+                data-animate-effect="{{ hero_top_animation_effect }}"
+              {% endif %}>
+              <div class="row">
+                <div class="col-12">
+                  <div class="hero-top__section">
+                    {{ page.hero_top }}
+                    {% if (mt_prd_category|render or mt_display_submitted) and node is not null %}
+                      <div class="row grid-gutter-10 align-items-center internal-banner__meta">
+                        {% if mt_prd_category|render %}
+                          <div class="col-12 col-sm-auto mb-3 mb-sm-0">
+                            {{ mt_prd_category }}
+                          </div>
+                        {% endif %}
+                        {% if mt_prd_category|render %}
+                          <span class="internal-banner__meta-separator internal-banner__meta-separator--wide"><i class="fas fa-square"></i></span>
+                        {% endif %}
+                        <div class="col-12 col-sm-auto mb-0">
+                          <ul class="list-inline mb-0">
+                            <li class="facebook list-inline-item">
+                              <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('entity.node.canonical', {'node': node.id}) }}&t={{node.label | url_encode(true)}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                                <i class="fab fa-facebook"><span class="sr-only">facebook</span></i>
+                              </a>
+                            </li>
+                            <li class="twitter list-inline-item">
+                              <a href="https://twitter.com/share?text={{node.label | url_encode(true)}}&url={{ url('entity.node.canonical', {'node': node.id}) }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                                <i class="fab fa-twitter"><span class="sr-only">twitter</span></i>
+                              </a>
+                            </li>
+                            <li class="list-inline-item">
+                              <a href="mailto:?Subject={{node.label | url_encode(true)}}&amp;Body={{ url('entity.node.canonical', {'node': node.id}) }}">
+                                <i class="far fa-envelope"><span class="sr-only">envelope</span></i>
+                              </a>
+                            </li>
+                            <li class="print list-inline-item">
+                              <div class="print">
+                                <a href="javascript:window.print()" class="print-button">
+                                  <i class="fas fa-print"><span class="sr-only">print</span></i>
+                                </a>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {# EOF:hero-top__container #}
+          </div>
+        </div>
+        {# EOF: hero-top #}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

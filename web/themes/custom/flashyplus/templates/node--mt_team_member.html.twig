@@ -1,0 +1,66 @@
+{% extends "node.html.twig" %}
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Team Member node.
+ */
+#}
+
+{% block content %}
+  {{ attach_library('flashyplus/node-team-member') }}
+  <div class="row content">
+    {% if content.field_mt_tmm_member_photo|render and page %}
+      <div class="col-lg-6">
+    {% elseif content.field_mt_tmm_member_photo|render and not page %}
+      <div class="col-lg-8">
+    {% else %}
+      <div class="col-sm-12">
+    {% endif %}
+      {{ content.field_mt_tmm_subheader_body }}
+      {{ content.field_mt_tmm_body }}
+      {% if (content.field_mt_tmm_facebook_account|render or content.field_mt_tmm_twitter_account|render or content.field_mt_tmm_linkedin_account|render or content.field_mt_tmm_youtube_account|render) %}
+        <ul class="icons-list icons-list--large">
+          {% if content.field_mt_tmm_facebook_account|render %}
+            <li>
+              <a target="_blank" href="{{ node.field_mt_tmm_facebook_account.value }}">
+                <i class="fab fa-facebook"></i><span class="sr-only">facebook</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if content.field_mt_tmm_twitter_account|render %}
+            <li>
+              <a target="_blank" href="{{ node.field_mt_tmm_twitter_account.value }}">
+                <i class="fab fa-twitter"></i><span class="sr-only">twitter</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if content.field_mt_tmm_linkedin_account|render %}
+            <li>
+              <a target="_blank" href="{{ node.field_mt_tmm_linkedin_account.value }}">
+                <i class="fab fa-linkedin"></i><span class="sr-only">linkedin</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if content.field_mt_tmm_youtube_account|render %}
+            <li>
+              <a target="_blank" href="{{ node.field_mt_tmm_youtube_account.value }}">
+                <i class="fab fa-youtube"></i><span class="sr-only">youtube</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+    {% if content.field_mt_tmm_member_photo|render %}
+      {% if page %}
+        {{ attach_library('flashyplus/magnific-popup-field-mt-tmm-member-photo-init') }}
+      {% endif %}
+      <div class="{{ (page) ? 'col-lg-6' : 'col-lg-4' }}">
+        <div class="photo-container">
+          {{ content.field_mt_tmm_member_photo }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  {{ content|without('field_mt_tmm_member_photo','field_mt_tmm_subtitle','field_mt_tmm_facebook_account','field_mt_tmm_twitter_account','field_mt_tmm_linkedin_account','field_mt_tmm_youtube_account','field_mt_tmm_body','field_mt_tmm_subheader_body') }}
+{% endblock %}

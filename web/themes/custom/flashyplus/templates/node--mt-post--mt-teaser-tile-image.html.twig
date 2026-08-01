@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in teaser tile image view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile-image') }}
+{% set image = content.field_mt_pst_image %}
+{% if display_submitted %}
+  {% set teaser_tile_meta_first = node.createdtime|format_date('custom', 'M d, Y') %}
+{% else %}
+  {% set teaser_tile_meta_first = null %}
+{% endif %}
+{% set teaser_tile_meta_second = content.field_mt_pst_category %}
+{% if display_submitted %}
+  {% set teaser_tile_caption_bottom = author_name %}
+{% else %}
+  {% set teaser_tile_caption_bottom = null %}
+{% endif %}
+{% set rendered_content = content|without('field_mt_pst_image', 'field_mt_pst_category') %}
+{% include '@flashyplus/partials/_mt-teaser-tile-image.html.twig' %}

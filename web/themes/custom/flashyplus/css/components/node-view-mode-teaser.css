@@ -1,0 +1,130 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s node in teaser tile view.
+ */
+.node--view-mode-teaser {
+  margin-bottom: 60px;
+}
+.node--view-mode-teaser .promoted-label {
+  background-color: #4d4d4d;
+  border: 1px solid #4d4d4d;
+  color: #ffffff;
+  padding: 8px 22px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  display: inline-block;
+}
+.node--view-mode-teaser .node__title {
+  font-size: 30px;
+  margin-top: 0px;
+}
+.node--view-mode-teaser .node__header {
+  padding-bottom: 0;
+}
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term,
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin-bottom: 0;
+  margin-top: 5px;
+  display: inline-block;
+  padding: 0;
+}
+.node--view-mode-teaser .promoted-label + .field--entity-reference-target-type-taxonomy-term,
+.node--view-mode-teaser .promoted-label + .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term:before,
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item:before {
+  content: "";
+}
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item,
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item {
+  vertical-align: baseline;
+}
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a,
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a {
+  padding: 8px 22px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a:hover,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a:hover,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a:focus,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a:focus {
+  text-decoration: none;
+  color: #ffffff;
+}
+.region--light-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a,
+.region--light-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a:after,
+.node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a:after {
+  content: "";
+}
+.node--view-mode-teaser .node__content .field {
+  margin-bottom: 18px;
+}
+.node--view-mode-teaser .node__content .field:last-child {
+  margin-bottom: 0px;
+}
+.node--view-mode-teaser .node__content .field p:last-child {
+  padding-bottom: 0px;
+}
+.node--view-mode-teaser .teaser-pre-content {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: rgba(32, 33, 36, 0.7);
+}
+.node--view-mode-teaser .teaser-image {
+  position: relative;
+  margin-bottom: 20px;
+}
+.node--view-mode-teaser .teaser-image .node__submitted-date {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  padding: 10px;
+  color: #333333;
+  text-align: center;
+}
+.node--view-mode-teaser .teaser-image .node__submitted-date .day {
+  font-size: 35px;
+  font-weight: 600;
+  display: block;
+  line-height: 1;
+}
+.node--view-mode-teaser .teaser-image .node__submitted-date .month-year {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* teaser 2 */
+.node--view-mode-teaser-2 .node__meta {
+  margin-bottom: 0;
+}
+.node--view-mode-teaser-2 .node__meta-item {
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+.node--view-mode-teaser-2 .node__meta-item:after {
+  content: "/";
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.node--view-mode-teaser-2 .node__meta-item:last-child:after {
+  content: "";
+  display: none;
+}
+.region--dark-typography .node--view-mode-teaser-2 .node__meta-item {
+  color: #6c6c6c;
+}

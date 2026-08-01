@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display internal banner slider of Post node.
+ */
+#}
+
+{% extends "page.html.twig" %}
+{% block reading_progress_indicator %}
+  {% if post_progress %}
+    {{ attach_library('flashyplus/post-progress') }}
+    <div class="post-progress">
+      <div class="post-progress__bar"></div>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block internal_banner %}
+  {% if mt_pst_internal_banner|render or mt_display_submitted or mt_pst_category|render or page.hero_top %}
+    {{ attach_library('flashyplus/banner-area') }}
+    <div class="internal-banner-container {{(mt_pst_internal_banner|render and node is not null) ? 'internal-banner-container--fullscreen' : ''}} {{ hero_top_background_color }}">
+      {% if mt_pst_internal_banner|render and node is not null %}
+        {{ mt_pst_internal_banner }}
+      {% endif %}
+      {% if page.hero_top %}
+        <div {% if hero_top_id %}id="{{ hero_top_id }}"{% endif %} class="clearfix hero-top d-flex align-items-end {{ (hero_top_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (hero_top_region_paddings) ? ' region--no-paddings' : '' }}">
+          <div class="internal-banner d-flex align-items-end {{(mt_pst_internal_banner|render) ? '' : 'internal-banner--plain' }}">
+          {# hero-top #}
+            <div class="{{ hero_top_layout_container }}">
+              {# hero-top__container #}
+              <div class="clearfix hero-top__container{{ (hero_top_animations == "enabled") ? ' mt-no-opacity' : '' }}"
+                {% if hero_top_animations == "enabled" %}
+                  data-animate-effect="{{ hero_top_animation_effect }}"
+                {% endif %}>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="hero-top__section">
+                      {{ page.hero_top }}
+                      {% if (mt_pst_category|render or mt_display_submitted) and node is not null %}
+                        <div class="row grid-gutter-10 align-items-center internal-banner__meta">
+                          {% if mt_pst_category|render %}
+                            <div class="col-12 col-sm-auto mb-3 mb-sm-0">
+                              {{ mt_pst_category }}
+                            </div>
+                          {% endif %}
+                          {% if mt_display_submitted %}
+                            {% if mt_pst_category|render %}
+                              <span class="internal-banner__meta-separator"><i class="fas fa-square"></i></span>
+                            {% endif %}
+                            <div class="col-12 col-sm-auto mb-0">
+                              <div class="node__submitted-date">
+                                {{ node.createdtime|format_date('custom', 'F d, Y') }}
+                              </div>
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {# EOF:hero-top__container #}
+            </div>
+          </div>
+          {# EOF: hero-top #}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock %}

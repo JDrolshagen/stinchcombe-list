@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Increases field_iso_code storage length for full U.S. region codes.
+ */
+function quantum_us_state_map_update_11001(): string {
+  $field_storage = FieldStorageConfig::loadByName('taxonomy_term', 'field_iso_code');
+
+  if (!$field_storage) {
+    return 'field_iso_code does not exist. No field storage update was performed.';
+  }
+
+  $schema = \Drupal::database()->schema();
+
+  $column_spec = [
+    'type' => 'varchar',
+    'length' => 5,
+    'not null' => FALSE,
+  ];
+
+  if ($schema->tableExists('taxonomy_term__field_iso_code') && $schema->fieldExists('taxonomy_term__field_iso_code', 'field_iso_code_value')) {
+    $schema->changeField('taxonomy_term__field_iso_code', 'field_iso_code_value', 'field_iso_code_value', $column_spec);
+  }
+
+  if ($schema->tableExists('taxonomy_term_revision__field_iso_code') && $schema->fieldExists('taxonomy_term_revision__field_iso_code', 'field_iso_code_value')) {
+    $schema->changeField('taxonomy_term_revision__field_iso_code', 'field_iso_code_value', 'field_iso_code_value', $column_spec);
+  }
+
+  $settings = $field_storage->getSettings();
+  $settings['max_length'] = 5;
+  $field_storage->set('settings', $settings);
+  $field_storage->save();
+
+  return 'field_iso_code maximum length increased to 5 for U.S. region codes such as US-CA.';
+}

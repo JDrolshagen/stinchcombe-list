@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme override for the block entity refernece field for the tabs powered custom block
+ *
+ * @see flashyplus_preprocess_field__block_content__mt_background_image_block()
+ */
+#}
+{{ attach_library('flashyplus/frontpage-cover-block') }}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'field--mt-frontpage-cover',
+    'clearfix',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'inline' ? 'inline',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  {% endif %}
+  <div class="frontpage-cover-block__section" style="height: {{ field_mt_fpcb_block_height_value }}px;">
+    <div class="frontpage-cover-block__background-image" style="background-image: url({{ file_url(background_image_uri) }});"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          {% if field_mt_fpcb_title_value %}
+            <h1 class="mt-0">{{ field_mt_fpcb_title_value }}</h1>
+          {% endif %}
+          {% if field_mt_fpcb_subtitle_value %}
+            <p class="extra-large">{{ field_mt_fpcb_subtitle_value }}</p>
+          {% endif %}
+          {% for item in image_buttons %}
+            <a class="my-3 d-inline-block" href="{{ item.image_button_link_url }}"><img src="{{ file_url(item.image_button_image_url) }}" alt="{{ item.image_button_image_alt }}"></a>
+          {% endfor %}
+        </div>
+        {% if field_mt_fpcb_cta_button_text %}
+          <div class="col-lg-7 col-xl-6 ms-xl-auto">
+            <a class="cta-button mt-button" href="{{ field_mt_fpcb_cta_button_uri }}"><span>{{ field_mt_fpcb_badge_value }}</span> {{ field_mt_fpcb_cta_button_text }} <i class="fa fa-angle-right"></i></a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

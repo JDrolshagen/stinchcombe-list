@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Service node in slide view view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    display_submitted ? 'node--display-submitted',
+    'clearfix',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-slide-view') }}
+{% set image = content.field_mt_srv_image %}
+{% if image|render %}
+  {% set main_content_grid_class = "col-md-6" %}
+{% else %}
+  {% set main_content_grid_class = "col-md-12" %}
+{% endif %}
+{% set rendered_content = content|without('comment', 'field_mt_srv_image', 'links') %}
+{% include '@flashyplus/partials/_mt-slide-view.html.twig' %}

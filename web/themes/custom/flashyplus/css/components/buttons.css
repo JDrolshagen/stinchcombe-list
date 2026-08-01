@@ -1,0 +1,293 @@
+/**
+ * @file
+ * Styles for Flashy+'s buttons.
+ */
+a.mt-button,
+.mt-button > a,
+button.mt-button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 16px 33px;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1.125;
+  border-width: 2px;
+  border-style: solid;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 0;
+  text-align: center;
+  position: relative;
+}
+.node--view-mode-mt-teaser-tile-commerce-product a.mt-button,
+.node--view-mode-mt-teaser-tile-commerce-product .mt-button > a,
+.node--view-mode-mt-teaser-tile-commerce-product button.mt-button,
+.node--view-mode-mt-teaser-tile-commerce-product input[type="submit"],
+.node--view-mode-mt-teaser-tile-commerce-product input[type="reset"],
+.node--view-mode-mt-teaser-tile-commerce-product input[type="button"] {
+  font-size: 16px;
+  padding: 12px 25px;
+}
+@media (min-width: 1200px) {
+  .col-xl-2 .node--view-mode-mt-teaser-tile-commerce-product a.mt-button,
+  .col-xl-2 .node--view-mode-mt-teaser-tile-commerce-product .mt-button > a,
+  .col-xl-2 .node--view-mode-mt-teaser-tile-commerce-product button.mt-button,
+  .col-xl-2 .node--view-mode-mt-teaser-tile-commerce-product input[type="submit"],
+  .col-xl-2 .node--view-mode-mt-teaser-tile-commerce-product input[type="reset"],
+  .col-xl-2 .node--view-mode-mt-teaser-tile-commerce-product input[type="button"] {
+    font-size: 16px;
+    padding: 15px 13px;
+  }
+}
+a.mt-button:hover,
+.mt-button > a:hover,
+button.mt-button:hover {
+  position: relative;
+  padding-right: 43px;
+  padding-left: 23px;
+}
+a.mt-button:after,
+.mt-button > a:after,
+button.mt-button:after,
+input[type="submit"]:after,
+input[type="reset"]:after,
+input[type="button"]:after {
+  content: "\f105";
+  font-family: 'Font Awesome 5 Free', 'Font Awesome 5 Pro';
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin-top: -9px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: transparent;
+}
+a.mt-button:hover:after,
+.mt-button > a:hover:after,
+button.mt-button:hover:after,
+input[type="submit"]:hover:after,
+input[type="reset"]:hover:after,
+input[type="button"]:hover:after {
+  color: inherit;
+}
+a.mt-button:focus,
+.mt-button > a:focus,
+button.mt-button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  border: 2px solid #FFFFFF;
+  outline: 2px solid var(--mt-color-base);
+}
+button.mt-button {
+  -webkit-appearance: none;
+}
+a.mt-button.mt-button--outline,
+.mt-button.mt-button--outline > a,
+input[type="submit"][value="Reset"],
+input[type="submit"].mt-button--outline,
+input[type="reset"].mt-button--outline,
+input[type="button"].mt-button--outline {
+  background-color: transparent;
+  border-color: var(--mt-color-base);
+  border-width: 1px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+}
+a.mt-button.mt-button--outline:hover,
+.mt-button.mt-button--outline > a:hover,
+input[type="submit"][value="Reset"]:hover,
+input[type="submit"].mt-button--outline:hover,
+input[type="reset"].mt-button--outline:hover,
+input[type="button"].mt-button--outline:hover {
+  background-color: var(--mt-color-base);
+  color: #FFFFFF;
+}
+a.mt-button.mt-button--outline:focus,
+.mt-button.mt-button--outline > a:focus,
+input[type="submit"][value="Reset"]:focus,
+input[type="submit"].mt-button--outline:focus,
+input[type="reset"].mt-button--outline:focus,
+input[type="button"].mt-button--outline:focus {
+  border: 1px solid #FFFFFF;
+  outline: 2px solid var(--mt-color-base);
+  background-color: var(--mt-color-base);
+  color: #FFFFFF;
+}
+a.mt-button.mt-button--small,
+.mt-button.mt-button--small > a,
+button.mt-button.mt-button--small {
+  font-size: 14px;
+  padding: 6px 20px;
+  border-width: 2px;
+  text-transform: none;
+}
+a.mt-button.mt-button--small:hover,
+.mt-button.mt-button--small > a:hover,
+button.mt-button.mt-button--small:hover {
+  padding-right: 30px;
+  padding-left: 10px;
+}
+a.mt-button.mt-button--small:hover:after,
+.mt-button.mt-button--small > a:hover:after,
+button.mt-button.mt-button--small:hover:after {
+  font-size: 12px;
+  right: 13px;
+  margin-top: -6px;
+}
+.headings-wide-spacing-enabled a.mt-button,
+.headings-wide-spacing-enabled .mt-button > a,
+.headings-wide-spacing-enabled button.mt-button,
+.headings-wide-spacing-enabled input[type="submit"],
+.headings-wide-spacing-enabled input[type="reset"],
+.headings-wide-spacing-enabled input[type="button"] {
+  letter-spacing: 0.25em;
+}
+input[type="submit"] + input[type="submit"],
+.mt-button + .mt-button {
+  margin-left: 20px;
+}
+.region--light-typography a.mt-button:focus,
+.region--light-typography .mt-button > a:focus,
+.region--light-typography button.mt-button:focus,
+.region--light-typography input[type="submit"]:focus,
+.region--light-typography input[type="reset"]:focus,
+.region--light-typography input[type="button"]:focus {
+  outline-color: #FFFFFF;
+}
+.region--light-typography a.mt-button.mt-button--outline,
+.region--light-typography .mt-button.mt-button--outline > a,
+.region--light-typography input[type="submit"][value="Reset"],
+.region--light-typography input[type="submit"].mt-button--outline,
+.region--light-typography input[type="reset"].mt-button--outline,
+.region--light-typography input[type="button"].mt-button--outline {
+  background-color: transparent;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+.region--light-typography a.mt-button.mt-button--outline:hover,
+.region--light-typography .mt-button.mt-button--outline > a:hover,
+.region--light-typography input[type="submit"][value="Reset"]:hover,
+.region--light-typography input[type="submit"].mt-button--outline:hover,
+.region--light-typography input[type="reset"].mt-button--outline:hover,
+.region--light-typography input[type="button"].mt-button--outline:hover {
+  background-color: #FFFFFF;
+  color: var(--mt-color-base);
+}
+.region--light-typography a.mt-button.mt-button--outline:focus,
+.region--light-typography .mt-button.mt-button--outline > a:focus,
+.region--light-typography input[type="submit"][value="Reset"]:focus,
+.region--light-typography input[type="submit"].mt-button--outline:focus,
+.region--light-typography input[type="reset"].mt-button--outline:focus,
+.region--light-typography input[type="button"].mt-button--outline:focus {
+  border-color: #FFFFFF;
+}
+.region--dark-typography.region--colored-background a.mt-button,
+.region--dark-typography.region--colored-background .mt-button > a,
+.region--dark-typography.region--colored-background button.mt-button,
+.region--dark-typography.region--colored-background input[type="submit"],
+.region--dark-typography.region--colored-background input[type="reset"],
+.region--dark-typography.region--colored-background input[type="button"] {
+  background-color: var(--mt-color-base);
+  border-color: var(--mt-color-base);
+  color: var(--mt-color-base-contrast);
+}
+.region--dark-typography.region--colored-background a.mt-button:focus,
+.region--dark-typography.region--colored-background .mt-button > a:focus,
+.region--dark-typography.region--colored-background button.mt-button:focus,
+.region--dark-typography.region--colored-background input[type="submit"]:focus,
+.region--dark-typography.region--colored-background input[type="reset"]:focus,
+.region--dark-typography.region--colored-background input[type="button"]:focus {
+  border-color: #FFFFFF;
+  outline-color: var(--mt-color-base);
+}
+.region--dark-typography.region--colored-background a.mt-button.mt-button--outline,
+.region--dark-typography.region--colored-background .mt-button.mt-button--outline > a,
+.region--dark-typography.region--colored-background button.mt-button.mt-button--outline,
+.region--dark-typography.region--colored-background input[type="submit"][value="Reset"],
+.region--dark-typography.region--colored-background input[type="submit"].mt-button--outline,
+.region--dark-typography.region--colored-background input[type="reset"].mt-button--outline,
+.region--dark-typography.region--colored-background input[type="button"].mt-button--outline {
+  background-color: transparent;
+  border-color: var(--mt-color-base);
+  color: var(--mt-color-base);
+}
+.region--dark-typography.region--colored-background a.mt-button.mt-button--outline:hover,
+.region--dark-typography.region--colored-background .mt-button.mt-button--outline > a:hover,
+.region--dark-typography.region--colored-background button.mt-button.mt-button--outline:hover,
+.region--dark-typography.region--colored-background input[type="submit"][value="Reset"]:hover,
+.region--dark-typography.region--colored-background input[type="submit"].mt-button--outline:hover,
+.region--dark-typography.region--colored-background input[type="reset"].mt-button--outline:hover,
+.region--dark-typography.region--colored-background input[type="button"].mt-button--outline:hover {
+  background-color: #FFFFFF;
+}
+.region--dark-typography.region--colored-background a.mt-button.mt-button--outline:focus,
+.region--dark-typography.region--colored-background .mt-button.mt-button--outline > a:focus,
+.region--dark-typography.region--colored-background button.mt-button.mt-button--outline:focus,
+.region--dark-typography.region--colored-background input[type="submit"][value="Reset"]:focus,
+.region--dark-typography.region--colored-background input[type="submit"].mt-button--outline:focus,
+.region--dark-typography.region--colored-background input[type="reset"].mt-button--outline:focus,
+.region--dark-typography.region--colored-background input[type="button"].mt-button--outline:focus {
+  border-color: #FFFFFF;
+}
+span.mt-button-operator {
+  margin: 0 10px 0 5px;
+}
+a.mt-button .svg-inline--fa {
+  margin-right: 10px;
+}
+a.mt-button--no-margins {
+  margin: 0;
+}
+
+/*Buttons hover style 2*/
+a.mt-button.mt-button--hover-style-2,
+.mt-button.mt-button--hover-style-2 > a {
+  position: relative;
+  z-index: 1;
+  border-width: 2px;
+}
+a.mt-button.mt-button--hover-style-2:hover,
+.mt-button.mt-button--hover-style-2 > a:hover {
+  background: transparent;
+}
+a.mt-button.mt-button--hover-style-2:before,
+.mt-button.mt-button--hover-style-2 > a:before {
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  border-radius: inherit;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+}
+a.mt-button.mt-button--hover-style-2:hover:before,
+a.mt-button.mt-button--hover-style-2:focus:before,
+.mt-button.mt-button--hover-style-2 > a:hover:before,
+.mt-button.mt-button--hover-style-2 > a:focus:before {
+  transform: scaleX(1);
+}
+.region--light-typography a.mt-button.mt-button--hover-style-2:before,
+.region--light-typography .mt-button.mt-button--hover-style-2 > a:before {
+  background-color: #ffffff;
+}

@@ -1,0 +1,117 @@
+/**
+ * @file
+ * Visual styles for Press+'s node in teaser tile video view.
+ */
+.node--view-mode-mt-featured-teaser-video {
+  margin-bottom: 15px;
+}
+.region--light-typography .node--view-mode-mt-featured-teaser-video {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+.node--view-mode-mt-featured-teaser-video .promoted-label {
+  background-color: #4d4d4d;
+  color: #ffffff;
+  display: inline-block;
+  padding: 4px 8px 3px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.node--view-mode-mt-featured-teaser-video .field--name-field-mt-pst-video {
+  margin-bottom: 15px;
+}
+@media (min-width: 1200px) {
+  .node--view-mode-mt-featured-teaser-video h2.node__title {
+    margin: 0 0 20px;
+  }
+  .node--view-mode-mt-featured-teaser-video .field--name-field-mt-pst-body {
+    margin-bottom: 15px;
+  }
+}
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term,
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 0 0 5px;
+  padding: 0;
+}
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term:before,
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term.field__item:before {
+  content: "";
+}
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term .field__item a,
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term.field__item a {
+  font-size: 14px;
+}
+.region--dark-typography .node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term .field__item a,
+.region--dark-typography .node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term.field__item a {
+  color: #707070;
+}
+.node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term:not(.field--label-above)::after {
+  content: "";
+}
+@media (min-width: 1200px) {
+  .node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term,
+  .node--view-mode-mt-featured-teaser-video .field--entity-reference-target-type-taxonomy-term.field__item {
+    margin: 0 0 10px;
+  }
+}
+.node--view-mode-mt-featured-teaser-video .promoted-label + .field--entity-reference-target-type-taxonomy-term,
+.node--view-mode-mt-featured-teaser-video .promoted-label + .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 0 0 0 10px;
+  padding: 0;
+  display: inline-block;
+  line-height: 1.35;
+  vertical-align: text-top;
+}
+@media (max-width: 991px) {
+  .node--view-mode-mt-featured-teaser-video .field--name-field-mt-pst-body {
+    margin-bottom: 20px;
+  }
+}
+.node--view-mode-mt-featured-teaser-video .profile {
+  display: inline-block;
+}
+.node--view-mode-mt-featured-teaser-video .profile .field--name-user-picture {
+  float: none;
+  margin-right: 0;
+}
+.node--view-mode-mt-featured-teaser-video .field--name-user-picture img {
+  border-radius: 100%;
+  max-width: 40px;
+  margin-right: 10px;
+}
+@media screen and (max-width: 1200px) {
+  .node--view-mode-mt-featured-teaser-video a.button {
+    display: none;
+  }
+}
+
+/* post node */
+.node--view-mode-mt-featured-teaser-video .node__meta-item .field--entity-reference-target-type-taxonomy-term,
+.node--view-mode-mt-featured-teaser-video .node__meta-item .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin-bottom: 0;
+}
+.node--view-mode-mt-featured-teaser-video .node__meta-item .field--name-field-tags,
+.node--view-mode-mt-featured-teaser-video .node__meta-item .field--name-field-pst-category {
+  display: inline-block;
+}
+.node--view-mode-mt-featured-teaser-video .node__meta {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+.region--dark-typography .node--view-mode-mt-featured-teaser-video .node__meta {
+  color: #707070;
+}
+.node--view-mode-mt-featured-teaser-video .node__meta-item {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.node--view-mode-mt-featured-teaser-video .node__meta-tags {
+  margin-bottom: 0;
+}
+.node--view-mode-mt-featured-teaser-video .node__meta-item:after {
+  content: "/";
+}
+.node--view-mode-mt-featured-teaser-video .node__meta-item:last-child:after {
+  content: "";
+}

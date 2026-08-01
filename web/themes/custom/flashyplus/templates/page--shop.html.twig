@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display internal banner slider of commerce product page.
+ */
+#}
+
+{% extends "page.html.twig" %}
+
+{# main-content #}
+{% block main_content %}
+  <div {% if main_content_id %}id="{{ main_content_id }}"{% endif %} class="clearfix main-content main-content--page-shop {{ main_content_background_color }} {{ main_content_separator }}">
+    <div class="{{ main_content_layout_container }}">
+      <div class="clearfix main-content__container">
+        <div class="row">
+          <section class="{{ main_grid_class }} {{ main_content_paddings }}">
+            {# main #}
+            <div class="clearfix main-content__section {{ (main_content_animations == "enabled") ? ' mt-no-opacity' : '' }}{{ (main_content_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (main_content_region_paddings) ? ' region--no-paddings' : '' }}"
+              {% if main_content_animations == "enabled" %}
+                data-animate-effect="{{ main_content_animation_effect }}"
+              {% endif %}>
+              {% if page.content %}
+                {{ page.content }}
+              {% endif %}
+            </div>
+            {# EOF:main #}
+          </section>
+          {% if page.sidebar_first %}
+            {{ attach_library('flashyplus/slideout-filters') }}
+            <aside class="{{ sidebar_first_grid_class }} {{ sidebar_paddings }}">
+              {# sidebar-first #}
+              <section class="sidebar__section sidebar-first clearfix{{ (sidebar_first_animations == "enabled") ? ' mt-no-opacity' : '' }}{{ (sidebar_first_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (sidebar_first_region_paddings) ? ' region--no-paddings' : '' }}"
+                {% if sidebar_first_animations == "enabled" %}
+                  data-animate-effect="{{ sidebar_first_animation_effect }}"
+                {% endif %}>
+                  <button class="mt-button mt-button--small slideout-filters-toggle d-lg-none mb-4 mb-md-0"><i class="fas fa-filter me-2"></i> {% trans %}Filters{% endtrans %}</button>
+                  <div class="view-filters view-filters--slideout">
+                    <button class="mt-button mt-button--small slideout-filters-close-toggle d-lg-none"><i class="fas fa-times"></i></button>
+                    {{ page.sidebar_first }}
+                  </div>
+              </section>
+              {# EOF:sidebar-first #}
+            </aside>
+          {% endif %}
+          {% if page.sidebar_second %}
+            <aside class="{{ sidebar_second_grid_class }} {{ sidebar_paddings }}">
+              {# sidebar-second #}
+              <section class="sidebar__section sidebar-second clearfix{{ (sidebar_second_animations == "enabled") ? ' mt-no-opacity' : '' }}{{ (sidebar_second_blocks_paddings) ? ' region--no-block-paddings' : '' }}{{ (sidebar_second_region_paddings) ? ' region--no-paddings' : '' }}"
+                {% if sidebar_second_animations == "enabled" %}
+                  data-animate-effect="{{ sidebar_second_animation_effect }}"
+                {% endif %}>
+                {{ page.sidebar_second }}
+              </section>
+              {# EOF:sidebar-second #}
+            </aside>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{# EOF:main-content #}

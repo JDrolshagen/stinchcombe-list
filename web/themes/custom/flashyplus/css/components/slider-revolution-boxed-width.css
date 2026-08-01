@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s slider revolution boxed width.
+ */
+@media (min-width:992px) and (max-width: 1199px) {
+  .view-mt-slideshow-boxed-width .tp-caption__title {
+    font-size: 50px;
+    padding-top: 0;
+  }
+  .view-mt-slideshow-boxed-width .tp-caption__text {
+    padding-top: 0;
+  }
+  .view-mt-slideshow-boxed-width .tp-caption__buttons-container {
+    margin-top: 0;
+  }  
+}
+@media (max-width: 575px) {
+  .view-mt-slideshow-boxed-width {
+    margin: 0 -15px;
+  }
+}

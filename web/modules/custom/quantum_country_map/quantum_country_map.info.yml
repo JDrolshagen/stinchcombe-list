@@ -1,0 +1,8 @@
+name: Quantum Country Map
+type: module
+description: Provides a self-hosted clickable world country map block for Quantum v5.
+package: Quantum
+core_version_requirement: ^11
+dependencies:
+  - drupal:block
+  - drupal:node

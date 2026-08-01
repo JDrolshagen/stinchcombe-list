@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in teaser view mode.
+ */
+#}
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% if image|render or display_submitted %}
+    <div class="teaser-image">
+      {{ image }}
+      {% if display_submitted %}
+        {{ metadata }}
+        <div class="node__submitted-date mt-style-custom-tl region--default-background">
+          <div class="day">{{ submitted_day }}</div>
+          <div class="month-year">
+            {{ submitted_month }}
+            {{ submitted_year }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if node.isSticky() or teaser_pre_content_first|render or teaser_pre_content_second|render %}
+    <div class="teaser-pre-content row align-items-center">
+      {% if node.isSticky() or teaser_pre_content_first|render %}
+        <div class="col-auto">
+          {% if node.isSticky() %}
+            {% trans %}
+              <div class="promoted-label mt-style-custom-all">Promoted</div>
+            {% endtrans %}
+          {% endif %}
+
+          {% if teaser_pre_content_first|render %}
+            {{ teaser_pre_content_first }}
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if teaser_pre_content_second|render %}
+        <div class="col-auto ms-auto">
+          {{ teaser_pre_content_second }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if not page %}
+    <h4{{ title_attributes.addClass("mt-0 node__title") }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h4>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ rendered_content }}
+  </div>
+</article>

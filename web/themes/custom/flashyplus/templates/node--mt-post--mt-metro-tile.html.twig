@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in metro tile view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-metro-tile') }}
+
+{% set caption_text_first = content.field_mt_pst_category %}
+{% if display_submitted %}
+  {% set caption_text_second = node.createdtime|format_date('custom', 'd M, Y') %}
+{% else %}
+  {% set caption_text_second = null %}
+{% endif %}
+{% set image = content.field_mt_pst_image %}
+{% set rendered_content = content|without('field_mt_pst_image', 'field_mt_pst_category') %}
+
+{% set caption_items = "one-item" %}
+{% if caption_text_first and caption_text_second %}
+  {% set caption_items = "three-items" %}
+{% elseif ( caption_text_first and not caption_text_second ) or ( not caption_text_first and caption_text_second ) %}
+  {% set caption_items = "two-items" %}
+{% endif %}
+
+{% if image|render %}
+  {% set view_row_index = elements['#mt_view_index'] %}
+  {% if view_row_index == 2 or view_row_index == 3 %}
+    {% set styled_image = image.0 %}
+    {% set styled_image = styled_image|merge({'#image_style': 'mt_metro_tile_wide'}) %}
+  {% else %}
+    {% set styled_image = image %}
+  {% endif %}
+{% endif %}
+{% include '@flashyplus/partials/_mt-metro-tile.html.twig' %}

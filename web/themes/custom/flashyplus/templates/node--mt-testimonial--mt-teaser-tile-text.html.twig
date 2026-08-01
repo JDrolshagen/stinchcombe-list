@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Testimonial node in teaser tile text view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    display_submitted ? 'node--display-submitted',
+    'clearfix',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile-text') }}
+{% set teaser_tile_text_content = content.field_mt_tst_body %}
+{% set teaser_tile_text_footer = content.field_mt_tst_subtitle %}
+{% if content.field_mt_tst_testimonial_link|render %}
+  {% set url = node.field_mt_tst_testimonial_link.0.url %}
+{% endif %}
+{% set rendered_content = content|without('field_mt_tst_testimonial_image', 'field_mt_tst_body', 'field_mt_tst_subtitle', 'field_mt_tst_testimonial_link') %}
+{% include '@flashyplus/partials/_mt-teaser-tile-text-2.html.twig' %}

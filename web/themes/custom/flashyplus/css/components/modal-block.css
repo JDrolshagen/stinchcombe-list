@@ -1,0 +1,61 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s modal block.
+ */
+.modal-open .slideout-panel {
+  position: static;
+}
+.block-type--mt-modal .modal-content {
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+}
+.modal-backdrop {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.modal-backdrop.show {
+  opacity: 1;
+}
+.block-type--mt-modal .modal-icon-button {
+  -webkit-appearance: none;
+  border-width: 0;
+  display: block;
+  margin-left: auto;
+  margin-top: 3px;
+  font-size: 18px;
+}
+.block-type--mt-modal .modal-icon-button:not(.mt-button) {
+  background-color: transparent;
+}
+.block-type--mt-modal .modal-icon-button.mt-button {
+  border-width: 1px;
+}
+.block-type--mt-modal button.btn-close {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  font-size: 16px;
+  opacity: 1;
+}
+
+/* header modal */
+header.header .modal-icon-button {
+  padding: 32px 36px 31px;
+  margin: 0;
+  color: var(--mt-color-base);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+@media (max-width: 1440px) {
+  header.header .modal-icon-button {
+    padding: 32px 30px 31px;
+  }
+}
+header.header .block-type--mt-modal .modal-icon-button:hover,
+header.header .block-type--mt-modal .modal-icon-button:focus {
+  color: #ffffff;
+  background-color: var(--mt-color-base);
+}

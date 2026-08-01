@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in teaser tile text alternative view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    display_submitted ? 'node--display-submitted',
+    'clearfix',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile-text') }}
+{% set pre_content_first = content.field_mt_pst_category %}
+{% set rendered_content = content %}
+{% set post_content_first = node.createdtime|format_date('custom', 'M d, Y') %}
+{# Displays author's name and picture. "Display author and date information" must be enabled in content type settings. #}
+{% set author_info = false %}
+{% set rendered_content = content|without('field_mt_pst_category') %}
+{% include '@flashyplus/partials/_mt-teaser-tile-text-alternative.html.twig' %}

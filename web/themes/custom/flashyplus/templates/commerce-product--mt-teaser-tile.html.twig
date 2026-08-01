@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Commerce Product node.
+ */
+#}
+{%
+  set classes = [
+    'node--view-mode-mt-teaser-tile',
+    'node--view-mode-mt-teaser-tile-commerce-product',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile') }}
+{% set image = product.variation_field_mt_vrt_gnr_image %}
+{% set label = product.title %}
+{% set teaser_tile_pre_content_first = null %}
+{% set teaser_tile_pre_content_second = null %}
+{% set rendered_content = product|without('title', 'variation_price', 'variation_title', 'variation_sku', 'variation_field_mt_vrt_gnr_image') %}
+{% set teaser_tile_content = product.variation_price %}
+{% set image_caption = null %}
+{% set date_overlay = false %}
+{% set submitted_day = null %}
+{% set submitted_month = null %}
+{% set submitted_year = null %}
+{# set teaser mobile layout, available options: 2-col or 1-col #}
+{% set teaser_mobile_layout = "2-col" %}
+{% include '@flashyplus/partials/_mt-teaser-tile.html.twig' %}

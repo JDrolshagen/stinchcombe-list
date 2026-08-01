@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in teaser tile image view mode.
+ */
+#}
+<article{{ attributes.addClass(classes) }}>
+  <div class="teaser-tile-image-container">
+    {{ title_prefix }}
+    {{ title_suffix }}
+    {% if image|render %}
+      {{ image }}
+    {% endif %}
+
+    <div class="teaser-tile-image-caption-top">
+      {% if not page %}
+        <h4{{ title_attributes.addClass("mt-0 mb-0") }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h4>
+      {% endif %}
+
+      {% if display_submitted %}
+        {{ metadata }}
+      {% endif %}
+
+      {% if teaser_tile_meta_first|render or teaser_tile_meta_second|render %}
+        <div class="node__meta">
+          {% if teaser_tile_meta_first|render %}
+            <span class="node__meta-item">
+              {{ teaser_tile_meta_first }}
+            </span>
+          {% endif %}
+          {% if teaser_tile_meta_second|render %}
+            <span class="node__meta-item">
+              {{ teaser_tile_meta_second }}
+            </span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="teaser-tile-image-caption-bottom">
+      {% if teaser_tile_caption_bottom %}
+        {{ teaser_tile_caption_bottom }}
+      {% endif %}
+    </div>
+
+  </div>
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ rendered_content }}
+  </div>
+</article>

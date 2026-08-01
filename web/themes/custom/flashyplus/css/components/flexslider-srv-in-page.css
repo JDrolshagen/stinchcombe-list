@@ -1,0 +1,45 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s in page slider.
+ */
+.in-page-images-slider ul.slides li {
+  position: relative;
+}
+
+/* navigation */
+.field--name-field-mt-srv-image .flex-control-nav {
+  width: auto;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  right: 0;
+  padding: 10px 50px;
+  background-color: #ffffff;
+  font-size: 0;
+  z-index: 2;
+}
+.field--name-field-mt-srv-image .flex-control-nav li {
+  margin: 0 10px;
+}
+.field--name-field-mt-srv-image .flex-control-paging li a {
+  width: 40px;
+  height: 8px;
+  margin: 5px 0;
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #707070;
+  border-radius: 0;
+  box-shadow: none;
+}
+.field--name-field-mt-srv-image .flex-control-paging li a.flex-active,
+.field--name-field-mt-srv-image .flex-control-paging li a:hover {
+  background-color: #333333;
+  border-color: #333333; 
+}
+@media (max-width: 575px) {
+  .field--name-field-mt-srv-image .flex-control-nav {
+    position: static;
+    padding: 20px 20px;
+  }
+}

@@ -1,0 +1,891 @@
+/**
+ * @file
+ * Color styling rules for Flashy+.
+ *
+ */
+
+/* base: elements */
+a {
+  color: var(--mt-color-secondary);
+}
+a:hover,
+a:focus {
+  color: var(--mt-color-secondary-dark);
+}
+a.link--dark,
+.link--dark a {
+  color: var(--mt-color-secondary-dark);
+}
+a.link--dark:hover,
+.link--dark a:hover,
+a.link--dark:focus,
+.link--dark a:focus {
+  color: var(--mt-color-secondary);
+}
+a.link--bordered,
+.link--bordered a {
+  border-color: var(--mt-color-secondary);
+}
+.text--dark {
+  color: var(--mt-color-primary-dark);
+}
+.region--colored-background h1.text--dark,
+.region--colored-background h2.text--dark,
+.region--colored-background h3.text--dark,
+.region--colored-background h4.text--dark,
+.region--colored-background h5.text--dark,
+.region--colored-background h6.text--dark {
+  color: var(--mt-color-primary-dark);
+}
+.text--colored {
+  color: var(--mt-color-primary);
+}
+.region--dark-background h1.text--colored,
+.region--dark-background h2.text--colored,
+.region--dark-background h3.text--colored,
+.region--dark-background h4.text--colored,
+.region--dark-background h5.text--colored,
+.region--dark-background h6.text--colored,
+.region--dark-colored-background h1.text--colored,
+.region--dark-colored-background h2.text--colored,
+.region--dark-colored-background h3.text--colored,
+.region--dark-colored-background h4.text--colored,
+.region--dark-colored-background h5.text--colored,
+.region--dark-colored-background h6.text--colored,
+.region--shade-background h1.text--colored,
+.region--shade-background h2.text--colored,
+.region--shade-background h3.text--colored,
+.region--shade-background h4.text--colored,
+.region--shade-background h5.text--colored,
+.region--shade-background h6.text--colored {
+  color: var(--mt-color-primary);
+}
+.link--hover-style-3 {
+  background-image: linear-gradient(hsla(var(--mt-color-secondary-value), 0.5) 0%, hsla(var(--mt-color-secondary-value), 0.5) 100%);
+}
+.link--hover-style-3:hover {
+  background-image: linear-gradient(var(--mt-color-secondary) 0%, var(--mt-color-secondary) 100%);
+}
+.region--light-typography .link--hover-style-3:hover {
+  color: var(--mt-color-secondary);
+}
+.mt-link-style-animated-underline-1 .mt-link-stylable:after {
+  background-color: var(--mt-color-secondary);
+}
+.mt-link-style-animated-underline-2 .mt-link-stylable:after {
+  background-color: var(--mt-color-secondary);
+}
+.mt-link-style-animated-underline-3 .mt-link-stylable:before {
+  background-color: var(--mt-color-secondary);
+}
+.mt-link-style-animated-background-1 .mt-link-stylable:before {
+  background-color: var(--mt-color-secondary);
+}
+.mt-link-style-animated-background-2 .mt-link-stylable:after {
+  background-color: var(--mt-color-secondary);
+}
+.mt-link-style-animated-background-3 .mt-link-stylable:before {
+  background-color: var(--mt-color-secondary);
+}
+.region--dark-typography .block-title.block-title--border {
+  border-color: var(--mt-color-secondary);
+}
+/* invert foreground color */
+.mt-link-style-animated-icon .region--light-typography .mt-link-stylable {
+  color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-icon .region--light-typography .mt-link-stylable:before {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-underline-1 .region--light-typography .mt-link-stylable:after {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-underline-3 .region--light-typography .mt-link-stylable:before {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-underline-2 .region--light-typography .mt-link-stylable:after {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-background-1 .region--light-typography .mt-link-stylable:before {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-background-1 .region--light-typography .mt-link-stylable:hover,
+.mt-link-style-animated-background-1 .region--light-typography .mt-link-stylable:focus {
+  color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-background-2 .region--light-typography .mt-link-stylable:after {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-background-2 .region--light-typography .mt-link-stylable:hover,
+.mt-link-style-animated-background-2 .region--light-typography .mt-link-stylable:focus {
+  color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-background-3 .region--light-typography .mt-link-stylable:before {
+  background-color: var(--mt-color-base-contrast);
+}
+.mt-link-style-animated-background-3 .region--light-typography .mt-link-stylable:hover,
+.mt-link-style-animated-background-3 .region--light-typography .mt-link-stylable:focus {
+  color: var(--mt-color-base-contrast);
+}
+.region--light-typography {
+  color: var(--mt-color-base-contrast);
+}
+.region--light-typography a,
+.region--light-typography a.link--dark,
+.region--light-typography .link--dark a {
+  color: var(--mt-color-primary);
+}
+.region--light-typography a:hover,
+.region--light-typography a:focus,
+.region--light-typography a.link--dark:hover,
+.region--light-typography a.link--dark:focus,
+.region--light-typography .link--dark a:hover,
+.region--light-typography .link--dark a:focus {
+  color: var(--mt-color-primary-dark);
+}
+.region--light-typography a.link--hover-style-2:before,
+.region--light-typography .link--hover-style-2 a:before {
+  color: var(--mt-color-base-contrast);
+}
+.region--light-typography .link--hover-style-3:hover {
+  background-image: linear-gradient(var(--mt-color-base-contrast) 0%, var(--mt-color-base-contrast) 100%);
+}
+.region--light-typography.region--dark-colored-background .text--dark {
+  color: var(--mt-color-base-contrast);
+}
+.region--light-typography.region--colored-background .text--colored {
+  color: var(--mt-color-base-contrast);
+}
+.region--light-typography hr {
+  border-color: var(--mt-color-base-contrast);
+}
+.region--light-typography .block-title.block-title--border {
+  border-bottom-color: hsla(var(--mt-color-base-contrast), 0.2);
+}
+.region--light-typography .hero__section h4.title,
+.region--light-typography .hero__section h2.title,
+.region--light-typography .hero__section nav > h2,
+.region--light-typography .hero__section .block-search > h2 {
+  border-bottom-color: hsla(var(--mt-color-base-contrast), 0.2);
+}
+
+/* base: layout */
+.region--dark-colored-background,
+#drupal-off-canvas-wrapper label.region--dark-colored-background {
+  background-color: var(--mt-color-dark-colored);
+  color: var(--mt-color-dark-colored-contrast);
+}
+.region--colored-background,
+#drupal-off-canvas-wrapper label.region--colored-background {
+  background-color: var(--mt-color-colored);
+  color: var(--mt-color-colored-contrast);
+}
+.region--accent-background,
+#drupal-off-canvas-wrapper label.region--accent-background {
+  background-color: var(--mt-color-accent);
+  color: var(--mt-color-accent-contrast);
+}
+.region--tint-background,
+#drupal-off-canvas-wrapper label.region--tint-background {
+  background-color: var(--mt-color-tint);
+  color: var(--mt-color-tint-contrast);
+}
+.region--shade-background,
+#drupal-off-canvas-wrapper label.region--shade-background {
+  background-color: var(--mt-color-shade);
+  color: var(--mt-color-shade-contrast);
+}
+.region--default-background,
+#drupal-off-canvas-wrapper label.region--default-background {
+  background-color: var(--mt-color-default);
+  color: var(--mt-color-default-contrast);
+}
+.region--bright-background,
+#drupal-off-canvas-wrapper label.region--bright-background {
+  background-color: var(--mt-color-bright);
+  color: var(--mt-color-bright-contrast);
+}
+.region--dark-background,
+#drupal-off-canvas-wrapper label.region--dark-background {
+  background-color: var(--mt-color-dark);
+  color: var(--mt-color-dark-contrast);
+}
+.region--bright-dark-colored-background {
+  background: var(--mt-color-bright);
+  background: -moz-linear-gradient(top, var(--mt-color-bright) 35%, var(--mt-color-dark-colored) 35%);
+  background: -webkit-linear-gradient(top, var(--mt-color-bright) 35%, var(--mt-color-dark-colored) 35%);
+  background: linear-gradient(to bottom, var(--mt-color-bright) 35%, var(--mt-color-dark-colored) 35%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--mt-color-bright)', endColorstr='var(--mt-color-dark-colored)',GradientType=0 );
+}
+.region--tint-background + .region--bright-dark-colored-background {
+  background: var(--mt-color-tint);
+  background: -moz-linear-gradient(top, var(--mt-color-tint) 35%, var(--mt-color-dark-colored) 35%);
+  background: -webkit-linear-gradient(top, var(--mt-color-tint) 35%, var(--mt-color-dark-colored) 35%);
+  background: linear-gradient(to bottom, var(--mt-color-tint) 35%, var(--mt-color-dark-colored) 35%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--mt-color-tint)', endColorstr='var(--mt-color-dark-colored)',GradientType=0 );
+}
+.region--bright-colored-background {
+  background: var(--mt-color-bright);
+  background: -moz-linear-gradient(top, var(--mt-color-bright) 35%, var(--mt-color-colored) 35%);
+  background: -webkit-linear-gradient(top, var(--mt-color-bright) 35%, var(--mt-color-colored) 35%);
+  background: linear-gradient(to bottom, var(--mt-color-bright) 35%, var(--mt-color-colored) 35%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--mt-color-bright)', endColorstr='var(--mt-color-colored)',GradientType=0 );
+}
+.region--tint-background + .region--bright-colored-background {
+  background: var(--mt-color-tint);
+  background: -moz-linear-gradient(top, var(--mt-color-tint) 35%, var(--mt-color-colored) 35%);
+  background: -webkit-linear-gradient(top, var(--mt-color-tint) 35%, var(--mt-color-colored) 35%);
+  background: linear-gradient(to bottom, var(--mt-color-tint) 35%, var(--mt-color-colored) 35%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--mt-color-tint)', endColorstr='var(--mt-color-colored)',GradientType=0 );
+}
+.region--dark-colored-background + .region--separator-incline-diagonal:before {
+  background: linear-gradient(to bottom right, var(--mt-color-dark-colored) 49.5%, transparent 50%);
+}
+.region--colored-background + .region--separator-incline-diagonal:before {
+  background: linear-gradient(to bottom right, var(--mt-color-colored) 49.5%, transparent 50%);
+}
+.region--dark-colored-background + .region--separator-decline-diagonal:before {
+  background: linear-gradient(to bottom left, var(--mt-color-dark-colored) 49.5%, transparent 50%);
+}
+.region--colored-background + .region--separator-decline-diagonal:before {
+  background: linear-gradient(to bottom left, var(--mt-color-colored) 49.5%, transparent 50%);
+}
+.page-container-border-enabled .page-container {
+  border-color: var(--mt-color-primary);
+}
+
+/* components: buttons */
+a.mt-button,
+.mt-button > a,
+button.mt-button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.region--light-typography a.mt-button,
+.region--light-typography .mt-button > a,
+.region--light-typography button.mt-button,
+.region--light-typography input[type="submit"],
+.region--light-typography input[type="reset"],
+.region--light-typography input[type="button"] {
+  border-color: var(--mt-color-primary);
+  background-color: var(--mt-color-primary);
+  color: var(--mt-color-primary-contrast);
+}
+a.mt-button:hover,
+.mt-button > a:hover,
+button.mt-button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+a.mt-button:focus,
+.mt-button > a:focus,
+button.mt-button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  background-color: var(--mt-color-primary-dark);
+}
+.region--light-typography a.mt-button:focus,
+.region--light-typography .mt-button > a:focus,
+.region--light-typography button.mt-button:focus,
+.region--light-typography input[type="submit"]:focus,
+.region--light-typography input[type="reset"]:focus,
+.region--light-typography input[type="button"]:focus {
+  outline-color: #FFFFFF;
+}
+.region--light-typography a.mt-button.mt-button--outline:focus,
+.region--light-typography .mt-button.mt-button--outline > a:focus,
+.region--light-typography button.mt-button.mt-button--outline:focus,
+.region--light-typography input[type="submit"][value="Reset"]:focus,
+.region--light-typography input[type="submit"].mt-button--outline:focus,
+.region--light-typography input[type="reset"].mt-button--outline:focus,
+.region--light-typography input[type="button"].mt-button--outline:focus {
+  outline-color: var(--mt-color-primary);
+}
+.region--dark-typography.region--colored-background a.mt-button:hover,
+.region--dark-typography.region--colored-background .mt-button > a:hover,
+.region--dark-typography.region--colored-background button.mt-button:hover,
+.region--dark-typography.region--colored-background input[type="submit"]:hover,
+.region--dark-typography.region--colored-background input[type="reset"]:hover,
+.region--dark-typography.region--colored-background input[type="button"]:hover {
+  color: var(--mt-color-primary);
+}
+.region--dark-typography.region--colored-background a.mt-button.mt-button--outline:hover,
+.region--dark-typography.region--colored-background .mt-button.mt-button--outline > a:hover,
+.region--dark-typography.region--colored-background button.mt-button.mt-button--outline:hover,
+.region--dark-typography.region--colored-background input[type="submit"][value="Reset"]:hover,
+.region--dark-typography.region--colored-background input[type="submit"].mt-button--outline:hover,
+.region--dark-typography.region--colored-background input[type="reset"].mt-button--outline:hover,
+.region--dark-typography.region--colored-background input[type="button"].mt-button--outline:hover {
+  color: var(--mt-color-base);
+}
+
+/* components: collapsible block */
+.collapsible-block__trigger a {
+  background-color: var(--mt-color-primary);
+  color: var(--mt-color-primary-contrast);
+}
+.collapsible-block__trigger a:hover,
+.collapsible-block__trigger a:focus {
+  background-color: var(--mt-color-primary-dark);
+  color: var(--mt-color-primary-contrast);
+}
+.region--colored-background .collapsible-block__trigger a {
+  background-color: var(--mt-color-primary-dark);
+  text-decoration: none;
+}
+.region--colored-background .collapsible-block__trigger a:hover {
+  background-color: hsla(var(--mt-color-primary-value), 0.8);
+}
+
+/* components: commerce */
+.field--name-field-mt-vrt-gnr-image img {
+  border-color: var(--mt-color-primary);
+}
+header.header .cart--cart-block .cart-block--link__expand:hover,
+header.header .cart--cart-block .cart-block--link__expand:focus {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: detailed feature block */
+.region--dark-typography .detailed-feature-block__section .svg-inline--fa {
+  color: var(--mt-color-primary-dark);
+}
+.region--dark-typography .detailed-feature-block__section h2 {
+  color: var(--mt-color-primary-dark);
+}
+.region--dark-typography .list--fa-check-circle li:before {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: detailed pager */
+.region--dark-typography .detailed-pager--bottom {
+  border-top-color: var(--mt-color-primary);
+}
+
+/* components: dropdowns */
+.region--colored-background .dropdown-menu {
+  background-color: hsla(var(--mt-color-colored-value), 0.95);
+}
+.region--dark-colored-background .dropdown-menu {
+  background-color: hsla(var(--mt-color-dark-colored-value), 0.95);
+}
+
+/* components: fancy block */
+.region--dark-colored-background .fancy-block-text {
+  background-color: var(--mt-color-dark-colored);
+}
+.region--colored-background .fancy-block-text {
+  background-color: var(--mt-color-colored);
+}
+
+/* components: fancy linked images block */
+.clip-path-support .clip-pentagon-container {
+  background-color: var(--mt-color-primary-dark);
+}
+.clip-path-support .clip-circle-container {
+  background-color: var(--mt-color-primary-dark);
+}
+.clip-path-support .clip-rectangle-container:before {
+  border-color: var(--mt-color-primary-dark);
+}
+
+/* CSS rules only for FF*/
+@-moz-document url-prefix() {
+  .clip-pentagon-container {
+    background-color: var(--mt-color-primary-dark);
+  }
+  .clip-circle-container {
+    background-color: var(--mt-color-primary-dark);
+  }
+  .clip-rectangle-container:before {
+    border-color: var(--mt-color-primary-dark);
+  }
+}
+
+/* components: feature */
+.region--dark-typography .feature-item__title {
+  color: var(--mt-color-primary);
+}
+
+/* components: forms */
+input.form-text:hover,
+input.form-tel:hover,
+input.form-email:hover,
+input.form-url:hover,
+input.form-search:hover,
+input.form-file:hover,
+input.form-number:hover,
+input.form-color:hover,
+input.form-date:hover,
+input.form-time:hover,
+textarea:hover,
+select:hover,
+input.form-text:focus,
+input.form-tel:focus,
+input.form-email:focus,
+input.form-url:focus,
+input.form-search:focus,
+input.form-file:focus,
+input.form-number:focus,
+input.form-color:focus,
+input.form-date:focus,
+input.form-time:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--mt-form-border-focus);
+}
+.region--dark-typography .form--style-2 a.mt-button:hover,
+.region--dark-typography .form--style-2 .mt-button > a:hover,
+.region--dark-typography .form--style-2 button.mt-button:hover,
+.region--dark-typography .form--style-2 input[type="submit"]:hover,
+.region--dark-typography .form--style-2 input[type="reset"]:hover,
+.region--dark-typography .form--style-2 input[type="button"]:hover,
+.region--dark-typography .form--style-2 a.mt-button:focus,
+.region--dark-typography .form--style-2 .mt-button > a:focus,
+.region--dark-typography .form--style-2 button.mt-button:focus,
+.region--dark-typography .form--style-2 input[type="submit"]:focus,
+.region--dark-typography .form--style-2 input[type="reset"]:focus,
+.region--dark-typography .form--style-2 input[type="button"]:focus {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: content front page background */
+@media (max-width: 767px) {
+  .background-image-area.region--colored-background .header {
+    background-color: var(--mt-color-colored);
+  }
+  .background-image-area.region--dark-colored-background .header {
+    background-color: var(--mt-color-dark-colored);
+  }
+}
+
+/* components: fixed header */
+.onscroll .header.js-fixed.region--dark-colored-background,
+.onscroll .region--dark-colored-background .header.js-fixed {
+  background-color: hsla(var(--mt-color-dark-colored-value), 0.95);
+}
+.onscroll .header.js-fixed.region--colored-background,
+.onscroll .region--colored-background .header.js-fixed {
+  background-color: hsla(var(--mt-color-colored-value), 0.95);
+}
+
+/* components: flexslider in page */
+.in-page-images-carousel .slides li a:after {
+  background-color: hsla(var(--mt-color-primary-dark-value), 0.8);
+}
+.in-page-images-carousel .slides li a:hover:after {
+  background-color: hsla(var(--mt-color-primary-dark-value), 0.5);
+}
+
+/* components: frontpage cover block */
+.cta-button {
+  border-color: var(--mt-color-primary);
+}
+.cta-button:hover,
+.cta-button:focus {
+  background-color: hsla(var(--mt-color-primary-value), 0.15);
+}
+.cta-button span {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: hero */
+.region--dark-colored-background .hero-caption {
+  background-color: var(--mt-color-dark-colored);
+}
+.region--colored-background .hero-caption {
+  background-color: var(--mt-color-colored);
+}
+
+/* components: highlights */
+.region--dark-typography .highlights-grid-item .svg-inline--fa {
+  color: var(--mt-color-primary-dark);
+}
+.region--dark-typography .highlights-grid-item h5 {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: how it works */
+.region--dark-colored-background .field--name-field-mt-hiw-item .field__item .how-it-works__badge {
+  background-color: var(--mt-color-dark-colored);
+}
+.region--colored-background .field--name-field-mt-hiw-item .field__item .how-it-works__badge {
+  background-color: var(--mt-color-colored);
+}
+
+/* components: icons feature */
+.feature__icon {
+  color: var(--mt-color-primary);
+}
+.region--dark-colored-background.region--dark-typography .feature__icon,
+.region--colored-background.region--dark-typography .feature__icon {
+  color: var(--mt-color-base);
+}
+
+/* components: icons list */
+.region--dark-typography ul.icons-list.icons-list--bordered li a:hover {
+  color: var(--mt-color-primary);
+  border-color: var(--mt-color-primary);
+}
+
+/* components: image overlay */
+.overlay--colored {
+  background-color: hsla(var(--mt-color-primary-dark-value), 0.5);
+}
+.overlay--visible:hover {
+  background-color: hsla(var(--mt-color-primary-dark-value), 0.6);
+}
+.overlay-icon:hover,
+.overlay-icon:focus,
+.region--light-typography .overlay-icon:hover,
+.region--light-typography .overlay-icon:focus {
+  color: var(--mt-color-primary-dark);
+}
+.overlay-icon--button {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: image with overlaid text */
+.region--colored-background .image-with-overlaid-text__text {
+  background-color: hsla(var(--mt-color-colored-value), 0.75);
+}
+.region--dark-colored-background .image-with-overlaid-text__text {
+  background-color: hsla(var(--mt-color-dark-colored-value), 0.75);
+}
+
+/* components: in page navigation */
+.header-container ul.in-page-navigation li a.active,
+.header-container ul.in-page-navigation li a:hover,
+.header-container ul.in-page-navigation li a:focus {
+  color: var(--mt-color-primary);
+}
+
+/* components: language switcher */
+.region--dark-typography .block-language ul li .is-active {
+  color: var(--mt-color-primary);
+}
+
+/* components: layout switcher */
+.layout-switcher ul li.active a,
+.layout-switcher ul li a:hover,
+.layout-switcher ul li a:focus {
+  color: var(--mt-color-primary);
+  border-color: var(--mt-color-primary);
+}
+
+/*main slideshow block*/
+.ms-transparent-background .region--dark-typography.tp-caption__title a:hover {
+  color: var(--mt-color-primary);
+}
+
+/* components: menu - invert foreground color */
+.region--light-typography ul.menu li > a:before {
+  color: var(--mt-color-base-contrast);
+}
+.region--light-typography .footer-top__section ul.menu li a:hover,
+.region--light-typography .col-12 .footer-bottom__section ul.menu li a:hover,
+.region--light-typography .subfooter-top__section ul.menu li a:hover,
+.region--light-typography .subfooter__section ul.menu li a:hover {
+  border-bottom-color: var(--mt-color-base-contrast);
+}
+
+/* components: header menu */
+.header-container ul.menu > li > a:before,
+.header-container ul.menu > li > span:before {
+  background-color: var(--mt-color-primary);
+}
+.header-container .sf-menu ul li.sfHover > a,
+.header-container .sf-menu ul li a:hover,
+.header-container .sf-menu ul li > a.is-active,
+.header-container .sf-menu ul li.active-trail > a {
+  background-color: var(--mt-color-primary);
+}
+.header-container .sf-menu.menu li ul {
+  border-top-color: var(--mt-color-primary);
+}
+.menu.cta-active > li:last-child > a:hover:before,
+.menu.cta-active > li:last-child > a:focus:before,
+.menu.cta-active > li:last-child > a.is-active:hover:before,
+.menu.cta-active > li:last-child > a.is-active:focus:before {
+  background-color: var(--mt-color-primary);
+}
+.region--shade-background .menu.cta-active > li:last-child > a:before,
+.region--dark-background .menu.cta-active > li:last-child > a:before,
+.region--shade-background .menu.cta-active > li:last-child > a.is-active:before,
+.region--dark-background .menu.cta-active > li:last-child > a.is-active:before {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: footer menu */
+.region--dark-typography .footer-bottom__section ul.menu li a:hover,
+.region--dark-typography .footer-bottom__section ul.menu li a:focus {
+  border-bottom-color: var(--mt-color-primary);
+  color: var(--mt-color-primary);
+}
+.region--dark-typography .subfooter-top__section ul.menu li a:hover,
+.region--dark-typography .subfooter-top__section ul.menu li a:focus {
+  border-bottom-color: var(--mt-color-primary);
+  color: var(--mt-color-primary);
+}
+.region--dark-typography .subfooter__section ul.menu li a:hover,
+.region--dark-typography .subfooter__section ul.menu li a:focus {
+  border-bottom-color: var(--mt-color-primary);
+  color: var(--mt-color-primary);
+}
+
+/* components: modal block */
+header.header .block-type--mt-modal .modal-icon-button {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: mt count down */
+.mt-count-down-block.mt-count-down-theme .mt-count-down__button {
+  border-color: var(--mt-color-primary);
+  color: var(--mt-color-primary);
+}
+.mt-count-down-block.mt-count-down-theme .mt-count-down__button:hover,
+.mt-count-down-block.mt-count-down-theme .mt-count-down__button:focus {
+  color: var(--mt-color-primary);
+  border-color: var(--mt-color-primary);
+  background-color: hsla(var(--mt-color-primary-value), 0.15);
+}
+
+/* components: node article*/
+.node--view-mode-teaser.node--type-article .node__header h2 a:hover {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: node images */
+.image-caption h4 {
+  background-color: hsla(var(--mt-color-primary-value), 0.8);
+}
+
+/* components: node post */
+.node--type-mt-post .share-links ul li a:hover,
+.node--type-mt-post .share-links ul li a:focus {
+  border-color: var(--mt-color-primary-dark);
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: node view mode featured teaser */
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__title a:hover,
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__title a:focus {
+  color: var(--mt-color-secondary-dark);
+}
+.quote-icon {
+  color: var(--mt-color-primary);
+}
+
+/* components: node view mode teaser tile */
+.region--dark-typography .node--view-mode-mt-teaser-tile .node__title a:hover,
+.region--dark-typography .node--view-mode-mt-teaser-tile .node__title a:focus {
+  color: var(--mt-color-secondary-dark);
+}
+
+/* components: node view mode teaser tile text */
+.region--dark-typography .node--view-mode-mt-teaser-tile-text {
+  border-bottom-color: var(--mt-color-primary);
+}
+.node--view-mode-mt-teaser-tile-text .region--default-background a {
+  color: var(--mt-color-secondary);
+}
+.node--view-mode-mt-teaser-tile-text .region--default-background a:hover,
+.node--view-mode-mt-teaser-tile-text .region--default-background a:focus {
+  color: var(--mt-color-secondary-dark);
+}
+
+/* components: node view mode teaser */
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a,
+.region--dark-typography .field--entity-reference-target-type-taxonomy-term--tags .field__item a,
+.region--dark-typography .field--entity-reference-target-type-taxonomy-term--tags.field__item a {
+  border-color: var(--mt-color-secondary);
+  color: var(--mt-color-secondary);
+}
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a:hover,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a:hover,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term .field__item a:focus,
+.region--dark-typography .node--view-mode-teaser .field--entity-reference-target-type-taxonomy-term.field__item a:focus,
+.region--dark-typography .field--entity-reference-target-type-taxonomy-term--tags .field__item a:hover,
+.region--dark-typography .field--entity-reference-target-type-taxonomy-term--tags.field__item a:hover,
+.region--dark-typography .field--entity-reference-target-type-taxonomy-term--tags .field__item a:focus,
+.region--dark-typography .field--entity-reference-target-type-taxonomy-term--tags.field__item a:focus {
+  background-color: var(--mt-color-secondary);
+  color: #FFFFFF;
+}
+
+/* components: owl carousel global */
+.owl-dot.active span {
+  border-color: var(--mt-color-primary);
+  background-color: var(--mt-color-primary);
+}
+.owl-dot:hover span {
+  border-color: var(--mt-color-primary-dark);
+  background-color: var(--mt-color-primary-dark);
+}
+
+/* components: pager */
+li.pager__item.is-active a,
+li.pager__item.is-active a:hover,
+li.pager__item.is-active a:focus {
+  border-color: var(--mt-color-primary);
+}
+li.pager__item a:not(.mt-button):hover,
+li.pager__item a:not(.mt-button):focus {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: post progress */
+.post-progress__bar {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: pills */
+.nav-pills > li > a.nav-link:hover,
+.nav-pills > li > a.nav-link:focus {
+  background-color: var(--mt-color-primary-dark);
+}
+
+/* components: progress bars */
+.progress-bar-default {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: search */
+.header-top__section .block.block-search .form-actions:after {
+  background-color: var(--mt-color-primary);
+}
+.header-top__section .block.block-search .form-actions:hover:after {
+  background-color: var(--mt-color-primary-dark);
+}
+.region--light-typography .header-top__section .block.block-search .form-actions:after {
+  color: var(--mt-color-primary);
+}
+
+/* components: separators */
+.separator {
+  background: var(--mt-color-primary);
+}
+
+/* components: share links */
+.js-share-links-fixed .share-links ul li a:hover {
+  background-color: var(--mt-color-primary-dark);
+}
+
+/* components: slideout */
+.slideout-toggle {
+  background-color: var(--mt-color-primary-dark);
+}
+
+/* components: slider revolution global */
+.tp-tabs {
+  background-color: hsla(var(--mt-color-primary-value), 0.93) !important;
+}
+.tp-tabs .tp-tab.selected,
+.tp-tabs .tp-tab:hover {
+  background-color: var(--mt-color-primary);
+}
+
+/* components: sticky footer */
+.collapsible-sticky-footer-trigger .region--dark-colored-background.mt-button {
+  background-color: var(--mt-color-primary-dark);
+  border-bottom-color: var(--mt-color-primary-dark);
+}
+.collapsible-sticky-footer-trigger .region--colored-background.mt-button {
+  background-color: var(--mt-color-primary);
+  border-bottom-color: var(--mt-color-primary);
+}
+
+/* components: subscribe form */
+.region--dark-typography .subscribe-form input[type="submit"]:hover,
+.region--dark-typography .subscribe-form input[type="submit"]:focus {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: tabs */
+.nav-tabs {
+  border-color: var(--mt-color-primary);
+}
+.nav-tabs a.nav-link,
+.region--light-typography .nav-tabs a.nav-link {
+  border-bottom-color: var(--mt-color-primary);
+}
+.nav-tabs a.nav-link.active,
+.nav-tabs a.nav-link.active:focus,
+.nav-tabs a.nav-link.active:hover,
+.nav-tabs a.nav-link:hover,
+.nav-tabs a.nav-link:focus {
+  border-color: var(--mt-color-primary);
+  color: var(--mt-color-primary-contrast);
+  background-color: var(--mt-color-primary);
+}
+.nav-tabs.nav-tabs--fancy a.nav-link.active,
+.nav-tabs.nav-tabs--fancy a.nav-link.active:focus,
+.nav-tabs.nav-tabs--fancy a.nav-link.active:hover {
+  border-color: var(--mt-color-primary);
+}
+.nav-tabs.nav-tabs--vertical a.nav-link.active,
+.nav-tabs.nav-tabs--vertical a.nav-link:hover,
+.nav-tabs.nav-tabs--vertical a.nav-link:focus {
+  border-bottom-color: var(--mt-color-primary);
+}
+.region--light-typography .nav-tabs.nav-tabs--vertical a.nav-link,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.nav-link:hover,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.nav-link:focus,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.active.nav-link,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.active.nav-link:focus,
+.region--light-typography .nav-tabs.nav-tabs--vertical a.active.nav-link:hover {
+  border-right-color: var(--mt-color-primary);
+}
+
+/* components: timeline */
+.region--dark-colored-background .field--name-field-mt-tml-timeline-item .field__item .timeline__badge {
+  background-color: var(--mt-color-dark-colored);
+}
+.region--colored-background .field--name-field-mt-tml-timeline-item .field__item .timeline__badge {
+  background-color: var(--mt-color-colored);
+}
+
+/* components: view articles carousel */
+.region--dark-typography .view-articles-grid .mt-carousel-item .views-field-title a:hover,
+.region--dark-typography .view-articles-grid .mt-carousel-item .views-field-title a:focus {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: view articles list 2 */
+.region--dark-typography .view-articles-list-2 .views-row:after {
+  color: var(--mt-color-primary);
+}
+
+/* components: view popular taxonomy */
+.region--dark-typography .view-mt-popular-tags .views-row a {
+  color: var(--mt-color-primary);
+}
+.region--dark-typography .view-mt-popular-tags .views-row a:hover {
+  background-color: var(--mt-color-primary-dark);
+}
+.region--light-typography .view-mt-popular-tags .views-row a:hover {
+  color: var(--mt-color-primary-dark);
+}
+
+/* components: view pricing tables */
+.view-pricing-tables .pricing-table .views-field-title a {
+  color: var(--mt-color-primary);
+}
+.view-pricing-tables .pricing-table .views-field-title a:hover {
+  color: var(--mt-color-primary);
+}
+.view-pricing-tables .pricing-table .pricing-table-body .svg-inline--fa {
+  color: var(--mt-color-primary);
+}
+
+/* components: view team members carousel */
+.region--light-typography .view-team-members-carousel .text-container .views-field-title a {
+  color: var(--mt-color-primary);
+}
+
+/* components: view team members masonry */
+.view-team-members-masonry .masonry-grid-item .overlay__text:after {
+  background-color: var(--mt-color-primary);
+}

@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Service node.
+ */
+#}
+
+{% extends "node.html.twig" %}
+{% block content %}
+  {{ attach_library('flashyplus/node-service') }}
+  {% if content.field_mt_srv_image|render or content.field_mt_srv_link|render %}
+    {% set service_content_second_class = 'col-lg-6' %}
+  {% else %}
+    {% set service_content_second_class = 'col-12' %}
+  {% endif %}
+  {% if content.field_mt_srv_image|render or content.field_mt_srv_link|render or content.field_mt_srv_subheader_body|render or not content.field_mt_srv_highlight|render %}
+    <div class="service-content {{ (content.field_mt_srv_image|render) ? ' service-content--image-enabled' : '' }}">
+      <div class="row">
+        {% if content.field_mt_srv_image|render or content.field_mt_srv_link|render %}
+          <div class="ms-lg-auto col-lg-6 order-lg-2 ps-lg-5">
+            <div class="service-content-first d-flex flex-column">
+              {{ content.field_mt_srv_image }}
+              <div class="mt-auto mb-4 mb-lg-0">
+                {{ content.field_mt_srv_link }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% if content.field_mt_srv_subheader_body|render or not content.field_mt_srv_highlight|render %}
+          <div class="{{ service_content_second_class }}">
+            <div class="service-content-second">
+              {{ content.field_mt_srv_subheader_body }}
+              {% if not content.field_mt_srv_highlight|render %}
+                {{ content|without('field_mt_srv_banner_image', 'field_mt_srv_image', 'field_mt_srv_subheader_body', 'field_mt_srv_link', 'field_mt_srv_highlight') }}
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  {% if content.field_mt_srv_highlight|render %}
+    {{ content.field_mt_srv_highlight }}
+    <div class="row">
+      <div class="{{ service_content_second_class }}">
+        <div class="service-content-second">
+          {{ content|without('field_mt_srv_banner_image', 'field_mt_srv_image', 'field_mt_srv_subheader_body', 'field_mt_srv_link', 'field_mt_srv_highlight') }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

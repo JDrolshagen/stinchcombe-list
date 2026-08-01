@@ -1,0 +1,98 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - module: The module that provided this block plugin.
+ *   - cache: The cache settings.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main content
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('flashyplus/hero-block') }}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+{%
+  set title_classes = [
+    'title'
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+    {% if content['#block_content'].field_mt_hero_layout.value == "stacked" %}
+      <div class="mt-hero--stacked-layout">
+        {% if (content.field_mt_hero_title|render or content.field_mt_hero_body|render or content.field_mt_hero_link|render) and (content.field_mt_hero_teaser|render or content.field_mt_hero_social_icon|render) %}
+          <div class="row">
+            {% if content.field_mt_hero_title|render or content.field_mt_hero_body|render or content.field_mt_hero_link|render %}
+              <div class="{{ (content.field_mt_hero_teaser|render or content.field_mt_hero_social_icon|render) ? 'col-xl-7' : 'col-12' }}">
+                {{ content.field_mt_hero_title }}
+                {{ content.field_mt_hero_body }}
+                {{ content.field_mt_hero_link }}
+              </div>
+            {% endif %}
+            {% if content.field_mt_hero_teaser|render or content.field_mt_hero_social_icon|render %}
+              <div class="{{ (content.field_mt_hero_title|render or content.field_mt_hero_body|render) ? 'col-xl-4 ms-xl-auto' : 'col-12' }} mt-hero-side mt-hero-teaser-field--items-{{ content['#block_content'].field_mt_hero_teaser.getvalue | length }}">
+                {{ content.field_mt_hero_teaser }}
+                {% if (content['#block_content'].field_mt_hero_teaser.getvalue | length) == '1' %}
+                  <div class="row">
+                    <div class="col-xl-6 ms-xl-auto">
+                      {{ content.field_mt_hero_social_icon }}
+                    </div>
+                  </div>
+                {% else %}
+                  {{ content.field_mt_hero_social_icon }}
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      {{ content|without('field_mt_hero_title', 'field_mt_hero_body', 'field_mt_hero_teaser', 'field_mt_hero_social_icon', 'field_mt_hero_layout', 'field_mt_hero_link') }}
+    {% else %}
+      <div class="mt-hero--overlaid-layout">
+        {% if content.field_mt_hero_title|render or content.field_mt_hero_body|render or content.field_mt_hero_link|render %}
+          <div class="hero-caption mt-style-custom-tr region--default-background">
+            {{ content.field_mt_hero_title }}
+            {{ content.field_mt_hero_body }}
+            {{ content.field_mt_hero_link }}
+          </div>
+        {% endif %}
+        {{ content.field_mt_hero_image }}
+        {{ content|without('field_mt_hero_title', 'field_mt_hero_body', 'field_mt_hero_teaser', 'field_mt_hero_social_icon', 'field_mt_hero_layout', 'field_mt_hero_image', 'field_mt_hero_link') }}
+      </div>
+    {% endif %}
+    </div>
+  {% endblock %}
+</div>

@@ -1,0 +1,67 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * mt_countdown module block template.
+ */
+ #}
+{% block content %}
+  <style>
+
+    .mt-count-down-block {
+      background-color: {{ content['#data'].background }};
+    }
+    .mt-count-down__title {
+      color: {{ content['#data'].title_color }};
+    }
+    .mt-count-down__notes {
+      color: {{ content['#data'].notes_color }};
+    }
+    .mt-count-down__message {
+      color: {{ content['#data'].message_color }};
+    }
+    .mt-count-down__hint {
+      color: {{ content['#data'].message_color }};
+    }
+    .mt-count-down__daysto {
+      color: {{ content['#data'].notes_color }};
+    }
+    .mt-count-down__button {
+      background-color: {{ content['#data'].button_background }};
+      color: {{ content['#data'].button_color }};
+    }
+
+  </style>
+  <div class="{{ content['#data'].predefined_palettes }} mt-count-down mt-count-down-block">
+
+    {% if content['#data'].title %}
+      <div class="mt-count-down__title">
+        {{ content['#data'].title|t }}
+      </div>
+    {% endif %}
+
+    {% if content['#data'].prompt_message %}
+      <div class="mt-count-down__message">
+        {{ content['#data'].prompt_message|t }}
+      </div>
+    {% endif %}
+
+    <div class="mt-count-down__daysto">
+      <span class="mt-count-down__notes">
+        {% if content['#data'].days_to %}
+          {{ content['#data'].days_to|t }}
+        {% endif %}
+      </span>
+      <div class="mt-count-down-slot"></div>
+    </div>
+
+    {% if content['#data'].target_url and content['#data'].dismiss_text %}
+      <a class="mt-count-down__button" href="{{ content['#data'].target_url }}">{{ content['#data'].dismiss_text|t }}</a>
+    {% endif %}
+
+    {% if content['#data'].hint_text %}
+      <div class="mt-count-down__hint">{{ content['#data'].hint_text }}</div>
+    {% endif %}
+
+  </div>
+{% endblock %}

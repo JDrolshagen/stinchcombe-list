@@ -1,0 +1,106 @@
+{#
+/**
+ * @file
+ * flashy+'s theme override for the block entity refernece field for the tabs powered custom block
+ *
+ */
+#}
+{{ attach_library('flashyplus/media-tabs') }}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'field--entity-reference-target-type-' ~ entity_reference_target_type|clean_class,
+    'field--mt-media-tabs',
+    'clearfix',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'inline' ? 'inline',
+  ]
+%}
+{% set mt_attribute = create_attribute() %}
+{%
+  set tab_style_classes = [
+    'nav', 
+    'nav-tabs', 
+    'nav-tabs--enriched',
+    'justify-content-center',
+  ]
+%}
+{% if tab_style == 'vertical' %}
+  {% set vertical_ul_class = 'flex-column col-5 pe-5' %}
+  {% set field_class = 'mt-style-vertical' %}
+  {% set tab_class = 'col-7' %}
+  {% set media_class = 'col-12' %}
+  {% set content_class = 'col-12' %}
+{% else %}
+  {% set vertical_ul_class = '' %}
+  {% set field_class = '' %}
+  {% set tab_class = '' %}
+  {% set media_class = 'col-lg-7' %}
+  {% set content_class = 'col-lg-5' %}
+{% endif %}
+
+<div{{ attributes.addClass(classes).addClass(field_class) }}>
+  {% if not label_hidden %}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  {% endif %}
+  {% if tab_style == 'vertical' %}
+    <div class="align-items-start row">
+  {% endif %}
+  <ul class="nav nav-tabs nav-tabs--enriched justify-content-center {{ vertical_ul_class }}">
+    {% for item in items %}
+      <li class="nav-item">
+        <a class="nav-link {{ loop.first ? ' active' : '' }} align-items-center d-flex" href="#tab-pane-id-{{item.tab_item_data.id}}" data-bs-toggle="tab">
+          {{ item.content['#paragraph'].get('field_mt_media_title').value }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="tab-content {{ tab_class }}">
+    {% for item in items %}
+      <div class="tab-pane fade {{ loop.first ? ' active show' : '' }}" id="tab-pane-id-{{item.tab_item_data.id}}">
+        <div class="row">        
+		  {% if item.content['#paragraph'].field_mt_media_image.value or item.content['#paragraph'].field_mt_media_video.value %}
+            <div class="{{ media_class }} {{ item.content['#paragraph'].field_mt_media_hor_alignment.value }}">
+              {% if item.content['#paragraph'].field_mt_media_video.value %}
+                {{ item.video_field }}
+              {% elseif item.content['#paragraph'].field_mt_media_image.value %}
+                <div class="overlay-container">
+                  <img src="{{ item.media_image_styled_url }}" alt="{{ item.content['#paragraph'].field_mt_media_image.alt }}" title="{{ item.content['#paragraph'].field_mt_media_image.title }}">
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}        
+		  <div class="{{ (item.content['#paragraph'].field_mt_media_image.value or item.content['#paragraph'].field_mt_media_video.value) ? content_class : 'col-lg-12' }}">
+            {% if item.content['#paragraph'].field_mt_media_title.value and item.content['#paragraph'].field_mt_media_body.value %}
+              <div class="mt-media-title">
+                <h3 class="mt-3 mt-lg-0">{{ item.content['#paragraph'].field_mt_media_title.value }}</h3>
+              </div>
+            {% endif %}
+            {% if item.content['#paragraph'].field_mt_media_body.value %}
+              <div class="mt-media-body">
+                {{ item.content }}
+              </div>
+            {% endif %}
+            {% if item.content['#paragraph'].field_mt_media_button.title %}
+              <div class="mt-media-button">
+                <a class="mt-button" href="{{ item.content['#paragraph'].field_mt_media_button['0'].url }}">
+                  {{ item.content['#paragraph'].field_mt_media_button.title }}
+                </a>
+              </div>
+            {% endif %}
+		  </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% if tab_style =='vertical' %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,15 @@
+canada_map:
+  version: 1.0.2
+  css:
+    theme:
+      vendor/jsvectormap/jsvectormap.min.css: {}
+      css/quantum-canada-map.css: {}
+  js:
+    vendor/jsvectormap/jsvectormap.min.js: { minified: true }
+    js/jsvectormap-compat.js: {}
+    vendor/jsvectormap/maps/canada.min.js: { minified: true }
+    js/quantum-canada-map.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

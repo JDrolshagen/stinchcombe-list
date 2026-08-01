@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in hero view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mt-style-custom-all region--default-background ',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-hero-card-alternative') }}
+<article{{ attributes.addClass(classes) }}>
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ content|without('field_mt_pst_slideshow_image', 'field_mt_pst_slideshow_text') }}
+  </div>
+
+  {% if content.field_mt_pst_slideshow_image|render %}
+    <div class="overlay-container">
+      <span class="overlay overlay--colored">
+        <a class="overlay-target-link" href="{{ url }}"></a>
+      </span>
+      {{ content.field_mt_pst_slideshow_image }}
+    </div>
+  {% endif %}
+
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% if not page %}
+    <h2{{ title_attributes.addClass("mx-4 pb-4 node__title") }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+
+</article>

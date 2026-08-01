@@ -1,0 +1,37 @@
+<article{{ attributes.addClass(classes) }}>
+  {{ video }}
+
+  {% if display_submitted or pre_content_second|render %}
+    <div class="node__meta">
+      {% if display_submitted %}
+        {{ metadata }}
+        <span class="node__meta-item">
+          {{ pre_content_first }}
+        </span>
+      {% endif %}
+      {% if pre_content_second|render %}
+        <span class="node__meta-item node__meta-tags">
+          {{ pre_content_second }}
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {{ title_prefix }}
+  <h4{{ title_attributes.addClass('node__title mt-0') }}>
+    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+  </h4>
+  {{ title_suffix }}
+
+  {% if content|without('rendered_content')|render %}
+    <div class="node__main-content-section">
+      {{ rendered_content }}
+    </div>
+  {% endif %}
+  {% if display_submitted %}
+    <span{{ author_attributes.addClass('node__meta-user node__meta-item') }}>
+      {{ author_name }}
+    </span>
+  {% endif %}
+  {{ content.links }}
+</article>

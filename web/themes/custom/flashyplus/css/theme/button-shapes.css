@@ -1,0 +1,137 @@
+/**
+ * @file
+ * Styles for Flashy+'s buttons.
+ */
+/*global styles*/
+.mt-style-sharp a.mt-button,
+.mt-style-sharp .mt-button > a,
+.mt-style-sharp button.mt-button,
+.mt-style-sharp input[type="submit"],
+.mt-style-sharp input[type="reset"],
+.mt-style-sharp input[type="button"],
+.mt-style-sharp .mt-count-down__button,
+.mt-style-sharp .col-12 .view > .more-link a {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.mt-style-oval a.mt-button,
+.mt-style-oval .mt-button > a,
+.mt-style-oval button.mt-button,
+.mt-style-oval input[type="submit"],
+.mt-style-oval input[type="reset"],
+.mt-style-oval input[type="button"],
+.mt-style-oval .mt-count-down__button,
+.mt-style-oval .col-12 .view > .more-link a {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+.mt-style-rounded a.mt-button,
+.mt-style-rounded .mt-button > a,
+.mt-style-rounded button.mt-button,
+.mt-style-rounded input[type="submit"],
+.mt-style-rounded input[type="reset"],
+.mt-style-rounded input[type="button"],
+.mt-style-rounded .mt-count-down__button,
+.mt-style-rounded .col-12 .view > .more-link a {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/*global styles for buttons that oval shape is not supported*/
+.mt-style-sharp .collapsible-sticky-footer-trigger .mt-button,
+.mt-style-sharp .collapsible-block__trigger a,
+.mt-style-sharp .overlay-icon,
+.mt-style-sharp ul.icons-list.icons-list--bordered li a,
+.mt-style-sharp .to-top {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.mt-style-rounded .collapsible-sticky-footer-trigger .mt-button,
+.mt-style-oval .collapsible-sticky-footer-trigger .mt-button,
+.mt-style-rounded .collapsible-block__trigger a,
+.mt-style-oval .collapsible-block__trigger a {
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+.mt-style-rounded .overlay-icon,
+.mt-style-oval .overlay-icon,
+.mt-style-rounded ul.icons-list.icons-list--bordered li a,
+.mt-style-oval ul.icons-list.icons-list--bordered li a,
+.mt-style-rounded .to-top,
+.mt-style-oval .to-top {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/*button specific styles*/
+.mt-style-button-sharp a.mt-button,
+.mt-style-button-sharp .mt-button > a,
+.mt-style-button-sharp button.mt-button,
+.mt-style-button-sharp input[type="submit"],
+.mt-style-button-sharp input[type="reset"],
+.mt-style-button-sharp input[type="button"],
+.mt-style-button-sharp .mt-count-down__button,
+.mt-style-button-sharp .col-12 .view > .more-link a {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.mt-style-button-oval a.mt-button,
+.mt-style-button-oval .mt-button > a,
+.mt-style-button-oval button.mt-button,
+.mt-style-button-oval input[type="submit"],
+.mt-style-button-oval input[type="reset"],
+.mt-style-button-oval input[type="button"],
+.mt-style-button-oval .mt-count-down__button,
+.mt-style-button-oval .col-12 .view > .more-link a {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+.mt-style-button-rounded a.mt-button,
+.mt-style-button-rounded .mt-button > a,
+.mt-style-button-rounded button.mt-button,
+.mt-style-button-rounded input[type="submit"],
+.mt-style-button-rounded input[type="reset"],
+.mt-style-button-rounded input[type="button"],
+.mt-style-button-rounded .mt-count-down__button,
+.mt-style-button-rounded .col-12 .view > .more-link a {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/*button specific styles for buttons that oval shape is not supported*/
+.mt-style-button-sharp .collapsible-sticky-footer-trigger .mt-button,
+.mt-style-button-sharp .collapsible-block__trigger a,
+.mt-style-button-sharp .overlay-icon,
+.mt-style-button-sharp ul.icons-list.icons-list--bordered li a,
+.mt-style-button-sharp .to-top {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.mt-style-button-rounded .collapsible-sticky-footer-trigger .mt-button,
+.mt-style-button-oval .collapsible-sticky-footer-trigger .mt-button,
+.mt-style-button-rounded .collapsible-block__trigger a,
+.mt-style-button-oval .collapsible-block__trigger a {
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+.mt-style-button-rounded .overlay-icon,
+.mt-style-button-oval .overlay-icon,
+.mt-style-button-rounded ul.icons-list.icons-list--bordered li a,
+.mt-style-button-oval ul.icons-list.icons-list--bordered li a,
+.mt-style-button-rounded .to-top,
+.mt-style-button-oval .to-top {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}

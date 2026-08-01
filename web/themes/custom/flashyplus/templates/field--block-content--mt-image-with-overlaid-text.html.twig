@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme override for the block entity refernece field for the tabs powered custom block
+ *
+ * @see flashyplus_preprocess_field__block_content__mt_image_with_overlaid_text()
+ */
+#}
+{{ attach_library('flashyplus/image-with-overlaid-text') }}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'field--mt-image-with-overlaid-text',
+    'clearfix',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'inline' ? 'inline',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  {% endif %}
+  <div class="image-with-overlaid-text__section">
+    {% if background_image_uri %}
+      <div class="image-with-overlaid-text__image" style="background-image: url({{ file_url(background_image_uri) }});"></div>
+    {% endif %}
+    <div class="container">
+      <div class="image-with-overlaid-text__text">
+        {% for item in items %}
+          {{ item.content }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

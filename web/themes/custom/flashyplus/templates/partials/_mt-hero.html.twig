@@ -1,0 +1,53 @@
+<article{{ attributes.addClass(classes) }}>
+
+{% if slideshow_image|render or slideshow_caption|render %}
+  <div class="overlay-container">
+    <span class="overlay overlay--colored">
+      <a class="overlay-target-link" href="{{ url }}"></a>
+    </span>
+    {{ slideshow_image }}
+    {% if slideshow_caption|render %}
+      <div class="slideshow-image__caption mt-style-custom-tl region--default-background">
+        {{ slideshow_caption }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% if not page %}
+    <h2{{ title_attributes.addClass("node__title") }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ rendered_content }}
+  </div>
+  {% if display_submitted or (node_comments and comment_count > 0) %}
+    <footer class="d-block node__meta">
+      <div class="d-flex">
+        {% if display_submitted %}
+          <div>
+            {{ author_picture }}
+            <span{{ author_attributes.addClass('node__submitted') }}>
+              {{ author_name }}
+              {{ metadata }}
+            </span>
+          </div>
+        {% endif %}
+        {% if node_comments and comment_count > 0 %}
+          <div class="ms-auto align-self-center pb-2 node__comments-count">
+            {% trans %}
+              1 comment
+            {% plural comment_count %}
+              {{ comment_count }} comments
+            {% endtrans %}
+          </div>
+        {% endif %}
+      </div>
+    </footer>
+  {% endif %}
+
+</article>

@@ -1,0 +1,159 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s views.
+ */
+.views-field-title a {
+  display: block;
+}
+.view-header .mt-view-header {
+  display: none;
+}
+.mt-view-header {
+  font-size: 20px;
+}
+.block-page-title-block .mt-view-header {
+  font-size: 58px;
+  text-transform: capitalize;
+  line-height: 1.09;
+  font-weight: 700;
+}
+@media (max-width: 576px) {
+  .block-page-title-block .mt-view-header {
+    font-size: 28px;
+  }
+}
+.block-views .mt-view-header {
+  font-size: 1em;
+  margin-bottom: 20px;
+  text-transform: none;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: center;
+}
+.mt-view-header-enabled > h2.title {
+  margin-bottom: 10px;
+}
+
+/*more links*/
+.headings-wide-spacing-enabled .view > .more-link a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.col-12 .view > .more-link {
+  text-align: center;
+  margin-top: 10px;
+}
+.col-12 .view.view-mt-showcases-metro-tiles > .more-link {
+  margin-top: 40px;
+}
+
+/*more links @sidebars and footer regions*/
+.footer__section .view > .more-link a {
+  margin: 10px 0 0;
+  text-transform: none;
+}
+
+/*clear grid floats*/
+.view.row .view-content:before,
+.view.row .view-content:after {
+  display: table;
+  content: " ";
+}
+.view.row .view-content:after {
+  clear: both;
+}
+
+/* exposed filters */
+.views-exposed-form:not(.bef-exposed-form) .form--inline {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+  .views-exposed-form:not(.bef-exposed-form) .form--inline .form-item {
+    float: none;
+    margin-right: 0;
+    margin-left: 0;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+.views-exposed-form:not(.bef-exposed-form) .form--inline .form-actions {
+  padding-left: 15px;
+  padding-right: 15px;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
+}
+.views-exposed-form:not(.bef-exposed-form) .form--inline .form-actions input[type="submit"] {
+  width: 100%;
+}
+.view-filters [type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+}
+.view-filters [type="checkbox"] + label {
+  position: relative;
+  display: inline-block;
+  padding-left: 30px;
+  line-height: 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  margin-bottom: 10px;
+}
+.view-filters [type="checkbox"] + label:after {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  content: '';
+  -webkit-transition: all linear .2s;
+  -moz-transition: all linear .2s;
+  -o-transition: all linear .2s;
+  -ms-transition: all linear .2s;
+  transition: all linear .2s;
+}
+.view-filters [type="checkbox"]:not(:checked) + label:after {
+  top: 0px;
+  z-index: 0;
+  width: 20px;
+  height: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--mt-color-base);
+  background-color: transparent;
+}
+.view-filters [type="checkbox"]:checked + label:after,
+.view-filters [type="checkbox"]:hover + label:after {
+  top: 0px;
+  z-index: 0;
+  width: 20px;
+  height: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--mt-color-base);
+  background-color: var(--mt-color-primary);
+}
+.view-filters [type="checkbox"] + label:before {
+  content: '';
+  top: 2px;
+  left: 4px;
+  width: 5px;
+  height: 10px;
+  border-width: 0px;
+  border-style: solid;
+  border-color: transparent;
+  transform: rotateZ(37deg);
+  transform-origin: 100% 100%;
+  position: absolute;
+  z-index: 1;
+  margin-top: 2px;
+}
+.view-filters [type="checkbox"]:checked + label:before {
+  border-width: 1px;
+  border-color: transparent var(--mt-color-base) var(--mt-color-base) transparent;
+}

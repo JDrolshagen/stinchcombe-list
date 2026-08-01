@@ -1,0 +1,777 @@
+# Schema for the configuration files of the Flashy+ theme.
+
+flashyplus.settings:
+  type: theme_settings
+  label: 'Flashy+ settings'
+  mapping:
+    sticky_side:
+      type: integer
+      label: 'Sticky Side'
+    animations_state:
+      type: integer
+      label: 'Animations State'
+    banner_background_color:
+      type: string
+      label: 'Banner Background Color'
+    banner_blocks_paddings:
+      type: integer
+      label: 'Banner Blocks Paddings'
+    banner_id:
+      type: string
+      label: 'Banner Id'
+    banner_layout_container:
+      type: string
+      label: 'Banner Layout Container'
+    banner_region_paddings:
+      type: integer
+      label: 'Banner Region Paddings'
+    bootstrap_remote_type:
+      type: string
+      label: 'Bootstrap Remote Type'
+    breadcrumb_separator:
+      type: string
+      label: 'Breadcrumb Separator'
+    breaking_effect:
+      type: string
+      label: 'Breaking Effect'
+    breaking_effect_time:
+      type: string
+      label: 'Breaking Effect Time'
+    color_scheme:
+      type: string
+      label: 'Color Scheme'
+    global_corner_style:
+      type: string
+      label: 'Global Corner Style'
+    button_corner_style:
+      type: string
+      label: 'Button Corner Style'
+    form_corner_style:
+      type: string
+      label: 'Form Corner Style'
+    image_corner_style:
+      type: string
+      label: 'Image Corner Style'
+    menu_corner_style:
+      type: string
+      label: 'Menu Corner Style'
+    custom_elements_corner_style:
+      type: string
+      label: 'Custom Elements Corner Style'
+    links_style:
+      type: string
+      label: 'Links Style'
+    content_bottom_animation_effect:
+      type: string
+      label: 'Content Bottom Animation Effect'
+    content_bottom_background_color:
+      type: string
+      label: 'Content Bottom Background Color'
+    content_bottom_blocks_paddings:
+      type: integer
+      label: 'Content Bottom Blocks Paddings'
+    content_bottom_id:
+      type: string
+      label: 'Content Bottom Id'
+    content_bottom_layout_container:
+      type: string
+      label: 'Content Bottom Layout Container'
+    content_bottom_region_paddings:
+      type: integer
+      label: 'Content Bottom Region Paddings'
+    content_bottom_separator:
+      type: string
+      label: 'Content Bottom Separator'
+    content_top_animation_effect:
+      type: string
+      label: 'Content Top Animation Effect'
+    content_top_background_color:
+      type: string
+      label: 'Content Top Background Color'
+    content_top_blocks_paddings:
+      type: integer
+      label: 'Content Top Blocks Paddings'
+    content_top_highlighted_animation_effect:
+      type: string
+      label: 'Content Top Highlighted Animation Effect'
+    content_top_highlighted_background_color:
+      type: string
+      label: 'Content Top Highlighted Background Color'
+    content_top_highlighted_blocks_paddings:
+      type: integer
+      label: 'Content Top Highlighted Blocks Paddings'
+    content_top_highlighted_id:
+      type: string
+      label: 'Content Top Highlighted Id'
+    content_top_highlighted_layout_container:
+      type: string
+      label: 'Content Top Highlighted Layout Container'
+    content_top_highlighted_region_paddings:
+      type: integer
+      label: 'Content Top Highlighted Region Paddings'
+    content_top_highlighted_separator:
+      type: string
+      label: 'Content Top Highlighted Separator'
+    content_bottom_highlighted_animation_effect:
+      type: string
+      label: 'Content Bottom Highlighted Animation Effect'
+    content_bottom_highlighted_background_color:
+      type: string
+      label: 'Content Bottom Highlighted Background Color'
+    content_bottom_highlighted_blocks_paddings:
+      type: integer
+      label: 'Content Bottom Highlighted Blocks Paddings'
+    content_bottom_highlighted_id:
+      type: string
+      label: 'Content Bottom Highlighted Id'
+    content_bottom_highlighted_layout_container:
+      type: string
+      label: 'Content Bottom Highlighted Layout Container'
+    content_bottom_highlighted_region_paddings:
+      type: integer
+      label: 'Content Bottom Highlighted Region Paddings'
+    content_bottom_highlighted_separator:
+      type: string
+      label: 'Content Bottom Highlighted Separator'
+    content_top_id:
+      type: string
+      label: 'Content Top Id'
+    content_top_layout_container:
+      type: string
+      label: 'Content Top Layout Container'
+    content_top_region_paddings:
+      type: integer
+      label: 'Content Top Region Paddings'
+    enable_pwa:
+      type: integer
+      label: 'Enable Pwa'
+    featured_animation_effect:
+      type: string
+      label: 'Featured Animation Effect'
+    featured_background_color:
+      type: string
+      label: 'Featured Background Color'
+    featured_blocks_paddings:
+      type: integer
+      label: 'Featured Blocks Paddings'
+    featured_bottom_animation_effect:
+      type: string
+      label: 'Featured Bottom Animation Effect'
+    featured_bottom_background_color:
+      type: string
+      label: 'Featured Bottom Background Color'
+    featured_bottom_blocks_paddings:
+      type: integer
+      label: 'Featured Bottom Blocks Paddings'
+    featured_bottom_id:
+      type: string
+      label: 'Featured Bottom Id'
+    featured_bottom_layout_container:
+      type: string
+      label: 'Featured Bottom Layout Container'
+    featured_bottom_region_paddings:
+      type: integer
+      label: 'Featured Bottom Region Paddings'
+    featured_bottom_separator:
+      type: string
+      label: 'Featured Bottom Separator'
+    featured_id:
+      type: string
+      label: 'Featured Id'
+    featured_layout_container:
+      type: string
+      label: 'Featured Layout Container'
+    featured_region_paddings:
+      type: integer
+      label: 'Featured Region Paddings'
+    featured_separator:
+      type: string
+      label: 'Featured Separator'
+    featured_top_animation_effect:
+      type: string
+      label: 'Featured Top Animation Effect'
+    featured_top_background_color:
+      type: string
+      label: 'Featured Top Background Color'
+    featured_top_blocks_paddings:
+      type: integer
+      label: 'Featured Top Blocks Paddings'
+    featured_top_id:
+      type: string
+      label: 'Featured Top Id'
+    featured_top_layout_container:
+      type: string
+      label: 'Featured Top Layout Container'
+    featured_top_region_paddings:
+      type: integer
+      label: 'Featured Top Region Paddings'
+    featured_top_separator:
+      type: string
+      label: 'Featured Top Separator'
+    fixed_header:
+      type: integer
+      label: 'Fixed Header'
+    fixed_header_behavior:
+      type: string
+      label: 'Fixed Header Behavior'
+    font_resize:
+      type: integer
+      label: 'Font Resize'
+    footer_animation_effect:
+      type: string
+      label: 'Footer Animation Effect'
+    footer_background_color:
+      type: string
+      label: 'Footer Background Color'
+    footer_blocks_paddings:
+      type: integer
+      label: 'Footer Blocks Paddings'
+    footer_bottom_background_color:
+      type: string
+      label: 'Footer Bottom Background Color'
+    footer_bottom_blocks_paddings:
+      type: integer
+      label: 'Footer Bottom Blocks Paddings'
+    footer_bottom_id:
+      type: string
+      label: 'Footer Bottom Id'
+    footer_bottom_layout_container:
+      type: string
+      label: 'Footer Bottom Layout Container'
+    footer_bottom_region_paddings:
+      type: integer
+      label: 'Footer Bottom Region Paddings'
+    footer_bottom_separator:
+      type: string
+      label: 'Footer Bottom Separator'
+    footer_id:
+      type: string
+      label: 'Footer Id'
+    footer_layout_container:
+      type: string
+      label: 'Footer Layout Container'
+    footer_region_paddings:
+      type: integer
+      label: 'Footer Region Paddings'
+    footer_separator:
+      type: string
+      label: 'Footer Separator'
+    footer_top_animation_effect:
+      type: string
+      label: 'Footer Top Animation Effect'
+    footer_top_background_color:
+      type: string
+      label: 'Footer Top Background Color'
+    footer_top_blocks_paddings:
+      type: integer
+      label: 'Footer Top Blocks Paddings'
+    footer_top_id:
+      type: string
+      label: 'Footer Top Id'
+    footer_top_layout_container:
+      type: string
+      label: 'Footer Top Layout Container'
+    footer_top_region_paddings:
+      type: integer
+      label: 'Footer Top Region Paddings'
+    footer_top_separator:
+      type: string
+      label: 'Footer Top Separator'
+    hero_top_animation_effect:
+      type: string
+      label: 'Hero Top Animation Effect'
+    hero_top_background_color:
+      type: string
+      label: 'Hero Top Background Color'
+    hero_top_blocks_paddings:
+      type: integer
+      label: 'Hero Top Blocks Paddings'
+    hero_top_id:
+      type: string
+      label: 'Hero Top Id'
+    hero_top_layout_container:
+      type: string
+      label: 'Hero Top Layout Container'
+    hero_top_region_paddings:
+      type: integer
+      label: 'Hero Top Region Paddings'
+    hero_animation_effect:
+      type: string
+      label: 'Hero Animation Effect'
+    hero_background_color:
+      type: string
+      label: 'Hero Background Color'
+    hero_blocks_paddings:
+      type: integer
+      label: 'Hero Blocks Paddings'
+    hero_id:
+      type: string
+      label: 'Hero Id'
+    hero_layout_container:
+      type: string
+      label: 'Hero Layout Container'
+    hero_region_paddings:
+      type: integer
+      label: 'Hero Region Paddings'
+    sticky_footer_layout_container:
+      type: string
+      label: 'Sticky Footer Layout Container'
+    sticky_footer_background_color:
+      type: string
+      label: 'Sticky Footer Background Color'
+    sticky_footer_blocks_paddings:
+      type: integer
+      label: 'Sticky Footer Blocks Paddings'
+    sticky_footer_region_paddings:
+      type: integer
+      label: 'Sticky Footer Region Paddings'
+    sticky_footer_trigger_text:
+      type: string
+      label: 'Sticky Footer Trigger Text'
+    google_maps_key:
+      type: string
+      label: 'Google Maps Key'
+    header_background_color:
+      type: string
+      label: 'Header Background Color'
+    header_background_image_state:
+      type: integer
+      label: 'Header Background Image State'
+    header_blocks_paddings:
+      type: integer
+      label: 'Header Blocks Paddings'
+    header_layout_container:
+      type: string
+      label: 'Header Layout Container'
+    header_region_paddings:
+      type: integer
+      label: 'Header Region Paddings'
+    header_top_animation_effect:
+      type: string
+      label: 'Header Top Animation Effect'
+    header_top_background_color:
+      type: string
+      label: 'Header Top Background Color'
+    header_top_blocks_paddings:
+      type: integer
+      label: 'Header Top Blocks Paddings'
+    header_top_highlighted_animation_effect:
+      type: string
+      label: 'Header Top Highlighted Animation Effect'
+    header_top_highlighted_background_color:
+      type: string
+      label: 'Header Top Highlighted Background Color'
+    header_top_highlighted_blocks_paddings:
+      type: integer
+      label: 'Header Top Highlighted Blocks Paddings'
+    header_top_highlighted_layout_container:
+      type: string
+      label: 'Header Top Highlighted Layout Container'
+    header_top_highlighted_region_paddings:
+      type: integer
+      label: 'Header Top Highlighted Region Paddings'
+    header_top_layout_container:
+      type: string
+      label: 'Header Top Layout Container'
+    header_top_region_paddings:
+      type: integer
+      label: 'Header Top Region Paddings'
+    headings_font_family:
+      type: string
+      label: 'Headings Font Family'
+    headings_wide_spacing:
+      type: integer
+      label: 'Headings Wide Spacing'
+    highlighted_animation_effect:
+      type: string
+      label: 'Highlighted Animation Effect'
+    highlighted_background_color:
+      type: string
+      label: 'Highlighted Background Color'
+    highlighted_blocks_paddings:
+      type: integer
+      label: 'Highlighted Blocks Paddings'
+    highlighted_id:
+      type: string
+      label: 'Highlighted Id'
+    highlighted_layout_container:
+      type: string
+      label: 'Highlighted Layout Container'
+    highlighted_region_paddings:
+      type: integer
+      label: 'Highlighted Region Paddings'
+    highlighted_separator:
+      type: string
+      label: 'Highlighted Separator'
+    highlighted_top_animation_effect:
+      type: string
+      label: 'Highlighted Top Animation Effect'
+    highlighted_top_background_color:
+      type: string
+      label: 'Highlighted Top Background Color'
+    highlighted_top_blocks_paddings:
+      type: integer
+      label: 'Highlighted Top Blocks Paddings'
+    highlighted_top_id:
+      type: string
+      label: 'Highlighted Top Id'
+    highlighted_top_layout_container:
+      type: string
+      label: 'Highlighted Top Layout Container'
+    highlighted_top_region_paddings:
+      type: integer
+      label: 'Highlighted Top Region Paddings'
+    highlighted_top_separator:
+      type: string
+      label: 'Highlighted Top Separator'
+    in_page_navigation_offset:
+      type: string
+      label: 'In Page Navigation Offset'
+    in_page_slider_effect:
+      type: string
+      label: 'In Page Slider Effect'
+    flexslider_main_effect:
+      type: string
+      label: 'Flexslider Main Effect'
+    flexslider_main_effect_time:
+      type: string
+      label: 'Flexslider Main Effect Time'
+    inverted_header_state:
+      type: integer
+      label: 'Inverted Header State'
+    isotope_filters_text:
+      type: string
+      label: 'Isotope Filters Text'
+    isotope_layout_mode:
+      type: string
+      label: 'Isotope Layout Mode'
+    layout_mode:
+      type: string
+      label: 'Layout Mode'
+    main_content_layout_container:
+      type: string
+      label: 'Main Content Layout Container'
+    main_content_animation_effect:
+      type: string
+      label: 'Main Content Animation Effect'
+    main_content_blocks_paddings:
+      type: integer
+      label: 'Main Content Blocks Paddings'
+    main_content_id:
+      type: string
+      label: 'Main Content Id'
+    main_content_region_paddings:
+      type: integer
+      label: 'Main Content Region Paddings'
+    main_content_separator:
+      type: string
+      label: 'Main Content Separator'
+    owl_albums_autoplay:
+      type: integer
+      label: 'Owl Albums Autoplay'
+    owl_albums_effect_time:
+      type: string
+      label: 'Owl Albums Effect Time'
+    owl_articles_autoplay:
+      type: integer
+      label: 'Owl Articles Autoplay'
+    owl_articles_effect_time:
+      type: string
+      label: 'Owl Articles Effect Time'
+    owl_collections_autoplay:
+      type: integer
+      label: 'Owl Collections Autoplay'
+    owl_collections_effect_time:
+      type: string
+      label: 'Owl Collections Effect Time'
+    owl_products_autoplay:
+      type: integer
+      label: 'Owl Products Autoplay'
+    owl_products_effect_time:
+      type: string
+      label: 'Owl Products Effect Time'
+    owl_promoted_posts_autoplay:
+      type: boolean
+      label: 'Owl Promoted Posts Autoplay'
+    owl_promoted_posts_effect_time:
+      type: string
+      label: 'Owl Promoted Posts Effect Time'
+    owl_related_nodes_autoplay:
+      type: integer
+      label: 'Owl Related Nodes Autoplay'
+    owl_related_nodes_effect_time:
+      type: string
+      label: 'Owl Related Nodes Effect Time'
+    owl_team_members_autoplay:
+      type: integer
+      label: 'Owl Team Members Autoplay'
+    owl_team_members_effect_time:
+      type: string
+      label: 'Owl Team Members Effect Time'
+    owl_testimonials_autoplay:
+      type: integer
+      label: 'Owl Testimonials Autoplay'
+    owl_testimonials_effect_time:
+      type: string
+      label: 'Owl Testimonials Effect Time'
+    page_container_border:
+      type: integer
+      label: 'Page Container Border'
+    paragraph_font_family:
+      type: string
+      label: 'Paragraph Font Family'
+    paragraph_responsive_typography:
+      type: integer
+      label: 'Paragraph Responsive Typography'
+    post_progress:
+      type: integer
+      label: 'Post Progress'
+    print_button:
+      type: integer
+      label: 'Print Button'
+    reading_time:
+      type: integer
+      label: 'Reading Time'
+    rs_slideshow_background_opacity:
+      type: string
+      label: 'Rs Slideshow Background Opacity'
+    rs_slideshow_boxedwidth_bullets_position:
+      type: string
+      label: 'Rs Slideshow Boxedwidth Bullets Position'
+    rs_slideshow_boxedwidth_effect:
+      type: string
+      label: 'Rs Slideshow Boxedwidth Effect'
+    rs_slideshow_boxedwidth_effect_time:
+      type: string
+      label: 'Rs Slideshow Boxedwidth Effect Time'
+    rs_slideshow_boxedwidth_initial_height:
+      type: string
+      label: 'Rs Slideshow Boxedwidth Initial Height'
+    rs_slideshow_boxedwidth_auto_height:
+      type: integer
+      label: 'Rs Slideshow Boxedwidth Auto Height'
+    rs_slideshow_boxedwidth_navigation_style:
+      type: string
+      label: 'Rs Slideshow Boxedwidth Navigation Style'
+    rs_slideshow_boxedwidth_touch_swipe:
+      type: integer
+      label: 'Rs Slideshow Boxedwidth Touch Swipe'
+    rs_slideshow_caption_opacity:
+      type: string
+      label: 'Rs Slideshow Caption Opacity'
+    rs_slideshow_fullscreen_bullets_position:
+      type: string
+      label: 'Rs Slideshow Fullscreen Bullets Position'
+    rs_slideshow_fullscreen_effect:
+      type: string
+      label: 'Rs Slideshow Fullscreen Effect'
+    rs_slideshow_fullscreen_effect_time:
+      type: string
+      label: 'Rs Slideshow Fullscreen Effect Time'
+    rs_slideshow_fullscreen_navigation_style:
+      type: string
+      label: 'Rs Slideshow Fullscreen Navigation Style'
+    rs_slideshow_fullscreen_touch_swipe:
+      type: integer
+      label: 'Rs Slideshow Fullscreen Touch Swipe'
+    rs_slideshow_fullwidth_bullets_position:
+      type: string
+      label: 'Rs Slideshow Fullwidth Bullets Position'
+    rs_slideshow_fullwidth_effect:
+      type: string
+      label: 'Rs Slideshow Fullwidth Effect'
+    rs_slideshow_fullwidth_effect_time:
+      type: string
+      label: 'Rs Slideshow Fullwidth Effect Time'
+    rs_slideshow_fullwidth_initial_height:
+      type: string
+      label: 'Rs Slideshow Fullwidth Initial Height'
+    rs_slideshow_fullwidth_auto_height:
+      type: integer
+      label: 'Rs Slideshow Fullwidth Auto Height'
+    rs_slideshow_fullwidth_navigation_style:
+      type: string
+      label: 'Rs Slideshow Fullwidth Navigation Style'
+    rs_slideshow_fullwidth_touch_swipe:
+      type: integer
+      label: 'Rs Slideshow Fullwidth Touch Swipe'
+    rs_slideshow_internal_banner_bullets_position:
+      type: string
+      label: 'Rs Slideshow Internal Banner Bullets Position'
+    rs_slideshow_internal_bullets_position:
+      type: string
+      label: 'Rs Slideshow Internal Bullets Position'
+    rs_slideshow_internal_carousel_bullets_position:
+      type: string
+      label: 'Rs Slideshow Internal Carousel Bullets Position'
+    rs_slideshow_internal_carousel_effect:
+      type: string
+      label: 'Rs Slideshow Internal Carousel Effect'
+    rs_slideshow_internal_carousel_initial_height:
+      type: string
+      label: 'Rs Slideshow Internal Carousel Initial Height'
+    rs_slideshow_internal_carousel_touch_swipe:
+      type: integer
+      label: 'Rs Slideshow Internal Carousel Touch Swipe'
+    rs_slideshow_internal_effect:
+      type: string
+      label: 'Rs Slideshow Internal Effect'
+    rs_slideshow_internal_effect_time:
+      type: string
+      label: 'Rs Slideshow Internal Effect Time'
+    rs_slideshow_internal_initial_height:
+      type: string
+      label: 'Rs Slideshow Internal Initial Height'
+    rs_slideshow_internal_auto_height:
+      type: integer
+      label: 'Rs Slideshow Internal Auto Height'
+    rs_slideshow_internal_navigation_style:
+      type: string
+      label: 'Rs Slideshow Internal Navigation Style'
+    rs_slideshow_internal_touch_swipe:
+      type: integer
+      label: 'Rs Slideshow Internal Touch Swipe'
+    scroll_to_top_display:
+      type: integer
+      label: 'Scroll To Top Display'
+    scroll_to_top_icon:
+      type: string
+      label: 'Scroll To Top Icon'
+    share_links:
+      type: integer
+      label: 'Share Links'
+    share_links_print_position:
+      type: string
+      label: 'Share Links Print Position'
+    sidebar_first_animation_effect:
+      type: string
+      label: 'Sidebar First Animation Effect'
+    sidebar_first_blocks_paddings:
+      type: integer
+      label: 'Sidebar First Blocks Paddings'
+    sidebar_first_region_paddings:
+      type: integer
+      label: 'Sidebar First Region Paddings'
+    sidebar_second_animation_effect:
+      type: string
+      label: 'Sidebar Second Animation Effect'
+    sidebar_second_blocks_paddings:
+      type: integer
+      label: 'Sidebar Second Blocks Paddings'
+    sidebar_second_region_paddings:
+      type: integer
+      label: 'Sidebar Second Region Paddings'
+    sitename_font_family:
+      type: string
+      label: 'Sitename Font Family'
+    slideout_background_color:
+      type: string
+      label: 'Slideout Background Color'
+    slideout_mobile_menu_display:
+      type: integer
+      label: 'Slideout Mobile Menu Display'
+    slideout_blocks_paddings:
+      type: integer
+      label: 'Slideout Blocks Paddings'
+    slideout_region_paddings:
+      type: integer
+      label: 'Slideout Region Paddings'
+    slideout_side:
+      type: string
+      label: 'Slideout Side'
+    slideout_touch_swipe:
+      type: integer
+      label: 'Slideout Touch Swipe'
+    slogan_font_family:
+      type: string
+      label: 'Slogan Font Family'
+    sub_featured_animation_effect:
+      type: string
+      label: 'Sub Featured Animation Effect'
+    sub_featured_background_color:
+      type: string
+      label: 'Sub Featured Background Color'
+    sub_featured_blocks_paddings:
+      type: integer
+      label: 'Sub Featured Blocks Paddings'
+    sub_featured_id:
+      type: string
+      label: 'Sub Featured Id'
+    sub_featured_layout_container:
+      type: string
+      label: 'Sub Featured Layout Container'
+    sub_featured_region_paddings:
+      type: integer
+      label: 'Sub Featured Region Paddings'
+    sub_featured_separator:
+      type: string
+      label: 'Sub Featured Separator'
+    subfooter_background_color:
+      type: string
+      label: 'Subfooter Background Color'
+    subfooter_blocks_paddings:
+      type: integer
+      label: 'Subfooter Blocks Paddings'
+    subfooter_bottom_blocks_paddings:
+      type: boolean
+      label: 'Subfooter Bottom Blocks Paddings'
+    subfooter_bottom_region_paddings:
+      type: boolean
+      label: 'Subfooter Bottom Region Paddings'
+    subfooter_id:
+      type: string
+      label: 'Subfooter Id'
+    subfooter_layout_container:
+      type: string
+      label: 'Subfooter Layout Container'
+    subfooter_region_paddings:
+      type: integer
+      label: 'Subfooter Region Paddings'
+    subfooter_separator:
+      type: string
+      label: 'Subfooter Separator'
+    subfooter_top_background_color:
+      type: string
+      label: 'Subfooter Top Background Color'
+    subfooter_top_blocks_paddings:
+      type: integer
+      label: 'Subfooter Top Blocks Paddings'
+    subfooter_top_id:
+      type: string
+      label: 'Subfooter Top Id'
+    subfooter_top_layout_container:
+      type: string
+      label: 'Subfooter Top Layout Container'
+    subfooter_top_region_paddings:
+      type: integer
+      label: 'Subfooter Top Region Paddings'
+    subfooter_top_separator:
+      type: string
+      label: 'Subfooter Top Separator'
+    transparent_header_opacity:
+      type: string
+      label: 'Transparent Header Opacity'
+    transparent_header_state:
+      type: integer
+      label: 'Transparent Header State'
+    total_node_views:
+      type: integer
+      label: 'Total Node Views'
+    purechat_key:
+      type: string
+      label: 'Purechat Key'
+    purechat_display:
+      type: integer
+      label: 'Purechat Display'
+    mobile_menu_widget_display:
+      type: integer
+      label: 'Mobile Menu Widget Display'
+    mobile_menu_widget_sticky:
+      type: integer
+      label: 'Mobile Menu Widget Sticky'
+    rs_slideshow_internal_layout:
+      type: string
+      label: 'Rs Slideshow Internal Layout'
+    header_horizontal_paddings:
+      type: integer
+      label: 'Header Horizontal Paddings'

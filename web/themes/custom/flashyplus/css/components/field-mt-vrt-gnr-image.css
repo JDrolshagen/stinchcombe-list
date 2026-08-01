@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s commerce cart content type.
+ */
+.media--type-mt-mdt-product-image.media--view-mode-mt-teaser img {
+  max-width: 120px;
+  padding: 5px;
+}
+.field--name-field-mt-vrt-gnr-image img {
+  padding: 5px;
+}

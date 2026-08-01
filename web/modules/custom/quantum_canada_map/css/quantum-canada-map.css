@@ -1,0 +1,22 @@
+.quantum-canada-map-canvas {
+  width: 100%;
+  height: 480px;
+  min-height: 360px;
+}
+
+.quantum-canada-map-canvas svg {
+  width: 100%;
+  height: 100%;
+}
+
+.jvm-tooltip {
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.quantum-canada-map__fallback {
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

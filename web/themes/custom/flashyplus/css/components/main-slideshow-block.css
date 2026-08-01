@@ -1,0 +1,63 @@
+/*main slider custom block caption*/
+.mt-style-sharp .container .field--name-field-mt-main-slideshow-slide .rev_slider {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.mt-style-oval .container .field--name-field-mt-main-slideshow-slide .rev_slider {
+  -webkit-border-radius: var(--mt-oval-radius);
+  -moz-border-radius: var(--mt-oval-radius);
+  border-radius: var(--mt-oval-radius);
+}
+.mt-style-rounded .container .field--name-field-mt-main-slideshow-slide .rev_slider {
+  -webkit-border-radius: var(--mt-rounded-radius);
+  -moz-border-radius: var(--mt-rounded-radius);
+  border-radius: var(--mt-rounded-radius);
+}
+.mt-style-custom-sharp .container .field--name-field-mt-main-slideshow-slide .rev_slider {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.mt-style-custom-oval .container .field--name-field-mt-main-slideshow-slide .rev_slider {
+  -webkit-border-radius: var(--mt-oval-radius);
+  -moz-border-radius: var(--mt-oval-radius);
+  border-radius: var(--mt-oval-radius);
+}
+.mt-style-custom-rounded .container .field--name-field-mt-main-slideshow-slide .rev_slider {
+  -webkit-border-radius: var(--mt-rounded-radius);
+  -moz-border-radius: var(--mt-rounded-radius);
+  border-radius: var(--mt-rounded-radius);
+}
+.mt-style-oval .container .field--name-field-mt-main-slideshow-slide,
+.mt-style-rounded .container .field--name-field-mt-main-slideshow-slide {
+  padding: 1.5rem;
+}
+.mt-style-custom-oval .container .field--name-field-mt-main-slideshow-slide,
+.mt-style-custom-rounded .container .field--name-field-mt-main-slideshow-slide {
+  padding: 1.5rem;
+}
+.mt-style-custom-sharp .container .field--name-field-mt-main-slideshow-slide {
+  padding: 0;
+}
+.container-fluid .field--name-field-mt-main-slideshow-slide {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+@media (min-width: 1200px) {
+  .container-fluid .field--name-field-mt-main-slideshow-slide {
+    margin-left: -3rem;
+    margin-right: -3rem;
+  }
+}
+.ms-transparent-background .region--dark-typography.tp-caption__title a {
+  color: #000000;
+  text-shadow: none;
+}
+.ms-transparent-background .region--light-typography.tp-caption__title a {
+  text-decoration: none;
+}
+.ms-transparent-background .region--dark-typography.tp-caption__text {
+  color: #000000;
+  text-shadow: none;
+}

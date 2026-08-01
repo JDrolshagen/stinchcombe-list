@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in metro tile view mode.
+ */
+#}
+<article{{ attributes.addClass(classes) }}>
+  <div class="metro-tile-container">
+    {{ title_prefix }}
+    {{ title_suffix }}
+
+    {% if styled_image|render %}
+      <div class="image-wrapper">
+        {{ styled_image }}
+      </div>
+    {% endif %}
+
+    <div class="metro-tile__caption {{ caption_items }}">
+      {% if not page %}
+        <h4{{ title_attributes.addClass("mt-0 mb-2 node__title") }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h4>
+      {% endif %}
+
+      {% if display_submitted %}
+        {{ metadata }}
+      {% endif %}
+
+      {% if caption_text_first|render %}
+        <div class="caption-text-first">
+          {{ caption_text_first }}
+        </div>
+      {% endif %}
+
+      {% if caption_text_second|render %}
+        <div class="caption-text-second">
+          {{ caption_text_second }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ rendered_content }}
+  </div>
+</article>

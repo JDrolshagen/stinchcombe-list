@@ -1,0 +1,89 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - module: The module that provided this block plugin.
+ *   - cache: The cache settings.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main content
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('flashyplus/hero-form-block') }}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'block-mt-hero-form'
+  ]
+%}
+{%
+  set title_classes = [
+    'title'
+  ]
+%}
+{% if content['#block_content'].field_mt_hero_form_layout.value == "two-col-form-right" %}
+  {% set column_first_grid_classes = "col-lg-6 mb-5 mb-lg-0 pe-xl-5" %}
+  {% set column_second_grid_classes = "col-lg-6 ps-xl-5" %}
+  {% set columns = "two-columns" %}
+{% elseif content['#block_content'].field_mt_hero_form_layout.value == "two-col-form-left" %}
+  {% set column_first_grid_classes = "col-lg-6 order-lg-2 mb-5 mb-lg-0 ps-xl-5" %}
+  {% set column_second_grid_classes = "col-lg-6 order-lg-1 pe-xl-5" %}
+  {% set columns = "two-columns" %}
+{% elseif content['#block_content'].field_mt_hero_form_layout.value == "one-col-center" %}
+  {% set column_first_grid_classes = "col-lg-6 pt-lg-4 pt-0 me-auto ms-auto text-center" %}
+  {% set column_second_grid_classes = "col-lg-6 pt-lg-4 pt-0 me-auto ms-auto text-center" %}
+  {% set columns = "one-column" %}
+{% endif %}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div{{ content_attributes.addClass('content').addClass(columns) }}>
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="{{ column_first_grid_classes }}">
+            {{ content|without('field_mt_hero_form_form', 'field_mt_hero_form_layout') }}
+            {% if columns == "one-column" and content.field_mt_hero_form_form|render %}
+              <div class="mt-4 pt-5">
+                {{ content.field_mt_hero_form_form }}
+              </div>
+            {% endif %}
+          </div>
+          {% if columns == "two-columns" and content.field_mt_hero_form_form|render %}
+            <div class="{{ column_second_grid_classes }}">
+              {{ content.field_mt_hero_form_form }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  {% endblock %}
+</div>

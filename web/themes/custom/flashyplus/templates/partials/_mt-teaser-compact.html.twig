@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in teaser compact view mode.
+ */
+#}
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  <div class="d-flex">
+    {% if image|render or highlight_image_styled_url %}
+      <div class="teaser-compact-image">
+        {% if image|render %}
+          {{ image }}
+        {% elseif highlight_image_styled_url %}
+          <div class="field field--name-field-mt-prd-image field--type-image">
+            <div class="images-container clearfix">
+              <div class="image-preview clearfix">
+                <div class="field__item">
+                  <div class="overlay-container">
+                    <div class="overlay overlay--colored">
+                      <a class="overlay-target-link image-popup" href="{{ url }}"></a>
+                    </div>
+                    <img src="{{ highlight_image_styled_url }}" alt="{{ highlight_image_alt }}" title="{{ highlight_image_title }}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="media-body">
+      {% if not page %}
+        <h5{{ title_attributes.addClass("mt-0 node__title") }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h5>
+      {% endif %}
+
+      {% if created_date %}
+        <div class="created-date">
+          {{ created_date }}
+        </div>
+      {% endif %}
+      
+      {% if rendered_content %}
+        <div{{ content_attributes.addClass('node__content') }}>
+          {{ rendered_content }}
+        </div>
+      {% endif %}      
+
+      {% if read_more %}
+        {% trans %}
+          <a class="mt-link-stylable d-none d-lg-inline-block mb-0" href="{{ url }}">Read more</a>
+        {% endtrans %}
+      {% endif %}
+
+    </div>
+  </div>
+
+</article>

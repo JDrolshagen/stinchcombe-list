@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Product node.
+ */
+#}
+
+{% extends "node.html.twig" %}
+{% block content %}
+  {{ attach_library('flashyplus/node-product') }}
+  <div class="product-content two-columns">
+    <div class="row">
+      <div class="col-lg-4 order-lg-2 mb-3 mb-lg-0">
+        {% if content.field_mt_prd_subtitle|render or content.field_mt_prd_subheader_body|render or content.field_mt_prd_buy_link|render or content.field_mt_prd_price|render or content.field_mt_prd_product_code|render or content.field_mt_prd_availability|render %}
+          {{ attach_library('flashyplus/mt-sticky-element') }}
+
+            <div class="mt-sticky-element product-content-second">
+              {% if content.field_mt_prd_image|render and (content.field_mt_prd_subheader_body|render or content.field_mt_prd_subtitle|render) %}
+                {{ content.field_mt_prd_subtitle }}
+                {{ content.field_mt_prd_subheader_body }}
+              {% endif %}
+              {% if content.field_mt_prd_product_code|render or content.field_mt_prd_availability|render or content.field_mt_prd_price|render %}
+                <div class="row justify-content-start align-items-center">
+                  {% if content.field_mt_prd_price|render %}
+                    <div class="col-auto me-auto">
+                      {{ content.field_mt_prd_price }}
+                    </div>
+                  {% endif %}
+                  {% if content.field_mt_prd_product_code|render %}
+                    <div class="col-auto text-muted">
+                      {{ content.field_mt_prd_product_code }}
+                    </div>
+                  {% endif %}
+                  {% if content.field_mt_prd_availability|render %}
+                    <div class="col-auto {{ node.field_mt_prd_availability.value }}">
+                      {{ content.field_mt_prd_availability }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {{ content.field_mt_prd_buy_link }}
+            </div>
+
+        {% endif %}
+      </div>
+      <div class="col-lg-8  order-lg-1">
+        <div class="product-content-first">
+          {% if content.field_mt_prd_image|render %}
+            {{ content.field_mt_prd_image }}
+          {% elseif content.field_mt_prd_subheader_body|render or content.field_mt_prd_subtitle|render %}
+            {{ content.field_mt_prd_subtitle }}
+            {{ content.field_mt_prd_subheader_body }}
+          {% endif %}
+            {{ content|without('field_mt_prd_banner_carousel', 'field_mt_prd_image', 'field_mt_prd_buy_link', 'field_mt_prd_price', 'field_mt_prd_product_code', 'field_mt_prd_availability', 'field_mt_prd_categories', 'field_mt_prd_subheader_body', 'field_mt_prd_subtitle', 'field_mt_prd_highlight', 'field_mt_prd_additional_features', 'field_mt_prd_comments', 'field_mt_prd_tags') }}
+            {% if not content.field_mt_prd_highlight|render and not content.field_mt_prd_additional_features|render %}
+              {{ content.field_mt_prd_tags }}
+              {{ content.field_mt_prd_comments }}
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ content.field_mt_prd_highlight }}
+  {{ content.field_mt_prd_additional_features }}
+  {% if content.field_mt_prd_highlight|render or content.field_mt_prd_additional_features|render %}
+    {{ content.field_mt_prd_tags }}
+    {{ content.field_mt_prd_comments }}
+  {% endif %}
+
+{% endblock %}

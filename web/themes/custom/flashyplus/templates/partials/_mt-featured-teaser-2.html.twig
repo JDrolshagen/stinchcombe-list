@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in featured teaser tile 2 view mode.
+ */
+#}
+<article{{ attributes.addClass(classes).addClass(width_class).addClass('mb-5 pb-4 node--view-mode-mt-featured-teaser-2') }}>
+  <div class="row align-items-center">
+    {% if image|render %}
+      <div class="col-md-3 col-sm-4 col-8 ms-auto me-auto mb-3 mb-md-0">
+        {{ image }}
+      </div>
+    {% endif %}
+    <div class="{{ (image|render) ? 'ps-md-5 col-md-9 col-sm-8 col-12' : 'col-12' }}">
+
+      {% if featured_teaser_content|render %}
+        <div class="featured-teaser-content">
+          {% if quote_icon %}<div class="quote-icon">"</div>{% endif %}
+          {{ featured_teaser_content }}
+        </div>
+      {% endif %}
+
+      {% if rendered_content|render %}
+        <div {{ content_attributes.addClass('node__content') }}>
+          {{ rendered_content }}
+        </div>
+      {% endif %}
+
+      <div class="featured-teaser-footer">
+        {{ title_prefix }}
+        {% if not page %}
+          <h2{{ title_attributes.addClass("mt-0 node__title") }}>
+            <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+          </h2>
+        {% endif %}
+        {{ title_suffix }}
+        {{ featured_teaser_footer }}
+      </div>
+
+      {% if display_submitted %}
+        {{ metadata }}
+      {% endif %}
+    </div>
+
+  </div>
+</article>

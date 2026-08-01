@@ -1,0 +1,91 @@
+/**
+ * @file
+ * Orange color styling for Flashy+ for Drupal 8.
+ */
+:root {
+  /*base color*/
+  --mt-color-base: hsl(225, 6%, 13%);
+  --mt-color-base-dark: hsl(225, 6%, 13%);
+  --mt-color-base-light: hsl(225, 6%, 13%);
+  --mt-color-base-contrast: #ffffff;
+  --mt-color-base-value: 31, 32, 35;
+  --mt-color-base-contrast-value: 255, 255, 255;
+
+  /*primary color*/
+  --mt-color-primary: hsl(32, 95%, 80%);
+  --mt-color-primary-dark: hsl(32, 95%, 70%);
+  --mt-color-primary-light: hsl(32, 95%, 80%);
+  --mt-color-primary-contrast: var(--mt-color-base);
+  --mt-color-primary-value: 32, 95%, 80%;
+  --mt-color-primary-dark-value: 32, 95%, 70%;
+
+  /*accent color*/
+  --mt-color-accent: #f8f9fb;
+  --mt-color-accent-dark: #f8f9fb;
+  --mt-color-accent-light: #f8f9fb;
+  --mt-color-accent-contrast: var(--mt-color-base);
+
+  /*secondary color*/
+  --mt-color-secondary: hsl(214, 80%, 50%);
+  --mt-color-secondary-dark: hsl(214, 80%, 40%);
+  --mt-color-secondary-light: hsl(214, 80%, 50%);
+  --mt-color-secondary-contrast: #ffffff;
+  --mt-color-secondary-value: 214, 80%, 50%;
+
+  /*tint background*/
+  --mt-color-tint: #f1f1f1;
+  --mt-color-tint-contrast: var(--mt-color-base);
+
+  /*shade background*/
+  --mt-color-shade: hsl(225, 6%, 13%);
+  --mt-color-shade-contrast: #ffffff;
+
+  /*dark colored background*/
+  --mt-color-dark-colored: hsl(32, 95%, 25%);
+  --mt-color-dark-colored-contrast: #ffffff;
+  --mt-color-dark-colored-value: 32, 95%, 25%;
+
+  /*colored background*/
+  --mt-color-colored: var(--mt-color-primary);
+  --mt-color-colored-contrast: var(--mt-color-primary-contrast);
+  --mt-color-colored-value: var(--mt-color-primary-value);
+
+  /*bright background*/
+  --mt-color-bright: #ffffff;
+  --mt-color-bright-contrast: var(--mt-color-base);
+
+  /*dark background*/
+  --mt-color-dark: #000000;
+  --mt-color-dark-contrast: var(--mt-color-base-contrast);
+
+  /*default background*/
+  --mt-color-default: #ffffff;
+  --mt-color-default-contrast: var(--mt-color-base);
+
+  /*success*/
+  --mt-color-success: #3E9300;
+  --mt-color-success-dark: #547f1f;
+  --mt-color-success-contrast: #ffffff;
+
+  /*danger*/
+  --mt-color-danger: #CC0000;
+  --mt-color-danger-dark: #980a00;
+  --mt-color-danger-contrast: #ffffff;
+
+  /*warning*/
+  --mt-color-warning: #EA9900;
+  --mt-color-warning-dark: #e2630b;
+  --mt-color-warning-contrast: #ffffff;
+
+  /*forms*/
+  --mt-form-border: rgba(var(--mt-color-base-value), 0.3);
+  --mt-form-border-contrast: rgba(var(--mt-color-base-contrast-value), 0.7);
+  --mt-form-border-focus: var(--mt-color-primary);
+  --mt-form-border-focus-contrast: rgba(var(--mt-color-base-contrast-value), 1);
+  --mt-form-color: var(--mt-color-base);
+  --mt-form-color-contrast: var(--mt-color-base-contrast);
+  --mt-form-label-color: rgba(var(--mt-color-base-value), 0.9);
+  --mt-form-placeholder: rgba(var(--mt-color-base-value), 0.5);
+  --mt-form-placeholder-contrast: rgba(var(--mt-color-base-contrast-value), 0.5);
+  --mt-active-cell: hsla(var(--mt-color-primary-value), 0.12);
+}

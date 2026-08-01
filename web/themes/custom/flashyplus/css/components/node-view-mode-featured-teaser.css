@@ -1,0 +1,151 @@
+/**
+ * @file
+ * Visual styles for Press+'s node in teaser tile view.
+ */
+.node--view-mode-mt-featured-teaser {
+  margin-bottom: 50px;
+}
+.node--view-mode-mt-featured-teaser .promoted-label {
+  background-color: #4d4d4d;
+  color: #ffffff;
+  display: inline-block;
+  padding: 4px 8px 3px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.node--view-mode-mt-featured-teaser .featured-teaser-image {
+  margin-bottom: 15px;
+}
+@media (min-width: 1200px) {
+  .node--view-mode-mt-featured-teaser h2.node__title {
+    margin: 0 0 20px;
+  }
+  .node--view-mode-mt-featured-teaser .node__content {
+    margin-bottom: 30px;
+  }
+  .node--view-mode-mt-featured-teaser .node__content .field > p:last-child {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 991px) {
+  .node--view-mode-mt-featured-teaser .node__content {
+    margin-bottom: 20px;
+  }
+}
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__title a {
+  color: #050505;
+}
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__title a:hover,
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__title a:focus {
+  text-decoration: none;
+}
+.node--view-mode-mt-featured-teaser .field--entity-reference-target-type-taxonomy-term,
+.node--view-mode-mt-featured-teaser .field--entity-reference-target-type-taxonomy-term.field__item {
+  margin: 0 0 5px;
+  padding: 0;
+}
+.node--view-mode-mt-featured-teaser .field--entity-reference-target-type-taxonomy-term:before,
+.node--view-mode-mt-featured-teaser .field--entity-reference-target-type-taxonomy-term.field__item:before {
+  content: "";
+}
+.node--view-mode-mt-featured-teaser .field--entity-reference-target-type-taxonomy-term:not(.field--label-above)::after {
+  content: "";
+}
+.node--view-mode-mt-featured-teaser .profile {
+  display: inline-block;
+}
+.node--view-mode-mt-featured-teaser .profile .field--name-user-picture {
+  float: none;
+  margin-right: 0;
+}
+.node--view-mode-mt-featured-teaser .field--name-user-picture img {
+  border-radius: 100%;
+  max-width: 40px;
+  margin-right: 10px;
+}
+.node--view-mode-mt-featured-teaser .node__meta {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+.node--view-mode-mt-featured-teaser .promoted-label + .node__meta {
+  margin: 0 0 0 10px;
+  padding: 0;
+  display: inline-block;
+  line-height: 1.35;
+}
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__meta {
+  color: #707070;
+}
+.node--view-mode-mt-featured-teaser .node__meta a {
+  font-size: 14px;
+}
+.region--dark-typography .node--view-mode-mt-featured-teaser .node__meta a {
+  color: #707070;  
+}
+.node--view-mode-mt-featured-teaser .node__meta-item {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.node--view-mode-mt-featured-teaser .node__meta-item:after {
+  content: "/";
+}
+.node--view-mode-mt-featured-teaser .node__meta-item:last-child:after {
+  content: "";
+}
+.node--view-mode-mt-featured-teaser .featured-teaser-image {
+  position: relative;
+}
+.node--view-mode-mt-featured-teaser .node__submitted-date {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  padding: 10px;
+  color: #333333;
+  text-align: center;
+}
+.node--view-mode-mt-featured-teaser .node__submitted-date .day {
+  font-size: 50px;
+  font-weight: 600;
+  display: block;
+  line-height: 1;
+}
+.node--view-mode-mt-featured-teaser .node__submitted-date .month-year {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* featured teaser 2 */
+@media (min-width: 1200px) {
+  .node--view-mode-mt-featured-teaser-2.fixed-width {
+    max-width: 860px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.node--view-mode-mt-featured-teaser-2 .featured-teaser-content {
+  font-size: 22px;
+  line-height: 1.45;
+}
+.node--view-mode-mt-featured-teaser-2 .quote-icon {
+  font-size: 96px;
+  line-height: 1;
+  max-height: 40px;
+}
+.node--view-mode-mt-featured-teaser-2 .featured-teaser-footer h2.node__title {
+  font-size: 14px;
+  margin-bottom: 0;
+  display: inline-block;
+  font-weight: 400;
+}
+.node--view-mode-mt-featured-teaser-2 .featured-teaser-footer h2.node__title a {
+  display: inline-flex;
+}
+.node--view-mode-mt-featured-teaser-2 .featured-teaser-footer h2.node__title a:after {
+  content: ",";
+}
+.node--view-mode-mt-featured-teaser-2 .featured-teaser-footer > div {
+  display: inline-block;
+  font-size: 14px;
+}

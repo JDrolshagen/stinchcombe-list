@@ -1,0 +1,28 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s articles grid views.
+ */
+.region--dark-typography .view-articles-grid .views-field-title a {
+  color: #575757;
+}
+.headings-wide-spacing-enabled .view-articles-grid .views-field-title a {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.view-articles-grid .views-field-title a:hover {
+  text-decoration: none;
+}
+.region--dark-typography .view-articles-grid .views-field-body {
+  color: #424242;
+}
+
+/*articles at colored regions*/
+.region--tint-background .view-articles-grid .article-header {
+  background-color: #ffffff;
+}
+.region--light-typography .view-articles-grid .article-header a {
+  text-decoration: none;
+}
+.region--light-typography .view-articles-grid .views-field-view-node {
+  border-color: #ffffff;
+}

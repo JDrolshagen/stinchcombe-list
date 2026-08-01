@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Service node in teaser view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    display_submitted ? 'node--display-submitted',
+    'clearfix',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser') }}
+{{ attach_library('flashyplus/node-field') }}
+{% set image = content.field_mt_srv_teaser_image %}
+{% set teaser_pre_content_first = content.field_mt_srv_tags %}
+{% set teaser_pre_content_second = null %}
+{% set rendered_content = content|without('field_mt_srv_teaser_image', 'field_mt_srv_tags') %}
+{% set submitted_day = null %}
+{% set submitted_month = null %}
+{% set submitted_year = null %}
+{% include '@flashyplus/partials/_mt-teaser.html.twig' %}

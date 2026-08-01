@@ -1,0 +1,16 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s node field component.
+ */
+.node--view-mode-full .field {
+  margin-bottom: 40px;
+}
+.node--view-mode-full .field:last-child {
+  margin-bottom: 0;
+}
+.node--view-mode-full .field p:last-child {
+  padding-bottom: 0;
+}
+.node--view-mode-full .field .field {
+  margin-bottom: 0;
+}

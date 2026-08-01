@@ -1,0 +1,15 @@
+us_state_map:
+  version: 1.0.5
+  css:
+    theme:
+      vendor/jsvectormap/jsvectormap.min.css: {}
+      css/quantum-us-state-map.css: {}
+  js:
+    vendor/jsvectormap/jsvectormap.min.js: { minified: true }
+    js/jsvectormap-compat.js: {}
+    vendor/jsvectormap/maps/us-merc-en.min.js: { minified: true }
+    js/quantum-us-state-map.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

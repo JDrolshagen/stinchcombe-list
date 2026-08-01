@@ -1,0 +1,148 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s accordions.
+ */
+
+/*Style 1*/
+.collapse-group {
+  margin: 0 0 25px 0;
+  border-style: solid;
+  border-color: #eaeaea;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  overflow: hidden;
+  border-width: 0px;
+  overflow: visible;
+}
+.collapse-group .card {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border-width: 0;
+  border-color: #eaeaea;
+  background-color: transparent;
+  box-shadow: none;
+}
+.collapse-group .card:last-child {
+  border-bottom: none;
+}
+.collapse-group .card + .card {
+  margin: 0;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: hsl(225, 5.9%, 13.3%);
+}
+.card-header {
+  background-color: transparent;
+  border-bottom: none;
+  padding: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+.card-title {
+  margin-bottom: 0;
+}
+.card-title a {
+  font-weight: 400;
+  font-size: 18px;
+  padding: 15px 20px;
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #eaeaea;
+  color: #333333;
+  border-radius: 0;
+  background-color: transparent;
+}
+.headings-wide-spacing-enabled .card-title a {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.card-title a.collapsed {
+  border-bottom-color: transparent;
+}
+.card:last-child .card-title a:not(.collapsed) {
+  border-radius: 0;
+}
+.card:first-child .card-title a {
+  border-radius: 0;
+}
+.card:last-child .card-title a {
+  border-radius: 0;
+}
+.card-header--trigger-icon .card-title a {
+  position: relative;
+  padding-right: 35px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  font-weight: 700;
+  padding-left: 0;
+}
+.card-header--trigger-icon .card-title a:hover,
+.card-header--trigger-icon .card-title a:focus {
+  color: #333333;
+}
+.card-header--trigger-icon .card-title a:after {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  top: 50%;
+  right: 10px;
+  margin-top: -15px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%;
+  background-color: transparent;
+  color: inherit;
+  font-family: 'Font Awesome 5 Free', 'Font Awesome 5 Pro';
+  font-weight: 900;
+  line-height: 30px;
+  content: "\f00d";
+}
+.headings-wide-spacing-enabled .card-header--trigger-icon .card-title a:after {
+  letter-spacing: 0;
+}
+.card-header--trigger-icon .card-title a.collapsed:after {
+  content: "\f067";
+}
+.card-title span {
+  display: inline-block;
+  padding-right: 5px;
+}
+.card-body {
+  background-color: transparent;
+  color: inherit;
+  border-top: none;
+  padding: 10px 0px;
+}
+.card-body p:last-child {
+  padding-bottom: 0;
+}
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+}
+.card:last-child .card-body {
+  border-radius: 0;
+}
+
+/*@colored regions*/
+.region--light-typography .collapse-group {
+  border-bottom-color: #FFFFFF;
+}
+.region--light-typography .collapse-group .card .card-title a {
+  color: #ffffff;
+}
+.region--light-typography .collapse-group .card + .card {
+  border-top-color: #FFFFFF;
+}

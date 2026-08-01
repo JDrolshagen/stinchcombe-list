@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in slide view view mode.
+ */
+#}
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  
+  <div class="node__container">
+    <div class="row">
+
+      <div class="col-md-12">
+        <h2{{ title_attributes.addClass('node__title') }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      </div>
+
+      {% if image|render %}
+        <div class="col-md-6">
+          <div class="node__side-content clearfix">
+            {{ image }}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="{{ main_content_grid_class }}">
+        <div{{ content_attributes.addClass('node__main-content', 'clearfix') }}>
+          {{ rendered_content }}
+          <a class="mt-button mt-button--hover-style-2" href="{{ url }}">{% trans %}Learn More{% endtrans %}</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>

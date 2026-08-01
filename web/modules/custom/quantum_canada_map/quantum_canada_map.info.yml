@@ -1,0 +1,7 @@
+name: 'Quantum Canada Map'
+type: module
+description: 'Provides a self-hosted jsVectorMap Canada provinces and territories jurisdiction map block.'
+core_version_requirement: ^11
+package: Quantum
+dependencies:
+  - drupal:taxonomy

@@ -1,0 +1,48 @@
+{{ attach_library('flashyplus/flippy') }}
+<div class="flippy">
+  <h3 class="flippy__title">{{ 'Read more articles'|t }}</h3>
+  <div class="row">
+    {% if first %}
+      <div class="col">
+        <div class="flippy-first text-center position-relative">
+          <div class="flippy-label"><small>{{ 'Newest'|t }}</small></div>
+          <div class="flippy-link">{{ first }}</div>
+        </div>
+      </div>
+    {% endif %}
+    {% if prev %}
+      <div class="col d-flex justify-content-start">
+        <div class="flippy-previous text-center position-relative ps-4 ps-sm-5">
+          <i class="fas fa-chevron-left fa-3x"></i>
+          <div class="flippy-label"><small>{{ 'Newer'|t }}</small></div>
+          <div class="flippy-link">{{ prev }}</div>
+        </div>
+      </div>
+    {% endif %}
+    {% if random %}
+      <div class="col">
+        <div class="flippy-random text-center position-relative">
+          <div class="flippy-label"><small>{{ 'Random'|t }}</small></div>
+          <div class="flippy-link">{{ random }}</div>
+        </div>
+      </div>
+    {% endif %}
+    {% if next %}
+      <div class="col d-flex justify-content-end">
+        <div class="flippy-next text-center position-relative pe-4 pe-sm-5">
+          <i class="fas fa-chevron-right fa-3x"></i>
+          <div class="flippy-label"><small>{{ 'Older'|t }}</small></div>
+          <div class="flippy-link">{{ next }}</div>
+        </div>
+      </div>
+    {% endif %}
+    {% if last %}
+      <div class="col">
+        <div class="flippy-last text-center position-relative">
+          <div class="flippy-label"><small>{{ 'Oldest'|t }}</small></div>
+          <div class="flippy-link">{{ last }}</div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

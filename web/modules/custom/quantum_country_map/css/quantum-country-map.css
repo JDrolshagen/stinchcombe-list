@@ -1,0 +1,21 @@
+.quantum-world-country-map {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.quantum-world-country-map__canvas {
+  width: 100%;
+  min-height: 420px;
+}
+
+.quantum-world-country-map .jvm-container {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .quantum-world-country-map__canvas {
+    min-height: 300px;
+  }
+}

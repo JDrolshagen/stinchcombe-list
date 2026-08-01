@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display internal banner slider of Service node.
+ */
+#}
+
+{% extends "page.html.twig" %}
+{% block reading_progress_indicator %}
+  {% if post_progress %}
+    {{ attach_library('flashyplus/post-progress') }}
+    <div class="post-progress">
+      <div class="post-progress__bar"></div>
+    </div>
+  {% endif %}
+{% endblock %}

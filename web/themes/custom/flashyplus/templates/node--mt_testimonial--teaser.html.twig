@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Testimonial node in featured teaser view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-featured-teaser') }}
+{% set image = content.field_mt_tst_testimonial_image %}
+{% set featured_teaser_content = content.field_mt_tst_body %}
+{% set featured_teaser_footer = content.field_mt_tst_subtitle %}
+{% set width_class = 'fixed-width' %}
+{% set quote_icon = true %}
+{% if content.field_mt_tst_testimonial_link|render %}
+  {% set url = node.field_mt_tst_testimonial_link.0.url %}
+{% endif %}
+{% set rendered_content = content|without('links', 'field_mt_tst_body', 'field_mt_tst_testimonial_image', 'field_mt_tst_subtitle', 'field_mt_tst_testimonial_link') %}
+{% include '@flashyplus/partials/_mt-featured-teaser-2.html.twig' %}

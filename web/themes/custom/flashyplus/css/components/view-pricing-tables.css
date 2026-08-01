@@ -1,0 +1,134 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s pricing tables.
+ */
+.view-pricing-tables {
+  position: relative;
+  padding-top: 30px;
+}
+.view-pricing-tables .view-header {
+  padding-bottom: 40px;
+}
+.view-pricing-tables .view-footer {
+  font-size: 12px;
+  text-align: center;
+  padding-top: 35px;
+}
+.view-pricing-tables .pricing-table {
+  border-width: 1px;
+  border-style: solid;
+  margin: 0 0 40px 0;
+  padding:0 30px 120px 30px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  position: relative;
+  background-color: #ffffff;
+  color: #424242;
+  border-color: transparent;
+}
+.region--bright-background .view-pricing-tables .pricing-table {
+  border-color: #eaeaea;
+}
+.view-pricing-tables .pricing-table .views-field-title {
+  font-weight: 600;
+  font-size: 28px;
+  text-align: center;
+  padding: 40px 0 2px;
+  line-height: 1.2;
+}
+.view-pricing-tables .pricing-table .views-field-title a {
+  text-decoration: none;
+}
+.view-pricing-tables .pricing-table .views-field-title a:hover {
+  text-decoration: none;
+}
+.view-pricing-tables .views-field-field-mt-prd-price {
+  padding: 10px 0 20px 0;
+  font-weight: 400;
+  font-size: 40px;
+  text-align: center;
+  line-height: 1.2;
+}
+.view-pricing-tables .pricing-table .item-list>ul {
+  list-style: none;
+  margin: 0;
+}
+.view-pricing-tables .views-row:not(.most-popular) .views-field-field-mt-prd-most-popular {
+  display: none;
+}
+.views-field-field-mt-prd-most-popular {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+  text-align: right;
+}
+.views-field-field-mt-prd-most-popular span {
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 155px;
+  display: block;
+  background-color: #2D6952;
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 24px;
+  right: -36px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.views-field-field-mt-prd-most-popular span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #2d6952;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #2d6952;
+}
+.views-field-field-mt-prd-most-popular span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #2d6952;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #2d6952;
+}
+.view-pricing-tables .pricing-table .item-list li {
+  margin: 0;
+}
+.view-pricing-tables .pricing-table .views-field-item {
+  padding: 3px 0;
+  margin:0;
+}
+.view-pricing-tables .pricing-table a.mt-button .svg-inline--fa {
+  display: none;
+}
+.view-pricing-tables .pricing-table-footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 30px 0;
+}
+@media (min-width: 767px) {
+  .view-pricing-tables .pricing-table {
+    height: 100%;
+    padding:0 30px 80px 30px;
+  }
+}
+@media (min-width: 1200px) {
+  .view-pricing-tables .views-field-field-mt-prd-price {
+    font-size: 60px;
+  }
+}

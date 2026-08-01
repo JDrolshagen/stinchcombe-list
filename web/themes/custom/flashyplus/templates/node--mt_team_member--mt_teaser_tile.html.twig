@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Team Member node in teaser tile view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'node--view-mode-mt-teaser-tile--image-circle'
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile') }}
+{% set image = content.field_mt_tmm_member_photo %}
+{% set teaser_tile_pre_content_first = content.field_mt_tmm_subtitle %}
+{% set teaser_tile_pre_content_second = null %}
+{% set rendered_content = content|without('field_mt_tmm_member_photo', 'field_mt_tmm_twitter_account', 'field_mt_tmm_facebook_account', 'field_mt_tmm_linkedin_account', 'field_mt_tmm_youtube_account', 'field_mt_tmm_subtitle') %}
+{% set teaser_tile_content = social_accounts %}
+{% set image_caption = null %}
+{% set date_overlay = false %}
+{% set submitted_day = null %}
+{% set submitted_month = null %}
+{% set submitted_year = null %}
+{% include '@flashyplus/partials/_mt-teaser-tile.html.twig' %}

@@ -1,0 +1,12 @@
+diff --git a/src/Form/MappingForm.php b/src/Form/MappingForm.php
+--- a/src/Form/MappingForm.php
++++ b/src/Form/MappingForm.php
+@@ -749,7 +749,7 @@
+     $element_column = $element['#array_parents'][3];
+ 
+     // Check other mappings.
+-    foreach ($form_state->getValue('mappings') as $delta => $mapping) {
++    foreach (($form_state->getValue('mappings') ?? []) as $delta => $mapping) {
+       foreach ($mapping['map'] as $column => $value) {
+         // Check if this value belongs to our own element.
+         if ($delta == $element_delta && $element_column == $column) {

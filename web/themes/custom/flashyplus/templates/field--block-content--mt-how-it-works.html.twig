@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme override for the block entity refernece field for the tabs powered custom block
+ *
+ * @see flashyplus_preprocess_field__block_content__mt_tabs_block()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'field--entity-reference-target-type-' ~ entity_reference_target_type|clean_class,
+    'field--mt-tabs',
+    'clearfix',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'inline' ? 'inline',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  {% endif %}
+  {% for item in items %}
+    <div class="field__item">
+      <div class="how-it-works__badge">{{ loop.index }}</div>
+      {{ item.content }}
+    </div>
+  {% endfor %}
+</div>

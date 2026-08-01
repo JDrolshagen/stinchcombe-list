@@ -1,0 +1,13 @@
+world_map:
+  css:
+    theme:
+      vendor/jsvectormap/jsvectormap.min.css: {}
+      css/quantum-country-map.css: {}
+  js:
+    vendor/jsvectormap/jsvectormap.min.js: { minified: true }
+    vendor/jsvectormap/maps/world.js: {}
+    js/quantum-country-map.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

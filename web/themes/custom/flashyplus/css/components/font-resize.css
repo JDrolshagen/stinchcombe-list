@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Visual styles for Magazine+'s font resize component.
+ */
+.content-font-settings {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 25px;
+  width: 90px;
+  display: inline-block;
+}
+.font-resize > a {
+  display: block;
+  padding: 10px 0;
+}
+.font-resize > a:last-child {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #eeeeee;
+}

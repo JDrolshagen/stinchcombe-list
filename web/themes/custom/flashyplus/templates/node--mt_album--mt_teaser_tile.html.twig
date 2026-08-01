@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Album node in teaser tile view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile') }}
+{% set image = content.field_mt_alb_image %}
+{% set teaser_tile_pre_content_first = null %}
+{% set teaser_tile_pre_content_second = null %}
+{% set rendered_content = content|without('field_mt_alb_image', 'field_mt_alb_body') %}
+{% set teaser_tile_content = null %}
+{% set image_caption = null %}
+{% set date_overlay = false %}
+{% set submitted_day = null %}
+{% set submitted_month = null %}
+{% set submitted_year = null %}
+{% include '@flashyplus/partials/_mt-teaser-tile.html.twig' %}

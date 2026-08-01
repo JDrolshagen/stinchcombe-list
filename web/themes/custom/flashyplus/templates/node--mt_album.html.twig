@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Album node.
+ */
+#}
+
+{% extends "node.html.twig" %}
+{% block content %}
+  {{ attach_library('flashyplus/node-album') }}
+  {{ content }}
+{% endblock %}

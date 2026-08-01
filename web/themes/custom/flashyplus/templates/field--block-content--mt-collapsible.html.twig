@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Restaurant+'s theme override for the main slideshow custom block
+ *
+ * @see flashyplus_preprocess_field__block_content__mt_main_slideshow_block()
+ */
+#}
+{{ attach_library('flashyplus/collapsible-block') }}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'field--mt-collapsible',
+    field_mt_cb_trigger_icon_status|clean_class,
+    'clearfix',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'inline' ? 'inline',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if not label_hidden %}
+    <h3{{ title_attributes.addClass(title_classes) }}>{{ label }}</h3>
+  {% endif %}
+  {% if field_mt_cb_trigger_position_value == "top" %}
+    <div class="collapsible-block__trigger {{ field_mt_cb_title_state_value }}">
+      <a role="button" class="{{ field_mt_cb_trigger_state_value }}" data-toggle="collapse" href="#block-id-{{block_data.id}}" aria-expanded="false" aria-controls="block-id-{{block_data.id}}">
+        {{ field_mt_cb_title_value }}
+        <span class="collapsible-block-icon collapsible-block__expand-icon"><i class="fas {{ field_mt_cb_expand_icon_value }}"></i></span>
+        <span class="collapsible-block-icon collapsible-block__collapse-icon"><i class="fas {{ field_mt_cb_collapse_icon_value }}"></i></span>
+      </a>
+    </div>
+  {% endif %}
+  <div class="collapse {{ field_mt_cb_state_value }}" id="block-id-{{block_data.id}}">
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  </div>
+  {% if field_mt_cb_trigger_position_value == "bottom" %}
+    <div class="collapsible-block__trigger {{ field_mt_cb_title_state_value }} collapsible-block__trigger-bottom">
+      <a role="button" class="{{ field_mt_cb_trigger_state_value }}" data-toggle="collapse" href="#block-id-{{block_data.id}}" aria-expanded="false" aria-controls="block-id-{{block_data.id}}">
+        {{ field_mt_cb_title_value }}
+        <span class="collapsible-block-icon collapsible-block__expand-icon"><i class="fas {{ field_mt_cb_expand_icon_value }}"></i></span>
+        <span class="collapsible-block-icon collapsible-block__collapse-icon"><i class="fas {{ field_mt_cb_collapse_icon_value }}"></i></span>
+      </a>
+    </div>
+  {% endif %}
+</div>

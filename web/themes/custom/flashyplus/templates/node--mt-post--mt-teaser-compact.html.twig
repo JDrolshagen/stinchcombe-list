@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in teaser compact view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'mb-4',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mt-style-custom-all region--default-background  p-4'
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-compact') }}
+{% set image = content.field_mt_pst_image %}
+{% set rendered_content = null %}
+{% set read_more = false %}
+{% if display_submitted %}
+  {% set created_date = node.createdtime|format_date('custom', 'd M, Y') %}
+{% else %}
+  {% set created_date = null %}
+{% endif %}
+{# set null for all content types except product #}
+{% set highlight_image_styled_url = null %}
+{% include '@flashyplus/partials/_mt-teaser-compact.html.twig' %}

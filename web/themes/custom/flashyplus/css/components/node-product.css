@@ -1,0 +1,244 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s product content type.
+ */
+/* banner */
+.page-node-type-mt-product .banner {
+  background-image: none;
+}
+.page-node-type-mt-product .banner:after {
+  background-color: transparent;
+}
+.internal-banner-container .page-title {
+  text-transform: uppercase;
+}
+.internal-banner-container + .hero-top {
+  min-height: auto;
+}
+.internal-banner-container + .hero-top .page-title {
+  display: none;
+}
+
+/* main content section */
+.page-node-type-mt-product .sidebar__section {
+  padding-top: 54px;
+}
+
+/* node header */
+.node--type-mt-product .node__header {
+  padding: 0;
+}
+
+/* field labels */
+.product-content-first .field__label {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #333333;
+}
+.node--type-mt-product .field__label {
+  font-size: 30px;
+  line-height: 1.20;
+  padding: 0;
+  margin: 0 0 20px;
+  color: #333333;
+  font-weight: 700;
+}
+.field--name-field-mt-prd-highlight .field__label {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/*subheader field*/
+.node--type-mt-product .field.field--name-field-mt-prd-subheader-body {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/*image field*/
+.node--type-mt-product .field.field--name-field-mt-prd-image {
+  margin-bottom: 50px;
+}
+@media (max-width: 575px) {
+  .mt-style-sharp.mt-style-image-global .node--type-mt-product .field.field--name-field-mt-prd-image,
+  .mt-style-image-sharp .node--type-mt-product .field.field--name-field-mt-prd-image {
+    margin: 0 -15px 50px;
+  }
+}
+.node--type-mt-product.node--view-mode-teaser .images-container {
+  margin-bottom: 15px;
+}
+
+/*price field*/
+.node--type-mt-product .field.field--name-field-mt-prd-price {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+.region--dark-typography .node--type-mt-product .field--name-field-mt-prd-price {
+  color: #333333;
+}
+
+/*buy link field*/
+.node--type-mt-product .field.field--name-field-mt-prd-buy-link {
+  text-align: center;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+.node--type-mt-product .field--name-field-mt-prd-buy-link a {
+  min-width: 190px;
+  display: block;
+}
+
+/*availabilty and product code fields*/
+.node--type-mt-product .field.field--name-field-mt-prd-product-code,
+.node--type-mt-product .field.field--name-field-mt-prd-availability {
+  margin: 10px 0;
+}
+.region--dark-typography .node--type-mt-product .in_stock {
+  color: #388300;
+}
+.node--type-mt-product .field--name-field-mt-prd-product-code,
+.node--type-mt-product .field--name-field-mt-prd-availability {
+  font-weight: 400;
+}
+.node--type-mt-product .field--name-field-mt-prd-product-code:before {
+  content: "#";
+}
+
+/*subtitle field*/
+.node--type-mt-product .field.field--name-field-mt-prd-subtitle {
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+@media (max-width: 575px) {
+  .node--type-mt-product .field.field--name-field-mt-prd-subtitle {
+    font-size: 30px;
+  }
+}
+.region--dark-typography .node--type-mt-product .field--name-field-mt-prd-subtitle {
+  color: #333333;
+}
+.node--type-mt-product .region--dark-typography .field--name-field-mt-prd-subtitle {
+  color: #333333;
+}
+
+/* body field */
+.node--type-mt-product .field.field--name-field-mt-prd-body {
+  margin-bottom: 50px;
+}
+.field--name-field-mt-prd-body p:last-child {
+  padding-bottom: 0;
+}
+
+/* video field */
+.node--type-mt-product .field.field--name-field-mt-prd-video {
+  margin-bottom: 50px;
+}
+
+/* tabs */
+.node--type-mt-product .field.field--name-field-mt-prd-content-tabs {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+/* content collapses */
+.node--type-mt-product .field.field--name-field-mt-prd-content-collapses {
+  margin-bottom: 50px;
+  margin-top: 0;
+}
+.field--name-field-mt-prd-content-collapses .collapse-group .card:first-child .card-title a {
+  padding-top: 0;
+}
+
+/* delivery options field */
+.node--type-mt-product .field.field--name-field-mt-prd-delivery-options {
+  margin-bottom: 50px;
+}
+.field--name-field-mt-prd-delivery-options .field__label:after {
+  content:":";
+}
+.field--name-field-mt-prd-delivery-options .list--fa-check li {
+  padding: 0 0 5px 25px;
+}
+.field--name-field-mt-prd-delivery-options .list--fa-check li:before {
+  font-size: 12px;
+  top: 3px;
+}
+
+/* comments */
+@media (min-width: 992px) {
+  .layout-no-sidebars .product-content ~ .field--name-field-mt-prd-comments {
+    padding-right: 10px;
+    -ms-flex: 0 0 66.6666666%;
+    flex: 0 0 66.6666666%;
+    max-width: 66.6666666%;
+  }
+}
+
+/* product meta info */
+.product-meta-info .col-auto + .col-auto:before {
+  content: "";
+  height: 70%;
+  width: 1px;
+  background-color: #cecece;
+  position: absolute;
+  left: -1px;
+  top: 15%;
+}
+
+/* product specification field */
+.node--type-mt-product .field.field--name-field-mt-prd-specifications {
+  margin-bottom: 50px;
+}
+.field--name-field-mt-prd-specifications > .field__items {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -3px;
+  margin-left: -3px;
+}
+.field--name-field-mt-prd-specifications > .field__items > .field__item {
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.paragraph--type--mt-prd-specification {
+  background-color: #f6f6f6;
+  padding: 10px 15px;
+  margin-bottom: 6px;
+}
+@media (min-width: 992px) {
+  .field--name-field-mt-prd-specifications > .field__items > .field__item {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 3px;
+    padding-left: 3px;
+  }
+}
+.field--name-field-mt-prd-specification-label {
+  font-weight: 700;
+}
+.field--name-field-mt-prd-specifications .paragraph--type--mt-prd-specification {
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* highlight field */
+.node--type-mt-product .field.field--name-field-mt-prd-highlight {
+  padding: 40px 0;
+  margin-bottom: 0;
+}

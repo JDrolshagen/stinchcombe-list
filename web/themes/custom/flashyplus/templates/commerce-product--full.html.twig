@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Commerce Product node.
+ */
+#}
+
+<article{{ attributes }}>
+  {{ attach_library('flashyplus/commerce-product') }}
+  <div class="product-content two-columns">
+    <div class="row">
+      <div class="col-lg-4 order-lg-2 mb-3 mb-lg-0">
+        {% if product.variations|render or product.variation_price|render or commerce_product_sidebar|render or product.variation_sku|render %}
+          {{ attach_library('flashyplus/mt-sticky-element') }}
+          <div class="mt-sticky-element product-content-second {{ ( product.variation_field_mt_vrt_gnr_out_of_stock['#items'].getValue()|first.value == "1") ? ' mt-out-of-stock' : '' }}">
+            <h3 class="mt-0">{{ product.variation_title }}</h3>
+            {% if product.variation_price|render or product.variation_sku|render %}
+              <div class="row justify-content-start align-items-center">
+                {% if product.variation_price|render %}
+                  <div class="col-auto me-auto">
+                    {{ product.variation_price }}
+                  </div>
+                {% endif %}
+                {% if product.variation_sku|render %}
+                  <div class="col text-end">
+                    {{ product.variation_sku }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+            {{ product.variations }}
+            {{ product.variation_field_mt_vrt_gnr_oos_reason }}
+            <div class="mt-out-of-stock-message">
+              <a class="mt-button d-block" href="{{ url('contact.site_page') }}">{{ 'Contact us'|t }}</a>
+            </div>
+            {% if product.flag_mt_favorites|render %}
+              <div class="mt-favorites mb-3">
+                {{ product.flag_mt_favorites }}
+              </div>
+            {% endif %}
+            {% if commerce_product_sidebar|render %}
+              <div class="commerce-product-sidebar">
+                {{ commerce_product_sidebar }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-lg-8  order-lg-1">
+        <div class="product-content-first">
+          {{ product|without('flag_mt_favorites', 'variations', 'variation_price', 'variation_title', 'variation_sku', 'variation_field_mt_vrt_gnr_out_of_stock', 'variation_field_mt_vrt_gnr_oos_reason') }}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

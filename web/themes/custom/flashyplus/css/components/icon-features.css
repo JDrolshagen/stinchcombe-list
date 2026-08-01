@@ -1,0 +1,101 @@
+/**
+ * @file
+ * Visual styles for Flashy+'s icon features.
+ */
+.paragraph--type--mt-icon-features {
+  margin-bottom: 25px;
+}
+
+/* tile */
+@media (max-width: 767px) {
+  .paragraph--view-mode--mt-tile .feature {
+    text-align: center;
+  }
+}
+.paragraph--view-mode--mt-tile .feature__icon {
+  margin-bottom: 15px;
+  font-size: 36px;
+}
+.paragraph--view-mode--mt-tile .feature__link {
+  font-size: 15px;
+}
+
+.paragraph--view-mode--mt-tile .feature__title {
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+.paragraph--view-mode--mt-tile .feature__image {
+  margin-bottom: 30px;
+}
+.paragraph--view-mode--mt-tile .field--name-field-mt-if-body {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.paragraph--view-mode--mt-tile .field--name-field-mt-if-body p:last-child {
+  padding-bottom: 0;
+}
+
+/* media after view mode */
+@media (max-width: 767px) {
+  .paragraph--view-mode--mt-media-after .feature {
+    text-align: center;
+  }
+}
+.paragraph--view-mode--mt-media-after .feature__icon {
+  margin-top: 25px;
+  font-size: 36px;
+}
+.paragraph--view-mode--mt-media-after .feature__link {
+  font-size: 15px;
+}
+/*.paragraph--view-mode--mt-media-after .feature__icon .field--name-field-mt-if-fa-icon,
+.paragraph--view-mode--mt-media-after .feature__icon .fontawesome-icons,
+.paragraph--view-mode--mt-media-after .feature__icon .fontawesome-icon,
+.paragraph--view-mode--mt-media-after .feature__icon .svg-inline--fa {
+  height: 100%;
+}*/
+.paragraph--view-mode--mt-media-after .feature__title {
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+.paragraph--view-mode--mt-media-after .feature__image {
+  margin-bottom: 30px;
+}
+.paragraph--view-mode--mt-media-after .field--name-field-mt-if-body {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+.paragraph--view-mode--mt-media-after .field--name-field-mt-if-body p:last-child {
+  padding-bottom: 0;
+}
+
+/* tile large */
+.paragraph--view-mode--mt-tile-large .feature {
+  text-align: center;
+}
+.paragraph--view-mode--mt-tile .field--name-field-mt-if-body p:last-child {
+  padding-bottom: 0;
+}
+.paragraph--view-mode--mt-tile .feature div:last-child {
+  margin: 0;
+}
+.paragraph--view-mode--mt-tile-large .feature__icon {
+  margin-bottom: 30px;
+  font-size: 80px;
+}
+.paragraph--view-mode--mt-tile-large .feature__title {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.paragraph--view-mode--mt-tile-large .feature__image {
+  margin-bottom: 30px;
+}
+.paragraph--view-mode--mt-tile-large .field--name-field-mt-if-body {
+  margin-bottom: 15px;
+}
+.paragraph--view-mode--mt-tile-large .field--name-field-mt-if-body p:last-child {
+  padding-bottom: 0;
+}
+.paragraph--view-mode--mt-tile-large .feature div:last-child {
+  margin-bottom: 0;
+}

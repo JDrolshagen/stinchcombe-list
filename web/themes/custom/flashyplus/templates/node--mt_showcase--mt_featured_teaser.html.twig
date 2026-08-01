@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Showcase node in featured teaser view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-featured-teaser') }}
+{% set image = content.field_mt_shw_image %}
+{% set pre_content_first = content.field_mt_shw_tags %}
+{% set pre_content_second = null %}
+{% set rendered_content = content|without('field_mt_shw_image', 'field_mt_shw_tags') %}
+{% set featured_label = true %}
+{% set read_more = true %}
+{# Displays author's name and picture. "Display author and date information" must be enabled in content type settings. #}
+{% set author_info = false %}
+{# Displays date widget over image. "Display author and date information" must be enabled in content type settings. #}
+{% set date_overlay = true %}
+{% set submitted_day = node.createdtime|format_date('custom', 'd') %}
+{% set submitted_month = node.createdtime|format_date('custom', 'M, ') %}
+{% set submitted_year = node.createdtime|format_date('custom', 'Y') %}
+{% include '@flashyplus/partials/_mt-featured-teaser.html.twig' %}

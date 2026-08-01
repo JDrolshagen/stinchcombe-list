@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - paragraph.getCreatedTime() will return the paragraph creation timestamp.
+ *   - paragraph.id(): The paragraph ID.
+ *   - paragraph.bundle(): The type of the paragraph, for example, "image" or "text".
+ *   - paragraph.getOwnerId(): The user ID of the paragraph author.
+ *   See Drupal\paragraphs\Entity\Paragraph for a full list of public properties
+ *   and methods for the paragraph object.
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('flashyplus/banner') }}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    paragraph.field_mt_banner_promo.value == true ? 'mt-banner-item-promoted' : 'mt-banner-item-not-promoted',
+  ]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="mt-banner-item">
+        {% if content.field_mt_banner_image|render %}
+          <div class="mt-banner-item__image">
+            <div class="overlay-container">
+              {% if paragraph.field_mt_banner_link['0'].url %}
+                <span class="overlay overlay--colored">
+                  <a class="overlay-target-link" href="{{ paragraph.field_mt_banner_link['0'].url }}"></a>
+                </span>
+              {% endif %}
+              <img src="{{ field_mt_banner_image_styled_url }}" alt="{{ paragraph.field_mt_banner_image['0'].entity.alt.value }}">
+              {% if content.field_mt_banner_title|render or content.field_mt_banner_text|render %}
+                <div class="mt-banner-item__caption mt-style-custom-all">
+                  {% if paragraph.field_mt_banner_title.value|render %}
+                    <h2 class="mt-banner-item__title">{{ paragraph.field_mt_banner_title.value }}</h2>
+                  {% endif %}
+                  {{ content.field_mt_banner_text }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        {{ content|without('field_mt_banner_promo', 'field_mt_banner_text', 'field_mt_banner_link', 'field_mt_banner_title', 'field_mt_banner_image') }}
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

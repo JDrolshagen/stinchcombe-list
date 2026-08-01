@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in compact list item view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mt-style-custom-all region--accent-background mt-tile-padding',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-compact-list-item') }}
+<article{{ attributes.addClass(classes) }}>
+  {% if display_submitted %}
+    <div{{ author_attributes.addClass('node__submitted') }}>
+      <div class="node__submitted-time">{{ posted_ago }} {% trans %}ago{% endtrans %}</div>
+    </div>
+  {% endif %}
+  {{ title_prefix }}
+  {% if not page %}
+    <h6{{ title_attributes.addClass("my-0") }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h6>
+  {% endif %}
+  {{ title_suffix }}
+  {% if content|render %}
+    <div{{ content_attributes.addClass('node__content') }}>
+      {{ content }}
+    </div>
+  {% endif %}
+</article>

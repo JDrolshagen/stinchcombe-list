@@ -1,0 +1,8 @@
+/**
+ * @file
+ * Styles for node side sticky elements.
+ */
+.mt-sticky-element {
+  position: -webkit-sticky;
+  position: sticky;
+}

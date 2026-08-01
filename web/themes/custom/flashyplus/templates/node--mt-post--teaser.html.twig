@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in teaser view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    display_submitted ? 'node--display-submitted',
+    'clearfix',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser') }}
+{{ attach_library('flashyplus/node-field') }}
+{% set image = content.field_mt_pst_image %}
+{% set teaser_pre_content = content.field_mt_pst_category %}
+{% set rendered_content = content|without('field_mt_pst_image', 'field_mt_pst_category', 'field_mt_pst_comment') %}
+{% include '@flashyplus/partials/_mt-teaser-2.html.twig' %}

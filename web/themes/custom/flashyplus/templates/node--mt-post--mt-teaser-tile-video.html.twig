@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in teaser tile video view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mt-style-custom-all pb-2 region--default-background',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-teaser-tile-video') }}
+{% set video = content.field_mt_pst_video %}
+{% set pre_content_first = node.createdtime|format_date('custom', 'M d, Y') %}
+{% set pre_content_second = content.field_mt_pst_category %}
+{% set rendered_content = content|without('field_mt_pst_video', 'field_mt_pst_category') %}
+{% include '@flashyplus/partials/_mt-teaser-tile-video.html.twig' %}

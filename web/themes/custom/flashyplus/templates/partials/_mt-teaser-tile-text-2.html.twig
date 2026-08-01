@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Partial template to display a node in teaser tile view mode.
+ */
+#}
+<article{{ attributes.addClass(classes).addClass('node--view-mode-mt-teaser-tile-text-2') }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="node__container">
+    <div{{ content_attributes.addClass('node__main-content', 'clearfix') }}>
+
+        {% if display_submitted %}
+          {{ metadata }}
+        {% endif %}
+
+        <div class="mt-style-custom-all region--default-background p-4">
+          {% if teaser_tile_text_content|render %}
+            <div class="teaser-tile-text-content">
+              {{ teaser_tile_text_content }}
+            </div>
+            {{ rendered_content }}
+          {% endif %}
+
+          <div class="teaser-tile-text-footer">
+            <h4{{ title_attributes.addClass('node__title mt-0') }}>
+              <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+            </h4>
+            {{ teaser_tile_text_footer }}
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+</article>

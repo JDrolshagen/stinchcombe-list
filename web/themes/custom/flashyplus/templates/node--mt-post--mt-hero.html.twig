@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Flashy+'s theme implementation to display a Post node in hero view mode.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'mt-0',
+  ]
+%}
+{{ attach_library('flashyplus/node-view-mode-hero') }}
+{% set slideshow_image = content.field_mt_pst_slideshow_image %}
+{% set slideshow_caption = content.field_mt_pst_slideshow_text %}
+{% set node_comments = node.field_mt_pst_comment %}
+{% set rendered_content = content|without('field_mt_pst_comment', 'field_mt_pst_slideshow_image', 'field_mt_pst_slideshow_text') %}
+{% include '@flashyplus/partials/_mt-hero.html.twig' %}

@@ -1,0 +1,34 @@
+/**
+ * @file
+ * Styles for Flashy+'s detailed pager.
+ */
+
+/* Using .pager selector on the first one to override .region-content ul. */
+.detailed-pager--bottom {
+  border-top-width: 2px;
+  border-top-color: rgba(255, 255, 255, 0.2);
+  border-top-style: solid;
+  margin-top: 60px;
+  padding-top: 15px;
+}
+.detailed-pager .total-items {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 10px 0;
+  color: #6c6c6c;
+}
+.detailed-pager .pager__items {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-align: right;
+}
+.detailed-pager--top li.pager__item {
+  margin-bottom: -1px;
+  margin-top: 0;
+}
+
+/*detailed pager @colored regions*/
+.region--light-typography .detailed-pager .total-items {
+  color: #ffffff;
+}

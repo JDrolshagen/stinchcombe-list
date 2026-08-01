@@ -1,0 +1,7 @@
+name: 'Quantum US State Map'
+type: module
+description: 'Provides a self-hosted clickable U.S. states jurisdiction map block.'
+package: Quantum
+core_version_requirement: ^11
+dependencies:
+  - drupal:taxonomy
