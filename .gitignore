@@ -95,3 +95,7 @@
 
 # Ignore .env files as they are personal
 #/.env
+
+# Local Google Cloud credentials and temporary GitHub authentication files.
+/.gcloud-readonly/
+/gha-creds-*.json

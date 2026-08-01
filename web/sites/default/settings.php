@@ -32,3 +32,10 @@ $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
 }
+
+/**
+ * Load Google Cloud settings when running on Cloud Run or Cloud Run Jobs.
+ */
+if (getenv('K_SERVICE') || getenv('CLOUD_RUN_JOB') || getenv('DRUPAL_DB_SOCKET')) {
+  include __DIR__ . '/settings.gcp.php';
+}

@@ -1,0 +1,13 @@
+.git
+.gcloud-readonly
+.gitignore
+.idea
+.vscode
+vendor
+web/core
+web/modules/contrib
+web/themes/contrib
+web/profiles/contrib
+web/libraries
+web/sites/default/files
+*.log

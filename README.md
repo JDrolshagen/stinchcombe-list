@@ -27,3 +27,11 @@ composer validate --no-check-publish
 composer audit --locked
 composer check-platform-reqs --no-dev
 ```
+
+## Production deployment
+
+Every push to `main` builds and deploys the container to the `stinchcombe-list`
+service in Google Cloud Run. Production is available at
+https://stinchcombelist.com/.
+
+Deployment details and the manual provisioning script are in `infra/`.
