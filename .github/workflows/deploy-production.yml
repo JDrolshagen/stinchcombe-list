@@ -64,6 +64,38 @@ jobs:
           service: ${{ env.SERVICE }}
           image: ${{ env.IMAGE }}
 
+      - name: Update maintenance job image
+        run: >-
+          gcloud run jobs update "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --image="${IMAGE}"
+          --quiet
+
+      - name: Rebuild caches before database updates
+        run: >-
+          gcloud run jobs execute "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --args=cr
+          --wait
+
+      - name: Apply database updates
+        run: >-
+          gcloud run jobs execute "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --args=updb,-y
+          --wait
+
+      - name: Rebuild caches after database updates
+        run: >-
+          gcloud run jobs execute "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --args=cr
+          --wait
+
       - name: Verify production website
         run: >-
           curl --fail --silent --show-error

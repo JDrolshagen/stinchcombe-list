@@ -23,7 +23,8 @@ when their named secrets do not already exist.
 Pushes to `main` run `.github/workflows/deploy-production.yml`. The workflow
 authenticates through Workload Identity Federation, builds an immutable
 commit-tagged image, pushes it to Artifact Registry, deploys a new Cloud Run
-revision, and verifies `https://stinchcombelist.com/`.
+revision, runs Drupal cache rebuilds and database updates through the
+maintenance job, and verifies `https://stinchcombelist.com/`.
 
 The Google Cloud identity provider only accepts tokens from
 `JDrolshagen/stinchcombe-list` on `refs/heads/main`; no long-lived service
