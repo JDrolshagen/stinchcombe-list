@@ -1,5 +1,5 @@
 canada_map:
-  version: 1.0.2
+  version: 1.0.3
   css:
     theme:
       vendor/jsvectormap/jsvectormap.min.css: {}

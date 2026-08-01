@@ -21,6 +21,9 @@
         const activeRegionCodes = Array.isArray(settings.activeRegionCodes)
           ? settings.activeRegionCodes
           : Object.keys(links);
+        const mapRegionCodes = activeRegionCodes.map(function (code) {
+          return String(code).replace(/^CA-/i, '').toLowerCase();
+        });
 
         element.innerHTML = '';
 
@@ -33,7 +36,7 @@
           draggable: false,
           showTooltip: true,
 
-          selectedRegions: activeRegionCodes,
+          selectedRegions: mapRegionCodes,
 
           regionStyle: {
             initial: {
@@ -57,7 +60,7 @@
           },
 
           onRegionClick: function (event, code) {
-            const normalizedCode = String(code).toUpperCase();
+            const normalizedCode = 'CA-' + String(code).replace(/^CA-/i, '').toUpperCase();
             const target = links[normalizedCode];
 
             if (!target) {
