@@ -107,7 +107,8 @@ final class CanadaMapBlock extends BlockBase implements ContainerFactoryPluginIn
           'languages:language_interface',
         ],
         'tags' => [
-          'taxonomy_term_list:jurisdictions',
+          'taxonomy_term_list:jurisdiction',
+          'config:field.field.taxonomy_term.jurisdiction.field_sub_domain_link',
         ],
       ],
     ];
@@ -124,10 +125,10 @@ final class CanadaMapBlock extends BlockBase implements ContainerFactoryPluginIn
     $active_region_codes = [];
 
     $storage = $this->entityTypeManager->getStorage('taxonomy_term');
-    $field_definitions = $this->entityFieldManager->getFieldDefinitions('taxonomy_term', 'jurisdictions');
+    $field_definitions = $this->entityFieldManager->getFieldDefinitions('taxonomy_term', 'jurisdiction');
     $link_field_name = $this->getSubDomainLinkFieldName($field_definitions);
 
-    if (!isset($field_definitions['field_iso_code']) || $link_field_name === NULL) {
+    if ($link_field_name === NULL) {
       return [
         'links' => $links,
         'activeRegionCodes' => $active_region_codes,
@@ -135,8 +136,8 @@ final class CanadaMapBlock extends BlockBase implements ContainerFactoryPluginIn
     }
 
     $term_ids = $storage->getQuery()
-      ->condition('vid', 'jurisdictions')
-      ->exists('field_iso_code')
+      ->condition('vid', 'jurisdiction')
+      ->exists($link_field_name)
       ->accessCheck(TRUE)
       ->execute();
 
@@ -151,29 +152,33 @@ final class CanadaMapBlock extends BlockBase implements ContainerFactoryPluginIn
     $terms = $storage->loadMultiple($term_ids);
 
     foreach ($terms as $term) {
-      if (!$term instanceof TermInterface || !$term->hasField('field_iso_code') || $term->get('field_iso_code')->isEmpty()) {
-        continue;
-      }
-
-      $region_code = strtoupper(trim((string) $term->get('field_iso_code')->value));
-
-      if (!isset(self::VALID_CANADA_REGION_CODES[$region_code])) {
-        continue;
-      }
-
-      if (!$term->hasField($link_field_name) || $term->get($link_field_name)->isEmpty()) {
+      if (!$term instanceof TermInterface || !$term->hasField($link_field_name) || $term->get($link_field_name)->isEmpty()) {
         continue;
       }
 
       try {
         $link_item = $term->get($link_field_name)->first();
-        $url = $link_item?->getUrl()->toString();
+        $field_type = $field_definitions[$link_field_name]->getType();
+
+        if ($field_type === 'entity_reference') {
+          $domain = $link_item?->entity;
+          $hostname = $domain && method_exists($domain, 'getHostname')
+            ? trim((string) $domain->getHostname())
+            : '';
+          $domain_id = trim((string) ($link_item?->target_id ?? ''));
+          $region_code = $this->getRegionCode($term, $domain_id, $hostname);
+          $url = $hostname !== '' ? 'https://' . $hostname : '';
+        }
+        else {
+          $region_code = $this->getRegionCode($term);
+          $url = $link_item?->getUrl()->toString() ?? '';
+        }
       }
       catch (\Throwable) {
         continue;
       }
 
-      if (!$url) {
+      if (!isset(self::VALID_CANADA_REGION_CODES[$region_code]) || $url === '') {
         continue;
       }
 
@@ -190,7 +195,24 @@ final class CanadaMapBlock extends BlockBase implements ContainerFactoryPluginIn
   }
 
   /**
-   * Finds the Jurisdictions field labelled "Sub-Domain Link".
+   * Gets the Canada region code from an ISO field or referenced domain.
+   */
+  private function getRegionCode(TermInterface $term, string $domain_id = '', string $hostname = ''): string {
+    if ($term->hasField('field_iso_code') && !$term->get('field_iso_code')->isEmpty()) {
+      return strtoupper(trim((string) $term->get('field_iso_code')->value));
+    }
+
+    foreach ([$domain_id, $hostname] as $domain_value) {
+      if (preg_match('/^([a-z]{2})(?:[_.-]|$)/i', $domain_value, $matches) === 1) {
+        return 'CA-' . strtoupper($matches[1]);
+      }
+    }
+
+    return '';
+  }
+
+  /**
+   * Finds the Jurisdiction field labelled "Sub-Domain Link".
    *
    * @param array<string, \Drupal\Core\Field\FieldDefinitionInterface> $field_definitions
    *   The Jurisdictions bundle's field definitions.
@@ -201,14 +223,16 @@ final class CanadaMapBlock extends BlockBase implements ContainerFactoryPluginIn
   private function getSubDomainLinkFieldName(array $field_definitions): ?string {
     // Prefer the conventional machine name while supporting an existing field
     // created with a different machine name.
-    if (isset($field_definitions['field_sub_domain_link']) && $field_definitions['field_sub_domain_link']->getType() === 'link') {
+    $supported_types = ['entity_reference', 'link'];
+
+    if (isset($field_definitions['field_sub_domain_link']) && in_array($field_definitions['field_sub_domain_link']->getType(), $supported_types, TRUE)) {
       return 'field_sub_domain_link';
     }
 
     foreach ($field_definitions as $field_name => $field_definition) {
       $normalized_label = strtolower(preg_replace('/[^a-z0-9]+/i', '', (string) $field_definition->getLabel()));
 
-      if ($field_definition->getType() === 'link' && $normalized_label === 'subdomainlink') {
+      if (in_array($field_definition->getType(), $supported_types, TRUE) && $normalized_label === 'subdomainlink') {
         return $field_name;
       }
     }
