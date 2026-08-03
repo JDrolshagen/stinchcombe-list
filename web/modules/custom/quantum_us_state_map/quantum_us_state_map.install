@@ -37,3 +37,16 @@ function quantum_us_state_map_update_11001(): string {
 
   return 'field_iso_code maximum length increased to 5 for U.S. region codes such as US-CA.';
 }
+
+/**
+ * Enables Entity Print after its Composer package is deployed.
+ */
+function quantum_us_state_map_update_11002(): string {
+  $module_installer = \Drupal::service('module_installer');
+
+  if ($module_installer->install(['entity_print'])) {
+    return 'Entity Print was enabled.';
+  }
+
+  return 'Entity Print was already enabled.';
+}
