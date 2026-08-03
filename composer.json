@@ -77,7 +77,8 @@
         "drupal/ai_vdb_provider_qdrant": "1.0.x-dev@dev",
         "drupal/ai_provider_litellm": "^1.2",
         "drupal/field_group": "^4.0",
-        "drupal/classy": "^2.0"
+        "drupal/classy": "^2.0",
+        "drupal/entity_print": "^2.18"
     },
     "require-dev": {
         "drupal/core-dev": "^11"
