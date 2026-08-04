@@ -1,0 +1,37 @@
+diff --git a/modules/sendgrid_integration_reports/src/Form/SendGridReportsSettingsForm.php b/modules/sendgrid_integration_reports/src/Form/SendGridReportsSettingsForm.php
+--- a/modules/sendgrid_integration_reports/src/Form/SendGridReportsSettingsForm.php
++++ b/modules/sendgrid_integration_reports/src/Form/SendGridReportsSettingsForm.php
+@@ -3,6 +3,7 @@
+ namespace Drupal\sendgrid_integration_reports\Form;
+ 
+ use Drupal\Core\Config\ConfigFactoryInterface;
++use Drupal\Core\Config\TypedConfigManagerInterface;
+ use Drupal\Core\Extension\ModuleHandlerInterface;
+ use Drupal\Core\Form\ConfigFormBase;
+ use Drupal\Core\Form\FormStateInterface;
+@@ -25,20 +26,23 @@ class SendGridReportsSettingsForm extends ConfigFormBase {
+    *
+    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+    *   The factory for configuration objects.
++   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config_manager
++   *   The typed configuration manager.
+    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+    *   The module handler service.
+    */
+-  public function __construct(ConfigFactoryInterface $config_factory, ModuleHandlerInterface $moduleHandler) {
+-    parent::__construct($config_factory);
++  public function __construct(ConfigFactoryInterface $config_factory, TypedConfigManagerInterface $typed_config_manager, ModuleHandlerInterface $moduleHandler) {
++    parent::__construct($config_factory, $typed_config_manager);
+     $this->moduleHandler = $moduleHandler;
+   }
+ 
+   /**
+    * {@inheritdoc}
+    */
+   public static function create(ContainerInterface $container) {
+     return new static(
+       $container->get('config.factory'),
++      $container->get('config.typed'),
+       $container->get('module_handler')
+     );
+   }

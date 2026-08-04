@@ -34,7 +34,8 @@ COPY docker/php-cloud-run.ini /usr/local/etc/php/conf.d/99-cloud-run.ini
 COPY docker/entrypoint.sh /usr/local/bin/drupal-entrypoint
 COPY --from=build --chown=www-data:www-data /app /var/www/html
 
-RUN chmod +x /usr/local/bin/drupal-entrypoint \
+RUN sed -i 's/\r$//' /usr/local/bin/drupal-entrypoint \
+    && chmod +x /usr/local/bin/drupal-entrypoint \
     && mkdir -p /var/www/html/web/sites/default/files \
     && chown -R www-data:www-data /var/www/html/web/sites/default
 

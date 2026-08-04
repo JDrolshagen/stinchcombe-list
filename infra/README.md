@@ -16,7 +16,32 @@ bash infra/provision-gcp.sh
 ```
 
 The script is designed to be safe to rerun. Secret values are generated only
-when their named secrets do not already exist.
+when their named secrets do not already exist. On the first run it securely
+prompts for the SendGrid API key and stores it as
+`stinchcombe-list-sendgrid-api-key`; the value is not written to the repository
+or to Drupal's configuration database.
+
+## SendGrid credential migration
+
+Cloud Run injects `SENDGRID_API_KEY` from Google Secret Manager. Drupal's
+Google Cloud settings override `sendgrid_integration.settings:apikey` with that
+environment variable at runtime.
+
+After the Secret Manager binding and the updated application image are live,
+remove the legacy database copy once with the maintenance job:
+
+```bash
+gcloud run jobs execute stinchcombe-list-maintenance \
+  --project=stinchcombe-list \
+  --region=northamerica-northeast1 \
+  --args=config:delete,sendgrid_integration.settings,apikey,-y \
+  --wait
+```
+
+SendGrid also requires the Drupal site email address
+(`info@stinchcombelist.com`) to be a verified Single Sender or part of an
+authenticated domain. Secret Manager protects the credential but does not
+replace that SendGrid-side verification.
 
 ## Continuous deployment
 

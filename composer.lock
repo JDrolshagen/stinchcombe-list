@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf4fb6b6bb8bee35e514fff692e05705",
+    "content-hash": "69ce93d0ea706ffedd8a60a4268150e3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6774,6 +6774,83 @@
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_content_creator",
+            "version": "4.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_content_creator.git",
+                "reference": "4.0.14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_content_creator-4.0.14.zip",
+                "reference": "4.0.14",
+                "shasum": "292acefd190ccd1be69322c1909d9958d182ce72"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.14",
+                    "datestamp": "1782137678",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "-nrzr-",
+                    "homepage": "https://www.drupal.org/user/3522063"
+                },
+                {
+                    "name": "dgaspara",
+                    "homepage": "https://www.drupal.org/user/3557179"
+                },
+                {
+                    "name": "dmcosta",
+                    "homepage": "https://www.drupal.org/user/3713691"
+                },
+                {
+                    "name": "joaomarques736",
+                    "homepage": "https://www.drupal.org/user/3557181"
+                },
+                {
+                    "name": "nsalves",
+                    "homepage": "https://www.drupal.org/user/3557178"
+                },
+                {
+                    "name": "pmaiacar",
+                    "homepage": "https://www.drupal.org/user/3575425"
+                },
+                {
+                    "name": "raqfialho",
+                    "homepage": "https://www.drupal.org/user/3612403"
+                },
+                {
+                    "name": "ricardotenreiro",
+                    "homepage": "https://www.drupal.org/user/213132"
+                },
+                {
+                    "name": "sara_asb",
+                    "homepage": "https://www.drupal.org/user/3673657"
+                }
+            ],
+            "description": "Allows you to create content entities and do mappings between respective fields and webform submission values.",
+            "homepage": "https://www.drupal.org/project/webform_content_creator",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_content_creator"
             }
         },
         {

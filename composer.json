@@ -78,7 +78,8 @@
         "drupal/ai_provider_litellm": "^1.2",
         "drupal/field_group": "^4.0",
         "drupal/classy": "^2.0",
-        "drupal/entity_print": "^2.18"
+        "drupal/entity_print": "^2.18",
+        "drupal/webform_content_creator": "^4.0"
     },
     "require-dev": {
         "drupal/core-dev": "^11"
@@ -120,6 +121,9 @@
         "patches": {
             "drupal/feeds": {
                 "Fix Feeds NULL mappings in MappingForm": "patches/feeds-null-mappings.patch"
+            },
+            "drupal/sendgrid_integration": {
+                "Drupal 11 compatibility for SendGrid reports settings form": "patches/sendgrid-integration-reports-drupal-11-config-form.patch"
             }
         }
     },

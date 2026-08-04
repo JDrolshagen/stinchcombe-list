@@ -23,6 +23,13 @@ $databases['default']['default'] = [
 $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: '';
 $settings['file_temp_path'] = '/tmp';
 
+// Keep the SendGrid credential out of Drupal's configuration database. Cloud
+// Run injects this value directly from Google Secret Manager.
+$sendgrid_api_key = getenv('SENDGRID_API_KEY');
+if ($sendgrid_api_key !== FALSE && $sendgrid_api_key !== '') {
+  $config['sendgrid_integration.settings']['apikey'] = $sendgrid_api_key;
+}
+
 // Cloud Run terminates TLS before forwarding requests to Apache.
 $settings['reverse_proxy'] = TRUE;
 if (!empty($_SERVER['REMOTE_ADDR'])) {
