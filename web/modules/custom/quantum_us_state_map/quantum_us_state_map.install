@@ -63,3 +63,18 @@ function quantum_us_state_map_update_11003(): string {
 
   return 'Webform Content Creator was already enabled.';
 }
+
+/**
+ * Creates the site-specific organization content types.
+ */
+function quantum_us_state_map_update_11004(): string {
+  $module_installer = \Drupal::service('module_installer');
+  $module_installer->install(['stinchcombe_content_types']);
+  \Drupal::moduleHandler()->load('stinchcombe_content_types');
+
+  // Keep the update idempotent if the module was enabled before this update.
+  stinchcombe_content_types_create_organization_bundles();
+
+  return 'Created the Judicial Council, Law Society, Prosecutors\' Offices, '
+    . 'and Public-Sector Integrity Office content types.';
+}

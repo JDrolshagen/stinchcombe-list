@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_install().
+ */
+function stinchcombe_content_types_install(): void {
+  stinchcombe_content_types_create_organization_bundles();
+}

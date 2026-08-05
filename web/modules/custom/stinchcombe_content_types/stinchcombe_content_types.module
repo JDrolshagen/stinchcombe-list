@@ -1,0 +1,243 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\content_moderation\Plugin\WorkflowType\ContentModerationInterface;
+use Drupal\field\FieldConfigInterface;
+use Drupal\node\Entity\NodeType;
+
+/**
+ * Creates organization bundles based on Law Enforcement Organization.
+ */
+function stinchcombe_content_types_create_organization_bundles(): void {
+  $source_bundle = 'law_enforcement_organization';
+  $source_type = NodeType::load($source_bundle);
+
+  if (!$source_type) {
+    throw new RuntimeException(sprintf(
+      'The source content type "%s" does not exist.',
+      $source_bundle,
+    ));
+  }
+
+  $bundles = [
+    'judicial_council' => 'Judicial Council',
+    'law_society' => 'Law Society',
+    'prosecutors_offices' => "Prosecutors' Offices",
+    'public_sector_integrity_office' => 'Public-Sector Integrity Office',
+  ];
+
+  foreach ($bundles as $bundle => $label) {
+    stinchcombe_content_types_clone_node_type($source_type, $bundle, $label);
+    stinchcombe_content_types_clone_fields($source_bundle, $bundle);
+    stinchcombe_content_types_clone_base_field_overrides($source_bundle, $bundle);
+    stinchcombe_content_types_clone_displays($source_bundle, $bundle);
+    stinchcombe_content_types_clone_language_settings($source_bundle, $bundle);
+  }
+
+  stinchcombe_content_types_clone_permissions($source_bundle, array_keys($bundles));
+  stinchcombe_content_types_clone_moderation($source_bundle, array_keys($bundles));
+}
+
+/**
+ * Clones bundle-specific overrides for node base fields.
+ */
+function stinchcombe_content_types_clone_base_field_overrides(
+  string $source_bundle,
+  string $target_bundle,
+): void {
+  $storage = \Drupal::entityTypeManager()->getStorage('base_field_override');
+  $source_overrides = $storage->loadByProperties([
+    'entity_type' => 'node',
+    'bundle' => $source_bundle,
+  ]);
+
+  foreach ($source_overrides as $source_override) {
+    $field_name = $source_override->getName();
+    $id = "node.$target_bundle.$field_name";
+    if ($storage->load($id)) {
+      continue;
+    }
+
+    $values = $source_override->toArray();
+    unset($values['uuid']);
+    $values['id'] = $id;
+    $values['bundle'] = $target_bundle;
+    $storage->create($values)->save();
+  }
+}
+
+/**
+ * Clones the source node type's behavior under a new ID and label.
+ */
+function stinchcombe_content_types_clone_node_type(
+  NodeType $source,
+  string $bundle,
+  string $label,
+): void {
+  if (NodeType::load($bundle)) {
+    return;
+  }
+
+  $values = $source->toArray();
+  unset($values['uuid']);
+  $values['type'] = $bundle;
+  $values['name'] = $label;
+
+  NodeType::create($values)->save();
+}
+
+/**
+ * Clones configurable fields from one node bundle to another.
+ */
+function stinchcombe_content_types_clone_fields(
+  string $source_bundle,
+  string $target_bundle,
+): void {
+  $field_definitions = \Drupal::service('entity_field.manager')
+    ->getFieldDefinitions('node', $source_bundle);
+  $field_storage = \Drupal::entityTypeManager()->getStorage('field_config');
+
+  foreach ($field_definitions as $field_name => $definition) {
+    if (!$definition instanceof FieldConfigInterface) {
+      continue;
+    }
+
+    $id = "node.$target_bundle.$field_name";
+    if ($field_storage->load($id)) {
+      continue;
+    }
+
+    $values = $definition->toArray();
+    unset($values['uuid']);
+    $values['id'] = $id;
+    $values['bundle'] = $target_bundle;
+    $field_storage->create($values)->save();
+  }
+}
+
+/**
+ * Clones all form and view display modes for a node bundle.
+ */
+function stinchcombe_content_types_clone_displays(
+  string $source_bundle,
+  string $target_bundle,
+): void {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $display_types = [
+    'entity_form_display' => EntityFormDisplayInterface::class,
+    'entity_view_display' => EntityViewDisplayInterface::class,
+  ];
+
+  foreach ($display_types as $entity_type_id => $interface) {
+    $storage = $entity_type_manager->getStorage($entity_type_id);
+    $source_displays = $storage->loadByProperties([
+      'targetEntityType' => 'node',
+      'bundle' => $source_bundle,
+    ]);
+
+    foreach ($source_displays as $source_display) {
+      if (!$source_display instanceof $interface) {
+        continue;
+      }
+
+      $mode = $source_display->getMode();
+      $id = "node.$target_bundle.$mode";
+      if ($storage->load($id)) {
+        continue;
+      }
+
+      $values = $source_display->toArray();
+      unset($values['uuid']);
+      $values['id'] = $id;
+      $values['bundle'] = $target_bundle;
+      $storage->create($values)->save();
+    }
+  }
+}
+
+/**
+ * Clones per-bundle content language settings when Language is enabled.
+ */
+function stinchcombe_content_types_clone_language_settings(
+  string $source_bundle,
+  string $target_bundle,
+): void {
+  if (!\Drupal::moduleHandler()->moduleExists('language')) {
+    return;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('language_content_settings');
+  $source = $storage->load("node.$source_bundle");
+  $target_id = "node.$target_bundle";
+
+  if (!$source || $storage->load($target_id)) {
+    return;
+  }
+
+  $values = $source->toArray();
+  unset($values['uuid']);
+  $values['id'] = $target_id;
+  $values['target_bundle'] = $target_bundle;
+  $storage->create($values)->save();
+}
+
+/**
+ * Gives each role the same bundle-specific permissions as the source type.
+ */
+function stinchcombe_content_types_clone_permissions(
+  string $source_bundle,
+  array $target_bundles,
+): void {
+  $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+
+  foreach ($roles as $role) {
+    $source_permissions = array_filter(
+      $role->getPermissions(),
+      static fn(string $permission): bool => str_contains($permission, $source_bundle),
+    );
+
+    if (!$source_permissions) {
+      continue;
+    }
+
+    foreach ($target_bundles as $target_bundle) {
+      foreach ($source_permissions as $permission) {
+        $role->grantPermission(str_replace($source_bundle, $target_bundle, $permission));
+      }
+    }
+    $role->save();
+  }
+}
+
+/**
+ * Adds the new bundles to the source type's moderation workflow, if any.
+ */
+function stinchcombe_content_types_clone_moderation(
+  string $source_bundle,
+  array $target_bundles,
+): void {
+  if (!\Drupal::moduleHandler()->moduleExists('content_moderation')) {
+    return;
+  }
+
+  $workflows = \Drupal::entityTypeManager()->getStorage('workflow')->loadMultiple();
+  foreach ($workflows as $workflow) {
+    $plugin = $workflow->getTypePlugin();
+    if (
+      !$plugin instanceof ContentModerationInterface ||
+      !$plugin->appliesToEntityTypeAndBundle('node', $source_bundle)
+    ) {
+      continue;
+    }
+
+    foreach ($target_bundles as $target_bundle) {
+      if (!$plugin->appliesToEntityTypeAndBundle('node', $target_bundle)) {
+        $plugin->addEntityTypeAndBundle('node', $target_bundle);
+      }
+    }
+    $workflow->save();
+  }
+}
