@@ -7,4 +7,14 @@ declare(strict_types=1);
  */
 function stinchcombe_content_types_install(): void {
   stinchcombe_content_types_create_organization_bundles();
+  stinchcombe_content_types_create_accountability_record_bundles();
+}
+
+/**
+ * Creates the accountability record content types for existing installations.
+ */
+function stinchcombe_content_types_update_11001(): string {
+  stinchcombe_content_types_create_accountability_record_bundles();
+
+  return 'Created the accountability record content types.';
 }

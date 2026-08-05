@@ -12,7 +12,39 @@ use Drupal\node\Entity\NodeType;
  * Creates organization bundles based on Law Enforcement Organization.
  */
 function stinchcombe_content_types_create_organization_bundles(): void {
-  $source_bundle = 'law_enforcement_organization';
+  $bundles = [
+    'judicial_council' => 'Judicial Council',
+    'law_society' => 'Law Society',
+    'prosecutors_offices' => "Prosecutors' Offices",
+    'public_sector_integrity_office' => 'Public-Sector Integrity Office',
+  ];
+
+  stinchcombe_content_types_clone_bundles(
+    'law_enforcement_organization',
+    $bundles,
+  );
+}
+
+/**
+ * Creates accountability record bundles based on Officer Complaint.
+ */
+function stinchcombe_content_types_create_accountability_record_bundles(): void {
+  $bundles = [
+    'government_accountability_record' => 'Government Accountability Record',
+    'judicial_conduct_determination' => 'Judicial Conduct Determination',
+    'prosecutorial_misconduct_finding' => 'Prosecutorial Misconduct Finding',
+  ];
+
+  stinchcombe_content_types_clone_bundles('officer_complaint', $bundles);
+}
+
+/**
+ * Creates bundles that inherit the configuration of a source node type.
+ */
+function stinchcombe_content_types_clone_bundles(
+  string $source_bundle,
+  array $bundles,
+): void {
   $source_type = NodeType::load($source_bundle);
 
   if (!$source_type) {
@@ -21,13 +53,6 @@ function stinchcombe_content_types_create_organization_bundles(): void {
       $source_bundle,
     ));
   }
-
-  $bundles = [
-    'judicial_council' => 'Judicial Council',
-    'law_society' => 'Law Society',
-    'prosecutors_offices' => "Prosecutors' Offices",
-    'public_sector_integrity_office' => 'Public-Sector Integrity Office',
-  ];
 
   foreach ($bundles as $bundle => $label) {
     stinchcombe_content_types_clone_node_type($source_type, $bundle, $label);

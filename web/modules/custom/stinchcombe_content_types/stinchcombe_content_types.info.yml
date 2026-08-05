@@ -1,6 +1,6 @@
 name: 'Stinchcombe Content Types'
 type: module
-description: 'Provides site-specific organization content types.'
+description: 'Provides site-specific content types cloned from established records.'
 package: Custom
 core_version_requirement: ^11
 dependencies:
