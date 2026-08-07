@@ -2,11 +2,54 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\content_moderation\Plugin\WorkflowType\ContentModerationInterface;
 use Drupal\field\FieldConfigInterface;
 use Drupal\node\Entity\NodeType;
+
+/**
+ * Implements hook_block_view_views_block_alter().
+ */
+function stinchcombe_content_types_block_view_views_block_alter(
+  array &$build,
+  BlockPluginInterface $block,
+): void {
+  $configuration = $block->getConfiguration();
+  $override_title = (string) ($configuration['views_label'] ?? '');
+
+  // Views removes the form-only checkbox on submit and stores an empty
+  // views_label when the override is disabled.
+  if ($override_title === '' || !str_contains($override_title, '[')) {
+    return;
+  }
+
+  // Domain tokens read the negotiation context rather than token data. Ensure
+  // it is initialized when this block is rendered through a lazy builder.
+  if (\Drupal::moduleHandler()->moduleExists('domain')) {
+    \Drupal::service('domain.negotiator')->getActiveDomain();
+  }
+
+  $metadata = BubbleableMetadata::createFromRenderArray($build);
+  $metadata->addCacheContexts(['url.site']);
+  $replacement = \Drupal::service('token')->replacePlain(
+    $override_title,
+    [],
+    ['clear' => FALSE],
+    $metadata,
+  );
+
+  // ViewsBlock::build() reads the plugin configuration later, during block
+  // pre-render. Keep the wrapper configuration in sync for block templates.
+  $configuration['views_label'] = $replacement;
+  $configuration['label'] = $replacement;
+  $block->setConfiguration($configuration);
+  $build['#configuration']['views_label'] = $replacement;
+  $build['#configuration']['label'] = $replacement;
+  $metadata->applyTo($build);
+}
 
 /**
  * Creates organization bundles based on Law Enforcement Organization.
