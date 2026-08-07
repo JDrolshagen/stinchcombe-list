@@ -54,7 +54,8 @@ function stinchcombe_content_types_block_view_alter(
   BlockPluginInterface $block,
 ): void {
   $label = (string) ($build['#configuration']['label'] ?? '');
-  if (!str_contains($label, '[')) {
+  $is_views_block = $block->getBaseId() === 'views_block';
+  if (!str_contains($label, '[') && !$is_views_block) {
     return;
   }
 
@@ -62,13 +63,15 @@ function stinchcombe_content_types_block_view_alter(
   // Replacement itself must happen after BlockViewBuilder::preRender(), which
   // is when Views adds its title to the content render array.
   $metadata = BubbleableMetadata::createFromRenderArray($build);
-  $metadata->addCacheContexts(['route', 'url.site']);
-  \Drupal::service('token')->replace(
-    $label,
-    stinchcombe_content_types_get_token_data(),
-    ['clear' => FALSE],
-    $metadata,
-  );
+  $metadata->addCacheContexts(['route', 'url.site', 'user']);
+  if (str_contains($label, '[')) {
+    \Drupal::service('token')->replace(
+      $label,
+      stinchcombe_content_types_get_token_data(),
+      ['clear' => FALSE],
+      $metadata,
+    );
+  }
   $metadata->applyTo($build);
   $build['#pre_render'][] = 'stinchcombe_content_types_pre_render_block_tokens';
 }
