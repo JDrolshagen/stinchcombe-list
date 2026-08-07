@@ -2,11 +2,98 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\content_moderation\Plugin\WorkflowType\ContentModerationInterface;
 use Drupal\field\FieldConfigInterface;
 use Drupal\node\Entity\NodeType;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for block configuration forms.
+ */
+function stinchcombe_content_types_form_block_form_alter(
+  array &$form,
+  FormStateInterface $form_state,
+): void {
+  $title_element = isset($form['settings']['views_label'])
+    ? $form['settings']['views_label']
+    : ($form['settings']['label'] ?? NULL);
+  if ($title_element === NULL) {
+    return;
+  }
+
+  $weight = ($title_element['#weight'] ?? 0) + 1;
+  $fieldset = $title_element['#fieldset'] ?? NULL;
+  $form['settings']['token_help_description'] = [
+    '#markup' => '<p class="description">' . t(
+      'Replacement tokens are supported. Available contextual tokens depend on the page where the block is displayed.',
+    ) . '</p>',
+    '#weight' => $weight,
+  ];
+  $form['settings']['token_help'] = [
+    '#theme' => 'token_tree_link',
+    '#token_types' => ['node', 'term', 'user'],
+    '#global_types' => TRUE,
+    '#weight' => $weight + 1,
+  ];
+  if ($fieldset !== NULL) {
+    $form['settings']['token_help_description']['#fieldset'] = $fieldset;
+    $form['settings']['token_help']['#fieldset'] = $fieldset;
+  }
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function stinchcombe_content_types_block_view_alter(
+  array &$build,
+  BlockPluginInterface $block,
+): void {
+  $label = (string) ($build['#configuration']['label'] ?? '');
+  $view_title = (string) ($build['content']['#title']['#markup'] ?? '');
+  if (
+    !str_contains($label, '[') &&
+    !str_contains($view_title, '[')
+  ) {
+    return;
+  }
+
+  $token_data = [];
+  foreach (\Drupal::routeMatch()->getParameters()->all() as $parameter) {
+    if (!$parameter instanceof EntityInterface) {
+      continue;
+    }
+
+    $entity_type = $parameter->getEntityTypeId();
+    $token_type = $entity_type === 'taxonomy_term' ? 'term' : $entity_type;
+    $token_data[$token_type] = $parameter;
+  }
+
+  $metadata = BubbleableMetadata::createFromRenderArray($build);
+  $metadata->addCacheContexts(['route', 'url.site']);
+  $token = \Drupal::service('token');
+  if (str_contains($label, '[')) {
+    $build['#configuration']['label'] = $token->replace(
+      $label,
+      $token_data,
+      ['clear' => FALSE],
+      $metadata,
+    );
+  }
+  if (str_contains($view_title, '[')) {
+    $build['content']['#title']['#markup'] = $token->replace(
+      $view_title,
+      $token_data,
+      ['clear' => FALSE],
+      $metadata,
+    );
+  }
+  $metadata->applyTo($build);
+}
 
 /**
  * Creates organization bundles based on Law Enforcement Organization.
