@@ -95,14 +95,26 @@ function stinchcombe_content_types_pre_render_block_tokens(array $build): array 
     );
   }
 
-  $view_title = (string) ($build['content']['#title']['#markup'] ?? '');
-  if (str_contains($view_title, '[')) {
-    $build['content']['#title']['#markup'] = $token->replace(
-      $view_title,
+  $view_title = $build['content']['#title'] ?? NULL;
+  $view_title_markup = is_array($view_title)
+    ? ($view_title['#markup'] ?? NULL)
+    : $view_title;
+  if (
+    (is_scalar($view_title_markup) || $view_title_markup instanceof Stringable) &&
+    str_contains((string) $view_title_markup, '[')
+  ) {
+    $replacement = $token->replace(
+      (string) $view_title_markup,
       $token_data,
       ['clear' => FALSE],
       $metadata,
     );
+    if (is_array($view_title)) {
+      $build['content']['#title']['#markup'] = $replacement;
+    }
+    else {
+      $build['content']['#title'] = $replacement;
+    }
   }
 
   $metadata->applyTo($build);
