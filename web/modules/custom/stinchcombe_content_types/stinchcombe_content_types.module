@@ -54,14 +54,62 @@ function stinchcombe_content_types_block_view_alter(
   BlockPluginInterface $block,
 ): void {
   $label = (string) ($build['#configuration']['label'] ?? '');
-  $view_title = (string) ($build['content']['#title']['#markup'] ?? '');
-  if (
-    !str_contains($label, '[') &&
-    !str_contains($view_title, '[')
-  ) {
+  if (!str_contains($label, '[')) {
     return;
   }
 
+  // Add the varying contexts before Drupal checks the block render cache.
+  // Replacement itself must happen after BlockViewBuilder::preRender(), which
+  // is when Views adds its title to the content render array.
+  $metadata = BubbleableMetadata::createFromRenderArray($build);
+  $metadata->addCacheContexts(['route', 'url.site']);
+  \Drupal::service('token')->replace(
+    $label,
+    stinchcombe_content_types_get_token_data(),
+    ['clear' => FALSE],
+    $metadata,
+  );
+  $metadata->applyTo($build);
+  $build['#pre_render'][] = 'stinchcombe_content_types_pre_render_block_tokens';
+}
+
+/**
+ * Replaces tokens after the block plugin has built its content.
+ */
+function stinchcombe_content_types_pre_render_block_tokens(array $build): array {
+  $metadata = BubbleableMetadata::createFromRenderArray($build);
+  $metadata->addCacheContexts(['route', 'url.site']);
+  $token = \Drupal::service('token');
+  $token_data = stinchcombe_content_types_get_token_data();
+
+  $label = (string) ($build['#configuration']['label'] ?? '');
+  if (str_contains($label, '[')) {
+    $build['#configuration']['label'] = $token->replace(
+      $label,
+      $token_data,
+      ['clear' => FALSE],
+      $metadata,
+    );
+  }
+
+  $view_title = (string) ($build['content']['#title']['#markup'] ?? '');
+  if (str_contains($view_title, '[')) {
+    $build['content']['#title']['#markup'] = $token->replace(
+      $view_title,
+      $token_data,
+      ['clear' => FALSE],
+      $metadata,
+    );
+  }
+
+  $metadata->applyTo($build);
+  return $build;
+}
+
+/**
+ * Returns token data for entities in the current route.
+ */
+function stinchcombe_content_types_get_token_data(): array {
   $token_data = [];
   foreach (\Drupal::routeMatch()->getParameters()->all() as $parameter) {
     if (!$parameter instanceof EntityInterface) {
@@ -73,26 +121,7 @@ function stinchcombe_content_types_block_view_alter(
     $token_data[$token_type] = $parameter;
   }
 
-  $metadata = BubbleableMetadata::createFromRenderArray($build);
-  $metadata->addCacheContexts(['route', 'url.site']);
-  $token = \Drupal::service('token');
-  if (str_contains($label, '[')) {
-    $build['#configuration']['label'] = $token->replace(
-      $label,
-      $token_data,
-      ['clear' => FALSE],
-      $metadata,
-    );
-  }
-  if (str_contains($view_title, '[')) {
-    $build['content']['#title']['#markup'] = $token->replace(
-      $view_title,
-      $token_data,
-      ['clear' => FALSE],
-      $metadata,
-    );
-  }
-  $metadata->applyTo($build);
+  return $token_data;
 }
 
 /**
