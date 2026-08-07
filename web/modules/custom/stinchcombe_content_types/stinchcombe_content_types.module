@@ -111,6 +111,16 @@ function stinchcombe_content_types_pre_render_block_tokens(array $build): array 
  */
 function stinchcombe_content_types_get_token_data(): array {
   $token_data = [];
+
+  // BigPipe can build lazy blocks before Domain's negotiation context has been
+  // restored. Trigger negotiation so [current-domain:*] tokens can read it.
+  if (\Drupal::moduleHandler()->moduleExists('domain')) {
+    $domain = \Drupal::service('domain.negotiator')->getActiveDomain();
+    if ($domain instanceof \Drupal\domain\DomainInterface) {
+      $token_data['domain'] = $domain;
+    }
+  }
+
   foreach (\Drupal::routeMatch()->getParameters()->all() as $parameter) {
     if (!$parameter instanceof EntityInterface) {
       continue;
