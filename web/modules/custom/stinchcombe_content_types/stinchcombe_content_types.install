@@ -27,3 +27,19 @@ function stinchcombe_content_types_update_11002(): string {
 
   return 'Created the Police Oversight Agency content type.';
 }
+
+/**
+ * Removes the organization type reference from Police Oversight Agency.
+ */
+function stinchcombe_content_types_update_11003(): string {
+  $field_names = stinchcombe_content_types_find_entity_reference_fields_by_label(
+    'law_enforcement_organization',
+    'Type of Law Enforcement Organization',
+  );
+  stinchcombe_content_types_remove_fields(
+    'police_oversight_agency',
+    $field_names,
+  );
+
+  return 'Removed the Type of Law Enforcement Organization field from Police Oversight Agency.';
+}

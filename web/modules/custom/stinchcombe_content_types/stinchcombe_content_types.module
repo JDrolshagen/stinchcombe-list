@@ -71,8 +71,84 @@ function stinchcombe_content_types_create_organization_bundles(): void {
   stinchcombe_content_types_clone_bundles(
     $source_bundle,
     ['police_oversight_agency' => 'Police Oversight Agency'],
-    ['field_types'],
+    stinchcombe_content_types_find_entity_reference_fields_by_label(
+      $source_bundle,
+      'Type of Law Enforcement Organization',
+    ),
   );
+}
+
+/**
+ * Finds entity reference fields with the requested label.
+ */
+function stinchcombe_content_types_find_entity_reference_fields_by_label(
+  string $bundle,
+  string $label,
+): array {
+  $field_definitions = \Drupal::service('entity_field.manager')
+    ->getFieldDefinitions('node', $bundle);
+  $normalized_label = strtolower(preg_replace('/[^a-z0-9]+/i', '', $label));
+  $matches = [];
+
+  foreach ($field_definitions as $field_name => $definition) {
+    if (!$definition instanceof FieldConfigInterface) {
+      continue;
+    }
+
+    $candidate_label = strtolower(preg_replace(
+      '/[^a-z0-9]+/i',
+      '',
+      (string) $definition->getLabel(),
+    ));
+    if (
+      $definition->getType() === 'entity_reference' &&
+      $candidate_label === $normalized_label
+    ) {
+      $matches[] = $field_name;
+    }
+  }
+
+  if (!$matches) {
+    throw new RuntimeException(sprintf(
+      'The entity reference field labelled "%s" does not exist on "%s".',
+      $label,
+      $bundle,
+    ));
+  }
+
+  return $matches;
+}
+
+/**
+ * Removes configurable fields and their display components from a bundle.
+ */
+function stinchcombe_content_types_remove_fields(
+  string $bundle,
+  array $field_names,
+): void {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  foreach (['entity_form_display', 'entity_view_display'] as $display_type) {
+    $display_storage = $entity_type_manager->getStorage($display_type);
+    $displays = $display_storage->loadByProperties([
+      'targetEntityType' => 'node',
+      'bundle' => $bundle,
+    ]);
+
+    foreach ($displays as $display) {
+      foreach ($field_names as $field_name) {
+        $display->removeComponent($field_name);
+      }
+      $display->save();
+    }
+  }
+
+  $field_storage = $entity_type_manager->getStorage('field_config');
+  foreach ($field_names as $field_name) {
+    $field = $field_storage->load("node.$bundle.$field_name");
+    if ($field) {
+      $field->delete();
+    }
+  }
 }
 
 /**
