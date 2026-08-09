@@ -1,0 +1,5 @@
+[mcp_servers.stinchcombe_jsonapi]
+command = "powershell.exe"
+args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ".codex/start-jsonapi-mcp.ps1"]
+startup_timeout_sec = 20
+tool_timeout_sec = 60

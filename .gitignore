@@ -96,6 +96,9 @@
 # Ignore .env files as they are personal
 #/.env
 
+# Local JSON:API credentials used by the Codex MCP bridge.
+/.codex/jsonapi.env
+
 # Local Google Cloud credentials and temporary GitHub authentication files.
 /.gcloud-readonly/
 /gha-creds-*.json

@@ -88,6 +88,14 @@ jobs:
           --args=updb,-y
           --wait
 
+      - name: Enable JSON:API
+        run: >-
+          gcloud run jobs execute "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --args=pm:enable,jsonapi,serialization,basic_auth,-y
+          --wait
+
       - name: Rebuild caches after database updates
         run: >-
           gcloud run jobs execute "${SERVICE}-maintenance"
@@ -101,3 +109,10 @@ jobs:
           curl --fail --silent --show-error
           --retry 12 --retry-delay 10 --retry-all-errors
           https://stinchcombelist.com/
+
+      - name: Verify production JSON:API
+        run: >-
+          curl --fail --silent --show-error
+          --retry 12 --retry-delay 10 --retry-all-errors
+          --header='Accept: application/vnd.api+json'
+          https://stinchcombelist.com/jsonapi
