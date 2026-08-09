@@ -18,3 +18,12 @@ function stinchcombe_content_types_update_11001(): string {
 
   return 'Created the accountability record content types.';
 }
+
+/**
+ * Creates the Police Oversight Agency content type.
+ */
+function stinchcombe_content_types_update_11002(): string {
+  stinchcombe_content_types_create_organization_bundles();
+
+  return 'Created the Police Oversight Agency content type.';
+}

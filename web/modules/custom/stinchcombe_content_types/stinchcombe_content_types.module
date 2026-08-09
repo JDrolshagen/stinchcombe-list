@@ -55,6 +55,7 @@ function stinchcombe_content_types_block_view_views_block_alter(
  * Creates organization bundles based on Law Enforcement Organization.
  */
 function stinchcombe_content_types_create_organization_bundles(): void {
+  $source_bundle = 'law_enforcement_organization';
   $bundles = [
     'judicial_council' => 'Judicial Council',
     'law_society' => 'Law Society',
@@ -63,8 +64,14 @@ function stinchcombe_content_types_create_organization_bundles(): void {
   ];
 
   stinchcombe_content_types_clone_bundles(
-    'law_enforcement_organization',
+    $source_bundle,
     $bundles,
+  );
+
+  stinchcombe_content_types_clone_bundles(
+    $source_bundle,
+    ['police_oversight_agency' => 'Police Oversight Agency'],
+    ['field_types'],
   );
 }
 
@@ -87,6 +94,7 @@ function stinchcombe_content_types_create_accountability_record_bundles(): void 
 function stinchcombe_content_types_clone_bundles(
   string $source_bundle,
   array $bundles,
+  array $excluded_fields = [],
 ): void {
   $source_type = NodeType::load($source_bundle);
 
@@ -99,9 +107,17 @@ function stinchcombe_content_types_clone_bundles(
 
   foreach ($bundles as $bundle => $label) {
     stinchcombe_content_types_clone_node_type($source_type, $bundle, $label);
-    stinchcombe_content_types_clone_fields($source_bundle, $bundle);
+    stinchcombe_content_types_clone_fields(
+      $source_bundle,
+      $bundle,
+      $excluded_fields,
+    );
     stinchcombe_content_types_clone_base_field_overrides($source_bundle, $bundle);
-    stinchcombe_content_types_clone_displays($source_bundle, $bundle);
+    stinchcombe_content_types_clone_displays(
+      $source_bundle,
+      $bundle,
+      $excluded_fields,
+    );
     stinchcombe_content_types_clone_language_settings($source_bundle, $bundle);
   }
 
@@ -163,13 +179,17 @@ function stinchcombe_content_types_clone_node_type(
 function stinchcombe_content_types_clone_fields(
   string $source_bundle,
   string $target_bundle,
+  array $excluded_fields = [],
 ): void {
   $field_definitions = \Drupal::service('entity_field.manager')
     ->getFieldDefinitions('node', $source_bundle);
   $field_storage = \Drupal::entityTypeManager()->getStorage('field_config');
 
   foreach ($field_definitions as $field_name => $definition) {
-    if (!$definition instanceof FieldConfigInterface) {
+    if (
+      !$definition instanceof FieldConfigInterface ||
+      in_array($field_name, $excluded_fields, TRUE)
+    ) {
       continue;
     }
 
@@ -192,6 +212,7 @@ function stinchcombe_content_types_clone_fields(
 function stinchcombe_content_types_clone_displays(
   string $source_bundle,
   string $target_bundle,
+  array $excluded_fields = [],
 ): void {
   $entity_type_manager = \Drupal::entityTypeManager();
   $display_types = [
@@ -221,7 +242,11 @@ function stinchcombe_content_types_clone_displays(
       unset($values['uuid']);
       $values['id'] = $id;
       $values['bundle'] = $target_bundle;
-      $storage->create($values)->save();
+      $target_display = $storage->create($values);
+      foreach ($excluded_fields as $field_name) {
+        $target_display->removeComponent($field_name);
+      }
+      $target_display->save();
     }
   }
 }
