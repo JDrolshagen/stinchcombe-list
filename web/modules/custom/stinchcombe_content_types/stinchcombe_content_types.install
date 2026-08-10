@@ -43,3 +43,56 @@ function stinchcombe_content_types_update_11003(): string {
 
   return 'Removed the Type of Law Enforcement Organization field from Police Oversight Agency.';
 }
+
+/**
+ * Adds French translations for the webform landing-page nodes.
+ */
+function stinchcombe_content_types_update_11004(): string {
+  $field = \Drupal\field\Entity\FieldConfig::loadByName('node', 'webform', 'body');
+  if ($field && !$field->isTranslatable()) {
+    $field->setTranslatable(TRUE)->save();
+  }
+
+  $settings = \Drupal\language\Entity\ContentLanguageSettings::loadByEntityTypeBundle('node', 'webform');
+  $settings->setLanguageAlterable(TRUE);
+  $settings->setThirdPartySetting('content_translation', 'enabled', TRUE);
+  $settings->save();
+
+  $path = __DIR__ . '/translations/fr/webform_nodes.json';
+  $translations = json_decode((string) file_get_contents($path), TRUE, flags: JSON_THROW_ON_ERROR);
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $updated = [];
+
+  foreach ($translations as $nid => $values) {
+    /** @var \Drupal\node\NodeInterface|null $node */
+    $node = $storage->load($nid);
+    if (!$node || $node->bundle() !== 'webform') {
+      throw new \RuntimeException(sprintf('Webform node %d was not found.', $nid));
+    }
+    if ($node->label() !== $values['source_title']) {
+      throw new \RuntimeException(sprintf('Webform node %d no longer matches the translation source.', $nid));
+    }
+
+    $translation = $node->hasTranslation('fr')
+      ? $node->getTranslation('fr')
+      : $node->addTranslation('fr');
+    $translation->setTitle($values['title']);
+    $translation->set('content_translation_source', 'en');
+    $translation->set('content_translation_outdated', FALSE);
+    $translation->set('body', [
+      'value' => $values['body'],
+      'summary' => $values['summary'],
+      'format' => $node->get('body')->format,
+    ]);
+    $translation->set('path', [
+      'alias' => $values['alias'],
+      'pathauto' => 0,
+    ]);
+    $translation->setNewRevision(TRUE);
+    $translation->setRevisionLogMessage('Add French translation.');
+    $translation->save();
+    $updated[] = $nid;
+  }
+
+  return sprintf('Added French translations for webform nodes: %s.', implode(', ', $updated));
+}
