@@ -5,7 +5,9 @@ services:
 
   Drupal\stinchcombe_domain_config_context\ConfigurationContext: ~
 
-  Drupal\stinchcombe_domain_config_context\Hook\ConfigurationContextFormHooks: ~
+  Drupal\stinchcombe_domain_config_context\Hook\ConfigurationContextFormHooks:
+    arguments:
+      $configStorage: '@config.storage'
 
   stinchcombe_domain_config_context.config_factory:
     class: Drupal\stinchcombe_domain_config_context\Config\ConfigurationContextConfigFactory
