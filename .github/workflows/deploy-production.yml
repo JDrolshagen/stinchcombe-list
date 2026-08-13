@@ -88,6 +88,14 @@ jobs:
           --args=updb,-y
           --wait
 
+      - name: Enable domain configuration UI
+        run: >-
+          gcloud run jobs execute "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --args=en,domain_config,domain_config_ui,domain_config_language,domain_config_language_ui,domain_config_switcher,stinchcombe_domain_config_context,-y
+          --wait
+
       - name: Rebuild caches after database updates
         run: >-
           gcloud run jobs execute "${SERVICE}-maintenance"
