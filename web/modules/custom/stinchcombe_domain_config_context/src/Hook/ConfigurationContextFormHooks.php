@@ -191,7 +191,6 @@ final class ConfigurationContextFormHooks {
     }
     if (is_string($default_langcode)) {
       $this->setDefaultLanguageRadio($form, $default_langcode);
-      $form_state->set('stinchcombe_domain_original_default_language', $default_langcode);
     }
 
     if ($domain_id !== NULL && $domain_id !== DomainConfigEditContextInterface::BASE) {
@@ -250,16 +249,21 @@ final class ConfigurationContextFormHooks {
         ->set('default_langcode', $langcode)
         ->save();
 
-      $old_langcode = $form_state->get('stinchcombe_domain_original_default_language');
-      if (is_string($old_langcode) && $old_langcode !== $langcode) {
-        $negotiation = $config_factory->getEditable('language.negotiation');
-        $prefixes = $negotiation->get('url.prefixes') ?? [];
-        if (($prefixes[$old_langcode] ?? '') === '') {
-          $negotiation->set('url.prefixes.' . $old_langcode, $old_langcode);
+      $negotiation = $config_factory->getEditable('language.negotiation');
+      $prefixes = $negotiation->get('url.prefixes') ?? [];
+      $negotiation_changed = FALSE;
+      foreach ($prefixes as $prefix_langcode => $prefix) {
+        if ($prefix_langcode !== $langcode && $prefix === '') {
+          $negotiation->set('url.prefixes.' . $prefix_langcode, $prefix_langcode);
+          $negotiation_changed = TRUE;
         }
-        $negotiation
-          ->set('url.prefixes.' . $langcode, '')
-          ->save();
+      }
+      if (($prefixes[$langcode] ?? NULL) !== '') {
+        $negotiation->set('url.prefixes.' . $langcode, '');
+        $negotiation_changed = TRUE;
+      }
+      if ($negotiation_changed) {
+        $negotiation->save();
       }
       \Drupal::languageManager()->reset();
     }
