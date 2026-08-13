@@ -135,8 +135,9 @@ final class ConfigurationContextFormHooks {
       $domain_id = $domain_query;
     }
 
+    $config_names = ['system.site', 'language.negotiation'];
     if ($domain_id !== NULL) {
-      $this->editContext->setEditingDomain($domain_id, ['system.site']);
+      $this->editContext->setEditingDomain($domain_id, $config_names);
     }
 
     $options = ['' => $this->t('- Current domain -')];
@@ -190,11 +191,12 @@ final class ConfigurationContextFormHooks {
     }
     if (is_string($default_langcode)) {
       $this->setDefaultLanguageRadio($form, $default_langcode);
+      $form_state->set('stinchcombe_domain_original_default_language', $default_langcode);
     }
 
     if ($domain_id !== NULL && $domain_id !== DomainConfigEditContextInterface::BASE) {
-      $this->domainConfigUiFormHooks->enableDomainConfigForm($form, ['system.site']);
-      if (!$this->domainConfigUiManager->isConfigurationRegisteredForDomain($domain_id, 'system.site')) {
+      $this->domainConfigUiFormHooks->enableDomainConfigForm($form, $config_names);
+      if (!$this->domainConfigUiManager->isConfigurationRegisteredForDomain($domain_id, $config_names)) {
         $form_state->set('stinchcombe_domain_default_language_requires_override', TRUE);
         $form['#validate'][] = [static::class, 'validateDefaultLanguageContext'];
       }
@@ -242,10 +244,23 @@ final class ConfigurationContextFormHooks {
   public static function saveDomainDefaultLanguage(array &$form, FormStateInterface $form_state): void {
     $langcode = $form_state->getValue('site_default_language');
     if (is_string($langcode) && $langcode !== '') {
-      \Drupal::configFactory()
+      $config_factory = \Drupal::configFactory();
+      $config_factory
         ->getEditable('system.site')
         ->set('default_langcode', $langcode)
         ->save();
+
+      $old_langcode = $form_state->get('stinchcombe_domain_original_default_language');
+      if (is_string($old_langcode) && $old_langcode !== $langcode) {
+        $negotiation = $config_factory->getEditable('language.negotiation');
+        $prefixes = $negotiation->get('url.prefixes') ?? [];
+        if (($prefixes[$old_langcode] ?? '') === '') {
+          $negotiation->set('url.prefixes.' . $old_langcode, $old_langcode);
+        }
+        $negotiation
+          ->set('url.prefixes.' . $langcode, '')
+          ->save();
+      }
       \Drupal::languageManager()->reset();
     }
 
