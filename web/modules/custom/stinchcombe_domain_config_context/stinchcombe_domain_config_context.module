@@ -1,0 +1,6 @@
+<?php
+
+/**
+ * @file
+ * Adds base and language contexts to the Domain Configuration Switcher.
+ */

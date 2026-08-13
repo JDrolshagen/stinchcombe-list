@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "723c711e68f1972f2eef7536d4ade826",
+    "content-hash": "0193ad0d878e59b0c0c87901f37c9748",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3195,33 +3195,32 @@
         },
         {
             "name": "drupal/domain",
-            "version": "3.0.1",
+            "version": "dev-3.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/domain.git",
-                "reference": "3.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/domain-3.0.1.zip",
-                "reference": "3.0.1",
-                "shasum": "3b2619d738ed01f0979c0a21a693d00dd0c2295d"
+                "reference": "4368298033a2bdec106bb49b52becb81d020f8c8"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11"
             },
             "require-dev": {
                 "drupal/domain_access": "*",
-                "drupal/domain_config": "*"
+                "drupal/domain_config": "*",
+                "drupal/domain_config_language": "*",
+                "drupal/domain_config_ui": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
                 "drupal": {
-                    "version": "3.0.1",
-                    "datestamp": "1778231514",
+                    "version": "3.1.0-alpha4+13-dev",
+                    "datestamp": "1785331438",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -3305,6 +3304,67 @@
             "homepage": "https://www.drupal.org/project/domain",
             "support": {
                 "source": "https://git.drupalcode.org/project/domain"
+            }
+        },
+        {
+            "name": "drupal/domain_extras",
+            "version": "dev-3.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/domain_extras.git",
+                "reference": "e40ebd16db8a96cbf4006dcfdaf1117dfa7668b8"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11"
+            },
+            "require-dev": {
+                "drupal/admin_toolbar": "*",
+                "drupal/domain": "*",
+                "drupal/domain_access-domain_access": "*",
+                "drupal/domain_alias": "*",
+                "drupal/domain_config": "*",
+                "drupal/domain_config_language": "*",
+                "drupal/domain_config_ui": "*",
+                "drupal/domain_content": "*",
+                "drupal/domain_sso": "*",
+                "drupal/linkit": "*",
+                "drupal/page_manager": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "3.0.4+1-dev",
+                    "datestamp": "1786313869",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "dpiet",
+                    "homepage": "https://www.drupal.org/user/3626504"
+                },
+                {
+                    "name": "mably",
+                    "homepage": "https://www.drupal.org/user/3375160"
+                },
+                {
+                    "name": "pitop",
+                    "homepage": "https://www.drupal.org/user/3478383"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/domain_extras",
+            "support": {
+                "source": "https://git.drupalcode.org/project/domain_extras"
             }
         },
         {
@@ -18924,7 +18984,8 @@
         "drupal/ai_search": 15,
         "drupal/ai_vdb_provider_qdrant": 20,
         "drupal/conditional_fields": 15,
-        "drupal/domain": 10,
+        "drupal/domain": 20,
+        "drupal/domain_extras": 20,
         "drupal/domain_simple_sitemap": 5,
         "drupal/external_entities": 5,
         "drupal/feeds": 5,

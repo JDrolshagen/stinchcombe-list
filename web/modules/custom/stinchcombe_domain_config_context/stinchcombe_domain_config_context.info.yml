@@ -1,0 +1,11 @@
+name: 'Stinchcombe Domain Configuration Context'
+type: module
+description: 'Adds All Domains and language contexts to the Domain Configuration Switcher.'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:config_translation
+  - drupal:language
+  - domain:domain_config_language
+  - domain:domain_config_language_ui
+  - domain_extras:domain_config_switcher

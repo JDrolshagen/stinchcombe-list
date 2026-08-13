@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Drupal\stinchcombe_domain_config_context\ConfigurationContext: ~
+
+  Drupal\stinchcombe_domain_config_context\Hook\ConfigurationContextFormHooks: ~
+
+  stinchcombe_domain_config_context.config_factory:
+    class: Drupal\stinchcombe_domain_config_context\Config\ConfigurationContextConfigFactory
+    decorates: config.factory
+    decoration_priority: 2
+    arguments:
+      $inner: '@stinchcombe_domain_config_context.config_factory.inner'
+      $configStorage: '@config.storage'
