@@ -23,6 +23,11 @@ $databases['default']['default'] = [
 $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: '';
 $settings['file_temp_path'] = '/tmp';
 
+// Generated PHP, including compiled Twig templates, must remain local to each
+// Cloud Run instance. The public files directory is a shared GCS FUSE mount;
+// concurrent cache rebuilds otherwise race while deleting the same objects.
+$settings['php_storage']['default']['directory'] = '/tmp/drupal-php';
+
 // Keep the SendGrid credential out of Drupal's configuration database. Cloud
 // Run injects this value directly from Google Secret Manager.
 $sendgrid_api_key = getenv('SENDGRID_API_KEY');
