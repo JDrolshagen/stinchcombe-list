@@ -88,6 +88,14 @@ jobs:
           --args=updb,-y
           --wait
 
+      - name: Enable AI, AI Search, and ECA
+        run: >-
+          gcloud run jobs execute "${SERVICE}-maintenance"
+          --project="${PROJECT_ID}"
+          --region="${REGION}"
+          --args=en,ai,ai_search,eca,-y
+          --wait
+
       - name: Enable domain configuration UI
         run: >-
           gcloud run jobs execute "${SERVICE}-maintenance"
