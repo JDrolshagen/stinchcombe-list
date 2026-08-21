@@ -35,6 +35,22 @@ if ($sendgrid_api_key !== FALSE && $sendgrid_api_key !== '') {
   $config['sendgrid_integration.settings']['apikey'] = $sendgrid_api_key;
 }
 
+// Cloudflare credentials are runtime-only. If either secret is unavailable,
+// keep automatic purging disabled so Drupal never queues requests that cannot
+// be authenticated. The managed source configuration becomes active
+// automatically once both Secret Manager bindings are present.
+$cloudflare_zone_id = getenv('CLOUDFLARE_ZONE_ID');
+$cloudflare_api_token = getenv('CLOUDFLARE_API_TOKEN');
+if ($cloudflare_zone_id !== FALSE && $cloudflare_zone_id !== '' && $cloudflare_api_token !== FALSE && $cloudflare_api_token !== '') {
+  $settings['cloudflare_purge_credentials'] = [
+    'zone_id' => $cloudflare_zone_id,
+    'bearer_token' => $cloudflare_api_token,
+  ];
+}
+else {
+  $config['cloudflare_purge.settings']['auto_purge_enabled'] = FALSE;
+}
+
 // Cloud Run terminates TLS before forwarding requests to Apache.
 $settings['reverse_proxy'] = TRUE;
 if (!empty($_SERVER['REMOTE_ADDR'])) {

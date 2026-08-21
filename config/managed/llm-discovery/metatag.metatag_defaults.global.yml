@@ -1,0 +1,6 @@
+tags:
+  schema_web_site_type: WebSite
+  schema_web_site_id: '[stinchcombe:domain-url]#website'
+  schema_web_site_name: '[stinchcombe:domain-name]'
+  schema_web_site_url: '[stinchcombe:domain-url]'
+  schema_web_site_in_language: '[stinchcombe:language]'

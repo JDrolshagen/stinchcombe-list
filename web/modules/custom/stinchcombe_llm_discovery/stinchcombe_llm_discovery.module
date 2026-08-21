@@ -1,0 +1,91 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Domain-aware tokens used by llms.txt and Schema.org metadata.
+ */
+
+use Drupal\Core\Render\BubbleableMetadata;
+
+/**
+ * Implements hook_token_info().
+ */
+function stinchcombe_llm_discovery_token_info(): array {
+  return [
+    'types' => [
+      'stinchcombe' => [
+        'name' => t('Stinchcombe List'),
+        'description' => t('Domain-aware Stinchcombe List values.'),
+      ],
+    ],
+    'tokens' => [
+      'stinchcombe' => [
+        'domain-name' => [
+          'name' => t('Active domain name'),
+          'description' => t('The configured label of the active Domain record.'),
+        ],
+        'domain-url' => [
+          'name' => t('Active domain URL'),
+          'description' => t('The canonical HTTPS root URL of the active Domain record.'),
+        ],
+        'domain-hostname' => [
+          'name' => t('Active domain hostname'),
+          'description' => t('The canonical hostname of the active Domain record.'),
+        ],
+        'language' => [
+          'name' => t('Interface language code'),
+          'description' => t('The current interface language code.'),
+        ],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function stinchcombe_llm_discovery_tokens(string $type, array $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata): array {
+  if ($type !== 'stinchcombe') {
+    return [];
+  }
+
+  $replacements = [];
+  $domain = \Drupal::service('domain.negotiator')->getActiveDomain();
+  $language = \Drupal::languageManager()->getCurrentLanguage();
+
+  $bubbleable_metadata->addCacheContexts([
+    'languages:language_interface',
+    'url.site',
+  ]);
+  if ($domain !== NULL) {
+    $bubbleable_metadata->addCacheableDependency($domain);
+  }
+
+  $site_name = (string) \Drupal::config('system.site')->get('name');
+  $domain_name = $domain !== NULL ? (string) $domain->label() : $site_name;
+  $hostname = $domain !== NULL
+    ? (string) $domain->getCanonical()
+    : (string) \Drupal::request()->getHost();
+  $path_prefix = $domain !== NULL ? trim($domain->getPathPrefix(), '/') : '';
+  $domain_url = 'https://' . $hostname . '/';
+  if ($path_prefix !== '') {
+    $domain_url .= $path_prefix . '/';
+  }
+
+  foreach ($tokens as $name => $original) {
+    $value = match ($name) {
+      'domain-name' => $domain_name,
+      'domain-url' => $domain_url,
+      'domain-hostname' => $hostname,
+      'language' => $language->getId(),
+      default => NULL,
+    };
+    if ($value !== NULL) {
+      $replacements[$original] = $value;
+    }
+  }
+
+  return $replacements;
+}

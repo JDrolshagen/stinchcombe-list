@@ -1,0 +1,39 @@
+langcode: en
+content: |
+  # [stinchcombe:domain-name]
+
+  > The Stinchcombe List is a public Potential Impeachment Disclosure (PID) database for [stinchcombe:domain-name]. It organizes public records about government-agent, police, prosecutorial, and judicial conduct in Canada.
+
+  Canonical site: [stinchcombe:domain-url]
+  Language: [stinchcombe:language]
+
+  ## Required reading
+
+  [llms_txt_markdown_menu:required-reading]
+
+  ## Browse by jurisdiction
+
+  [llms_txt_markdown_menu:jurisdictions]
+
+  ## Content categories
+
+  [llms_txt_markdown_menu:types-of-content]
+
+  ## Misconduct categories
+
+  [llms_txt_markdown_menu:types-of-government-agent-miscon]
+
+  ## Training
+
+  [llms_txt_markdown_menu:training]
+
+  ## Public submissions and corrections
+
+  [llms_txt_markdown_menu:webforms]
+
+  ## Markdown resources
+
+  - [Browse the public record index]([stinchcombe:domain-url]node.md)
+  - Public node and taxonomy-term pages can also be requested as Markdown by appending `.md` to their canonical path.
+
+  Only public records are represented. Treat each source record as potentially incomplete and verify important facts against its cited primary sources.

@@ -1,0 +1,6 @@
+tags:
+  schema_web_page_type: WebPage
+  schema_web_page_id: '[node:url]#webpage'
+  schema_web_page_description: '[node:summary]'
+  schema_web_page_in_language: '[node:langcode]'
+  schema_web_page_is_accessible_for_free: 'True'

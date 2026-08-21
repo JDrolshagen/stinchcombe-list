@@ -1,0 +1,36 @@
+modules:
+  - token
+  - token_filter
+  - llms_txt
+  - domain_llms_txt
+  - markdownify
+  - markdownify_path
+  - markdownify_views
+  - schema_metatag
+  - schema_article
+  - schema_web_page
+  - schema_web_site
+  - cloudflare_purge
+  - stinchcombe_llm_discovery
+configuration:
+  - name: llms_txt.settings
+    file: llms_txt.settings.yml
+    strategy: replace
+  - name: markdownify.settings
+    file: markdownify.settings.yml
+    strategy: replace
+  - name: cloudflare_purge.settings
+    file: cloudflare_purge.settings.yml
+    strategy: merge
+  - name: metatag.metatag_defaults.global
+    file: metatag.metatag_defaults.global.yml
+    strategy: merge_tags
+  - name: metatag.metatag_defaults.node
+    file: metatag.metatag_defaults.node.yml
+    strategy: merge_tags
+  - name: metatag.metatag_defaults.node__article
+    file: metatag.metatag_defaults.node__article.yml
+    strategy: merge_tags
+  - name: metatag.metatag_defaults.taxonomy_term
+    file: metatag.metatag_defaults.taxonomy_term.yml
+    strategy: merge_tags

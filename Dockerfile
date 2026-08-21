@@ -36,6 +36,8 @@ COPY --from=build --chown=www-data:www-data /app /var/www/html
 
 RUN sed -i 's/\r$//' /usr/local/bin/drupal-entrypoint \
     && chmod +x /usr/local/bin/drupal-entrypoint \
+    && sed -i 's/\r$//' /var/www/html/scripts/maintenance.sh \
+    && chmod +x /var/www/html/scripts/maintenance.sh \
     && mkdir -p /var/www/html/web/sites/default/files \
     && chown -R www-data:www-data /var/www/html/web/sites/default
 

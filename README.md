@@ -35,3 +35,20 @@ service in Google Cloud Run. Production is available at
 https://stinchcombelist.com/.
 
 Deployment details and the manual provisioning script are in `infra/`.
+
+## LLM discovery and structured data
+
+The deployment maintenance job enables the LLM discovery modules and applies
+the release-owned YAML in `config/managed/llm-discovery/`. The production site
+has legitimate configuration and content that are not fully exported to this
+repository, so deployment deliberately does not run a full `drush cim`.
+`scripts/apply-managed-config.php` enforces a fixed allowlist, replaces only the
+two release-owned discovery settings objects, merges non-secret Cloudflare
+settings, and merges only the new Schema.org tags into existing Metatag
+defaults.
+
+`scripts/Test-LlmDiscovery.ps1` discovers enabled Domain records through the
+production maintenance job and checks every domain's `/llms.txt`, representative
+Markdown routes, and Schema.org JSON-LD. Its optional `-PurgeStale` switch calls
+the Cloudflare Purge module for the exact discovered `/llms.txt` URLs and then
+reruns the entire suite; it never performs a full-zone purge.
