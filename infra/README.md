@@ -17,9 +17,30 @@ bash infra/provision-gcp.sh
 
 The script is designed to be safe to rerun. Secret values are generated only
 when their named secrets do not already exist. On the first run it securely
-prompts for the SendGrid API key and stores it as
-`stinchcombe-list-sendgrid-api-key`; the value is not written to the repository
-or to Drupal's configuration database.
+prompts for the SendGrid API key, Cloudflare zone ID, and a Cloudflare API token
+with Cache Purge permission. They are stored as Secret Manager secrets; values
+are not written to the repository or Drupal's configuration database.
+
+The provisioning script binds the two Cloudflare secrets to the service and
+maintenance job. The production workflow detects those bindings so it can use
+exact-URL purging during acceptance tests. If either binding is absent, Drupal
+keeps automatic Cloudflare purging runtime-disabled while the module and
+non-secret configuration remain deployed. Create the secrets and rerun the
+provisioning script to activate it:
+
+```bash
+gcloud secrets create stinchcombe-list-cloudflare-zone-id \
+  --project=stinchcombe-list --replication-policy=automatic --data-file=-
+gcloud secrets create stinchcombe-list-cloudflare-api-token \
+  --project=stinchcombe-list --replication-policy=automatic --data-file=-
+```
+
+The Cloudflare token needs only the target zone's Cache Purge permission. Full
+zone purges are disabled. Stale discovery files can be purged and retested with:
+
+```powershell
+./scripts/Test-LlmDiscovery.ps1 -PurgeStale
+```
 
 ## SendGrid credential migration
 
@@ -48,8 +69,9 @@ replace that SendGrid-side verification.
 Pushes to `main` run `.github/workflows/deploy-production.yml`. The workflow
 authenticates through Workload Identity Federation, builds an immutable
 commit-tagged image, pushes it to Artifact Registry, deploys a new Cloud Run
-revision, runs Drupal cache rebuilds and database updates through the
-maintenance job, and verifies `https://stinchcombelist.com/`.
+revision, runs database updates and the allowlisted managed configuration
+through `scripts/maintenance.sh`, executes the external LLM-discovery acceptance
+suite, and verifies that the service and job use the same immutable image tag.
 
 The Google Cloud identity provider only accepts tokens from
 `JDrolshagen/stinchcombe-list` on `refs/heads/main`; no long-lived service

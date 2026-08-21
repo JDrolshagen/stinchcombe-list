@@ -96,6 +96,8 @@ create_input_secret() {
 }
 
 create_input_secret "${SERVICE_NAME}-sendgrid-api-key" "SendGrid API key"
+create_input_secret "${SERVICE_NAME}-cloudflare-zone-id" "Cloudflare zone ID"
+create_input_secret "${SERVICE_NAME}-cloudflare-api-token" "Cloudflare API token with Cache Purge permission"
 
 if ! gcloud sql instances describe "${SQL_INSTANCE}" >/dev/null 2>&1; then
   gcloud sql instances create "${SQL_INSTANCE}" \
@@ -146,7 +148,7 @@ gcloud run deploy "${SERVICE_NAME}" \
   --port=80 \
   --set-cloudsql-instances="${SQL_CONNECTION}" \
   --set-env-vars="DRUPAL_DB_USER=drupal,DRUPAL_DB_NAME=drupal,DRUPAL_DB_SOCKET=/cloudsql/${SQL_CONNECTION},DRUPAL_DEPLOYMENT_IDENTIFIER=cloudrun-${REGION}" \
-  --set-secrets="DRUPAL_DB_PASSWORD=${SERVICE_NAME}-database-password:latest,DRUPAL_HASH_SALT=${SERVICE_NAME}-hash-salt:latest,DRUPAL_CRON_KEY=${SERVICE_NAME}-cron-key:latest,SENDGRID_API_KEY=${SERVICE_NAME}-sendgrid-api-key:latest" \
+  --set-secrets="DRUPAL_DB_PASSWORD=${SERVICE_NAME}-database-password:latest,DRUPAL_HASH_SALT=${SERVICE_NAME}-hash-salt:latest,DRUPAL_CRON_KEY=${SERVICE_NAME}-cron-key:latest,SENDGRID_API_KEY=${SERVICE_NAME}-sendgrid-api-key:latest,CLOUDFLARE_ZONE_ID=${SERVICE_NAME}-cloudflare-zone-id:latest,CLOUDFLARE_API_TOKEN=${SERVICE_NAME}-cloudflare-api-token:latest" \
   --add-volume="mount-path=/var/www/html/web/sites/default/files,type=cloud-storage,bucket=${BUCKET_NAME},readonly=false,mount-options=uid=33;gid=33;file-mode=0664;dir-mode=0775;implicit-dirs"
 
 SERVICE_URL="$(gcloud run services describe "${SERVICE_NAME}" \
@@ -165,11 +167,11 @@ gcloud run jobs deploy "${SERVICE_NAME}-maintenance" \
   --memory=1Gi \
   --task-timeout=30m \
   --max-retries=1 \
-  --command=/var/www/html/vendor/bin/drush \
-  --args=cron,-y \
+  --command=/var/www/html/scripts/maintenance.sh \
+  --args=deploy \
   --set-cloudsql-instances="${SQL_CONNECTION}" \
   --set-env-vars="DRUPAL_DB_USER=drupal,DRUPAL_DB_NAME=drupal,DRUPAL_DB_SOCKET=/cloudsql/${SQL_CONNECTION},DRUPAL_TRUSTED_HOSTS_PATTERN=^(?:${SERVICE_NAME}-[a-z0-9-]+\\.${REGION}\\.run\\.app|(?:[a-z0-9-]+\\.)?${DOMAIN_REGEX})$" \
-  --set-secrets="DRUPAL_DB_PASSWORD=${SERVICE_NAME}-database-password:latest,DRUPAL_HASH_SALT=${SERVICE_NAME}-hash-salt:latest,DRUPAL_CRON_KEY=${SERVICE_NAME}-cron-key:latest,SENDGRID_API_KEY=${SERVICE_NAME}-sendgrid-api-key:latest" \
+  --set-secrets="DRUPAL_DB_PASSWORD=${SERVICE_NAME}-database-password:latest,DRUPAL_HASH_SALT=${SERVICE_NAME}-hash-salt:latest,DRUPAL_CRON_KEY=${SERVICE_NAME}-cron-key:latest,SENDGRID_API_KEY=${SERVICE_NAME}-sendgrid-api-key:latest,CLOUDFLARE_ZONE_ID=${SERVICE_NAME}-cloudflare-zone-id:latest,CLOUDFLARE_API_TOKEN=${SERVICE_NAME}-cloudflare-api-token:latest" \
   --add-volume="mount-path=/var/www/html/web/sites/default/files,type=cloud-storage,bucket=${BUCKET_NAME},readonly=false,mount-options=uid=33;gid=33;file-mode=0664;dir-mode=0775;implicit-dirs"
 
 printf 'SERVICE_URL=%s\n' "${SERVICE_URL}"

@@ -1,0 +1,9 @@
+name: Stinchcombe LLM Discovery
+type: module
+description: 'Provides domain-aware discovery tokens and deployment helpers for public LLM endpoints.'
+package: Stinchcombe List
+core_version_requirement: ^11
+dependencies:
+  - domain:domain
+  - drupal:language
+  - token:token

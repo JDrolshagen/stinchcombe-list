@@ -5,6 +5,25 @@
     "license": "MIT",
     "repositories": [
         {
+            "type": "package",
+            "canonical": true,
+            "package": {
+                "name": "drupal/domain_llms_txt",
+                "version": "1.0.3",
+                "description": "Provides per-domain configuration for /llms.txt, allowing each domain to have its own header content and sections.",
+                "type": "drupal-module",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://ftp.drupal.org/files/projects/domain_llms_txt-1.0.3.zip"
+                },
+                "require": {
+                    "drupal/core": "^10.3 || ^11",
+                    "drupal/domain": "^2 || ^3",
+                    "drupal/llms_txt": "^1"
+                }
+            }
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
@@ -82,7 +101,12 @@
         "drupal/classy": "^2.0",
         "drupal/entity_print": "^2.18",
         "drupal/webform_content_creator": "^4.0",
-        "drupal/social_media_links": "^2.10"
+        "drupal/social_media_links": "^2.10",
+        "drupal/llms_txt": "^1.1",
+        "drupal/domain_llms_txt": "1.0.3",
+        "drupal/markdownify": "^1.2",
+        "drupal/schema_metatag": "^3.0",
+        "drupal/cloudflare_purge": "^3.1"
     },
     "require-dev": {
         "drupal/core-dev": "^11"
@@ -127,6 +151,12 @@
             },
             "drupal/sendgrid_integration": {
                 "Drupal 11 compatibility for SendGrid reports settings form": "patches/sendgrid-integration-reports-drupal-11-config-form.patch"
+            },
+            "drupal/domain_llms_txt": {
+                "Allow the installed Domain 3 branch": "patches/domain-llms-txt-domain-3.patch"
+            },
+            "drupal/markdownify": {
+                "Drupal 11.4 Views controller constructor compatibility": "patches/markdownify-views-drupal-11.4-controller.patch"
             }
         }
     },

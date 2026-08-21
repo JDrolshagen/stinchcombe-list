@@ -64,56 +64,75 @@ jobs:
           service: ${{ env.SERVICE }}
           image: ${{ env.IMAGE }}
 
-      - name: Update maintenance job image
+      - name: Update maintenance job image and command
         run: >-
           gcloud run jobs update "${SERVICE}-maintenance"
           --project="${PROJECT_ID}"
           --region="${REGION}"
           --image="${IMAGE}"
+          --command=/var/www/html/scripts/maintenance.sh
+          --args=deploy
           --quiet
 
-      - name: Rebuild caches before database updates
-        run: >-
-          gcloud run jobs execute "${SERVICE}-maintenance"
-          --project="${PROJECT_ID}"
-          --region="${REGION}"
-          --args=cr
-          --wait
+      - name: Detect Cloudflare secret bindings
+        id: cloudflare
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_json="$(gcloud run services describe "${SERVICE}" --project="${PROJECT_ID}" --region="${REGION}" --format=json)"
+          job_json="$(gcloud run jobs describe "${SERVICE}-maintenance" --project="${PROJECT_ID}" --region="${REGION}" --format=json)"
+          if jq -e '.spec.template.spec.containers[0].env | map(.name) | contains(["CLOUDFLARE_ZONE_ID", "CLOUDFLARE_API_TOKEN"])' <<<"${service_json}" >/dev/null \
+            && jq -e '.spec.template.spec.template.spec.containers[0].env | map(.name) | contains(["CLOUDFLARE_ZONE_ID", "CLOUDFLARE_API_TOKEN"])' <<<"${job_json}" >/dev/null; then
+            echo 'configured=true' >> "${GITHUB_OUTPUT}"
+          else
+            echo 'Cloudflare secret bindings are absent; the module will remain runtime-disabled.'
+            echo 'configured=false' >> "${GITHUB_OUTPUT}"
+          fi
 
-      - name: Apply database updates
-        run: >-
-          gcloud run jobs execute "${SERVICE}-maintenance"
-          --project="${PROJECT_ID}"
-          --region="${REGION}"
-          --args=updb,-y
-          --wait
-
-      - name: Enable AI, AI Search, and ECA
-        run: >-
-          gcloud run jobs execute "${SERVICE}-maintenance"
-          --project="${PROJECT_ID}"
-          --region="${REGION}"
-          --args=en,ai,ai_search,eca,-y
-          --wait
-
-      - name: Enable domain configuration UI
-        run: >-
-          gcloud run jobs execute "${SERVICE}-maintenance"
-          --project="${PROJECT_ID}"
-          --region="${REGION}"
-          --args=en,domain_config,domain_config_ui,domain_config_language,domain_config_language_ui,domain_config_switcher,stinchcombe_domain_config_context,-y
-          --wait
-
-      - name: Rebuild caches after database updates
-        run: >-
-          gcloud run jobs execute "${SERVICE}-maintenance"
-          --project="${PROJECT_ID}"
-          --region="${REGION}"
-          --args=cr
-          --wait
+      - name: Apply database updates and managed configuration
+        id: maintenance
+        run: |
+          set -euo pipefail
+          execution="$(gcloud run jobs execute "${SERVICE}-maintenance" \
+            --project="${PROJECT_ID}" \
+            --region="${REGION}" \
+            --args=deploy \
+            --wait \
+            --format='value(metadata.name)')"
+          echo "execution=${execution}" >> "${GITHUB_OUTPUT}"
 
       - name: Verify production website
-        run: >-
-          curl --fail --silent --show-error
-          --retry 12 --retry-delay 10 --retry-all-errors
-          https://stinchcombelist.com/
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            --retry 12 --retry-delay 10 --retry-all-errors \
+            https://stinchcombelist.com/ >/dev/null
+          curl --fail --silent --show-error \
+            --retry 12 --retry-delay 10 --retry-all-errors \
+            https://stinchcombelist.com/llms.txt | grep -Eq '^# .+'
+
+      - name: Run external LLM discovery acceptance suite
+        shell: pwsh
+        run: |
+          $arguments = @(
+            '-ProjectId', $env:PROJECT_ID,
+            '-Region', $env:REGION,
+            '-MaintenanceJob', "$($env:SERVICE)-maintenance"
+          )
+          if ('${{ steps.cloudflare.outputs.configured }}' -eq 'true') {
+            $arguments += '-PurgeStale'
+          }
+          & ./scripts/Test-LlmDiscovery.ps1 @arguments
+
+      - name: Verify final Cloud Run state
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_image="$(gcloud run services describe "${SERVICE}" --project="${PROJECT_ID}" --region="${REGION}" --format='value(spec.template.spec.containers[0].image)')"
+          job_image="$(gcloud run jobs describe "${SERVICE}-maintenance" --project="${PROJECT_ID}" --region="${REGION}" --format='value(spec.template.spec.template.spec.containers[0].image)')"
+          revision="$(gcloud run services describe "${SERVICE}" --project="${PROJECT_ID}" --region="${REGION}" --format='value(status.latestReadyRevisionName)')"
+          test "${service_image}" = "${IMAGE}"
+          test "${job_image}" = "${IMAGE}"
+          test -n "${revision}"
+          echo "Revision ${revision} is Ready; maintenance execution ${{ steps.maintenance.outputs.execution }} completed."

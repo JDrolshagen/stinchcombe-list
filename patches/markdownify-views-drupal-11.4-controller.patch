@@ -1,0 +1,37 @@
+diff --git a/modules/views/src/Controller/MarkdownifyViewPageController.php b/modules/views/src/Controller/MarkdownifyViewPageController.php
+--- a/modules/views/src/Controller/MarkdownifyViewPageController.php
++++ b/modules/views/src/Controller/MarkdownifyViewPageController.php
+@@ -9,7 +9,8 @@ use Drupal\Core\Render\RenderContext;
+ use Drupal\Core\Render\RendererInterface;
+ use Drupal\Core\Routing\RouteMatchInterface;
+ use Drupal\markdownify\MarkdownifyHtmlConverterInterface;
+ use Drupal\markdownify\MarkdownResponse;
++use Drupal\views\ContextualLinksHelper;
+ use Drupal\views\Routing\ViewPageController;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+@@ -34,12 +35,15 @@ class MarkdownifyViewPageController extends ViewPageController implements Contai
+   /**
+    * Constructs a new MarkdownifyViewPageController object.
+    *
++   * @param \Drupal\views\ContextualLinksHelper $contextual_links
++   *   The contextual links helper required by the parent controller.
+    * @param \Drupal\Core\Render\RendererInterface $renderer
+    *   The service for rendering views as HTML.
+    * @param \Drupal\markdownify\MarkdownifyHtmlConverterInterface $converter
+    *   The service for converting HTML to Markdown.
+    */
+-  public function __construct(RendererInterface $renderer, MarkdownifyHtmlConverterInterface $converter) {
++  public function __construct(ContextualLinksHelper $contextual_links, RendererInterface $renderer, MarkdownifyHtmlConverterInterface $converter) {
++    parent::__construct($contextual_links);
+     $this->renderer = $renderer;
+     $this->converter = $converter;
+   }
+@@ -49,6 +53,7 @@ class MarkdownifyViewPageController extends ViewPageController implements Contai
+    */
+   public static function create(ContainerInterface $container) {
+     return new static(
++      $container->get(ContextualLinksHelper::class),
+       $container->get('renderer'),
+       $container->get('markdownify.html_converter')
+     );
