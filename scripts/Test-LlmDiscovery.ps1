@@ -160,7 +160,7 @@ function Test-JsonLd {
 
 function Add-Result {
     param(
-        [Parameter(Mandatory)][System.Collections.Generic.List[object]]$Results,
+        [Parameter(Mandatory)][AllowEmptyCollection()][System.Collections.Generic.List[object]]$Results,
         [Parameter(Mandatory)][string]$Kind,
         [Parameter(Mandatory)][string]$Endpoint,
         [Parameter(Mandatory)][bool]$Healthy,
@@ -178,9 +178,9 @@ function Add-Result {
 function Find-HealthyMarkdownTarget {
     param(
         [Parameter(Mandatory)][string]$HostName,
-        [Parameter(Mandatory)][object[]]$Candidates,
+        [Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Candidates,
         [Parameter(Mandatory)][string]$Kind,
-        [Parameter(Mandatory)][System.Collections.Generic.List[object]]$Results
+        [Parameter(Mandatory)][AllowEmptyCollection()][System.Collections.Generic.List[object]]$Results
     )
 
     foreach ($candidate in $Candidates) {
@@ -230,13 +230,11 @@ function Invoke-AcceptanceSuite {
     $viewTarget = Find-HealthyMarkdownTarget -HostName $hostName -Candidates $viewCandidates -Kind 'View Markdown' -Results $results
     $nodeTarget = Find-HealthyMarkdownTarget -HostName $hostName -Candidates @($Targets.nodes) -Kind 'Node Markdown' -Results $results
     $termTarget = Find-HealthyMarkdownTarget -HostName $hostName -Candidates @($Targets.taxonomy_terms) -Kind 'Taxonomy Markdown' -Results $results
-    $articleTarget = Find-HealthyMarkdownTarget -HostName $hostName -Candidates @($Targets.article_nodes) -Kind 'Article Markdown' -Results $results
 
     $jsonLdChecks = @(
         [pscustomobject]@{ Kind = 'Home JSON-LD'; Path = '/'; Type = 'WebSite'; Target = [pscustomobject]@{ path = '/' } },
         [pscustomobject]@{ Kind = 'Node JSON-LD'; Path = if ($null -ne $nodeTarget) { $nodeTarget.path } else { '' }; Type = 'WebPage'; Target = $nodeTarget },
-        [pscustomobject]@{ Kind = 'Taxonomy JSON-LD'; Path = if ($null -ne $termTarget) { $termTarget.path } else { '' }; Type = 'CollectionPage'; Target = $termTarget },
-        [pscustomobject]@{ Kind = 'Article JSON-LD'; Path = if ($null -ne $articleTarget) { $articleTarget.path } else { '' }; Type = 'Article'; Target = $articleTarget }
+        [pscustomobject]@{ Kind = 'Taxonomy JSON-LD'; Path = if ($null -ne $termTarget) { $termTarget.path } else { '' }; Type = 'CollectionPage'; Target = $termTarget }
     )
     foreach ($check in $jsonLdChecks) {
         if ($null -eq $check.Target) {
@@ -253,6 +251,26 @@ function Invoke-AcceptanceSuite {
         }
         catch {
             Add-Result -Results $results -Kind $check.Kind -Endpoint $uri -Healthy $false -Details $_.Exception.Message
+        }
+    }
+
+    # Article JSON-LD is configured in the managed Metatag defaults. Exercise
+    # it externally only when production contains a published Article; never
+    # create content merely to satisfy an acceptance test.
+    if (@($Targets.article_nodes).Count -gt 0) {
+        $articleTarget = Find-HealthyMarkdownTarget -HostName $hostName -Candidates @($Targets.article_nodes) -Kind 'Article Markdown' -Results $results
+        if ($null -ne $articleTarget) {
+            $uri = "https://$hostName$($articleTarget.path)"
+            try {
+                $response = Invoke-HttpGet -Uri $uri
+                $jsonLd = Test-JsonLd -Html $response.Body -ExpectedType 'Article'
+                $healthy = $response.Status -eq 200 -and $response.ContentType -eq 'text/html' -and $jsonLd.Found
+                $details = "HTTP $($response.Status); scripts=$($jsonLd.ScriptCount); types=$($jsonLd.Types -join ',')"
+                Add-Result -Results $results -Kind 'Article JSON-LD' -Endpoint $uri -Healthy $healthy -Details $details
+            }
+            catch {
+                Add-Result -Results $results -Kind 'Article JSON-LD' -Endpoint $uri -Healthy $false -Details $_.Exception.Message
+            }
         }
     }
 

@@ -1,0 +1,33 @@
+diff --git a/includes/batch.inc b/includes/batch.inc
+--- a/includes/batch.inc
++++ b/includes/batch.inc
+@@ -252,9 +252,11 @@ function _drush_batch_worker() {
+       // Tolerate recoverable errors.
+       // See https://github.com/drush-ops/drush/issues/1930
+       $halt_on_error = \Drush\Drush::config()->get('runtime.php.halt-on-error', TRUE);
+       \Drush\Drush::config()->set('runtime.php.halt-on-error', FALSE);
+-      call_user_func_array($callback, array_merge($args, [&$batch_context]));
++      $callable_resolver = \Drupal::service(\Drupal\Core\Utility\CallableResolver::class);
++      $callable = $callable_resolver->getCallableFromDefinition($callback);
++      $callable(...array_merge($args, [&$batch_context]));
+       if (!empty($task_message)) {
+         Drush::logger()->notice(strip_tags($task_message));
+       }
+       \Drush\Drush::config()->set('runtime.php.halt-on-error', $halt_on_error);
+@@ -339,12 +341,14 @@ function _drush_batch_finished() {
+       if (isset($batch_set['file']) && is_file($batch_set['file'])) {
+         include_once DRUPAL_ROOT . '/' . $batch_set['file'];
+       }
+-      if (is_callable($batch_set['finished'])) {
++      if (isset($batch_set['finished'])) {
++        $callable_resolver = \Drupal::service(\Drupal\Core\Utility\CallableResolver::class);
++        $finished_callback = $callable_resolver->getCallableFromDefinition($batch_set['finished']);
+         $queue = _batch_queue($batch_set);
+         $operations = $queue->getAllItems();
+         $elapsed = $batch_set['elapsed'] / 1000;
+         $elapsed = \Drupal::service('date.formatter')->formatInterval($elapsed);
+-        call_user_func_array($batch_set['finished'], [$batch_set['success'], $batch_set['results'], $operations, $elapsed]);
++        $finished_callback($batch_set['success'], $batch_set['results'], $operations, $elapsed);
+         $results[$id] = $batch_set['results'];
+       }
+     }
