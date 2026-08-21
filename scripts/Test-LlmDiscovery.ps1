@@ -3,6 +3,9 @@ param(
     [string]$ProjectId = 'stinchcombe-list',
     [string]$Region = 'northamerica-northeast1',
     [string]$MaintenanceJob = 'stinchcombe-list-maintenance',
+    [string]$LogBucket = '_Default',
+    [string]$LogLocation = 'global',
+    [string]$LogView = 'stinchcombe-maintenance',
     [string]$TargetJson,
     [switch]$PurgeStale,
     [int]$LogRetryCount = 12,
@@ -41,6 +44,9 @@ function Invoke-GcloudMaintenance {
     for ($attempt = 1; $attempt -le $LogRetryCount; $attempt++) {
         $logOutput = & gcloud logging read $filter `
             "--project=$ProjectId" `
+            "--bucket=$LogBucket" `
+            "--location=$LogLocation" `
+            "--view=$LogView" `
             '--freshness=2h' `
             '--limit=1000' `
             '--order=asc' `
