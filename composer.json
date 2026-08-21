@@ -157,6 +157,9 @@
             },
             "drupal/markdownify": {
                 "Drupal 11.4 Views controller constructor compatibility": "patches/markdownify-views-drupal-11.4-controller.patch"
+            },
+            "drush/drush": {
+                "Resolve Drupal 11.4 service batch callbacks": "patches/drush-drupal-11.4-batch-callable-resolver.patch"
             }
         }
     },

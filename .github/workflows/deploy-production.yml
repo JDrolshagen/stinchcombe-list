@@ -115,13 +115,13 @@ jobs:
       - name: Run external LLM discovery acceptance suite
         shell: pwsh
         run: |
-          $arguments = @(
-            '-ProjectId', $env:PROJECT_ID,
-            '-Region', $env:REGION,
-            '-MaintenanceJob', "$($env:SERVICE)-maintenance"
-          )
+          $arguments = @{
+            ProjectId = $env:PROJECT_ID
+            Region = $env:REGION
+            MaintenanceJob = "$($env:SERVICE)-maintenance"
+          }
           if ('${{ steps.cloudflare.outputs.configured }}' -eq 'true') {
-            $arguments += '-PurgeStale'
+            $arguments.PurgeStale = $true
           }
           & ./scripts/Test-LlmDiscovery.ps1 @arguments
 
