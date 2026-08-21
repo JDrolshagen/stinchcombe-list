@@ -10,6 +10,8 @@ ARTIFACT_REPOSITORY="${ARTIFACT_REPOSITORY:-stinchcombe-list}"
 BUCKET_NAME="${BUCKET_NAME:-${PROJECT_ID}-drupal-files}"
 SERVICE_ACCOUNT_NAME="${SERVICE_ACCOUNT_NAME:-stinchcombe-drupal}"
 SERVICE_ACCOUNT="${SERVICE_ACCOUNT_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
+GITHUB_DEPLOYER_SERVICE_ACCOUNT="${GITHUB_DEPLOYER_SERVICE_ACCOUNT:-github-deployer@${PROJECT_ID}.iam.gserviceaccount.com}"
+MAINTENANCE_LOG_VIEW="${MAINTENANCE_LOG_VIEW:-stinchcombe-maintenance}"
 IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${ARTIFACT_REPOSITORY}/drupal:latest"
 SQL_CONNECTION="${PROJECT_ID}:${REGION}:${SQL_INSTANCE}"
 DOMAIN_REGEX="${DOMAIN//./\\.}"
@@ -36,6 +38,30 @@ for role in roles/cloudsql.client roles/secretmanager.secretAccessor roles/stora
     --role="${role}" \
     --quiet >/dev/null
 done
+
+if ! gcloud logging views describe "${MAINTENANCE_LOG_VIEW}" \
+  --project="${PROJECT_ID}" --bucket=_Default --location=global >/dev/null 2>&1; then
+  gcloud logging views create "${MAINTENANCE_LOG_VIEW}" \
+    --project="${PROJECT_ID}" \
+    --bucket=_Default \
+    --location=global \
+    --log-filter="resource.type=\"cloud_run_job\" AND resource.labels.job_name=\"${SERVICE_NAME}-maintenance\"" \
+    --description="Cloud Run maintenance job logs exposed to the GitHub production verifier only"
+fi
+
+if gcloud iam service-accounts describe "${GITHUB_DEPLOYER_SERVICE_ACCOUNT}" \
+  --project="${PROJECT_ID}" >/dev/null 2>&1; then
+  gcloud logging views add-iam-policy-binding "${MAINTENANCE_LOG_VIEW}" \
+    --project="${PROJECT_ID}" \
+    --bucket=_Default \
+    --location=global \
+    --member="serviceAccount:${GITHUB_DEPLOYER_SERVICE_ACCOUNT}" \
+    --role=roles/logging.viewAccessor \
+    --quiet >/dev/null
+else
+  printf 'GitHub deployer service account %s does not exist; skipping log-view access binding.\n' \
+    "${GITHUB_DEPLOYER_SERVICE_ACCOUNT}" >&2
+fi
 
 if ! gcloud artifacts repositories describe "${ARTIFACT_REPOSITORY}" \
   --location="${REGION}" >/dev/null 2>&1; then

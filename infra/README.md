@@ -75,4 +75,8 @@ suite, and verifies that the service and job use the same immutable image tag.
 
 The Google Cloud identity provider only accepts tokens from
 `JDrolshagen/stinchcombe-list` on `refs/heads/main`; no long-lived service
-account key is stored in GitHub.
+account key is stored in GitHub. The provisioning script also creates a
+`stinchcombe-maintenance` view over only the maintenance job's Cloud Run logs
+and grants that deploy identity `roles/logging.viewAccessor` on the view. This
+lets the acceptance suite retrieve its target manifest without giving the
+deployer access to unrelated project logs.
