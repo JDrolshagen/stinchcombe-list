@@ -110,7 +110,9 @@ jobs:
             https://stinchcombelist.com/ >/dev/null
           curl --fail --silent --show-error \
             --retry 12 --retry-delay 10 --retry-all-errors \
-            https://stinchcombelist.com/llms.txt | grep -Eq '^# .+'
+            --output "${RUNNER_TEMP}/stinchcombe-llms.txt" \
+            https://stinchcombelist.com/llms.txt
+          grep -Eq '^# .+' "${RUNNER_TEMP}/stinchcombe-llms.txt"
 
       - name: Run external LLM discovery acceptance suite
         shell: pwsh
